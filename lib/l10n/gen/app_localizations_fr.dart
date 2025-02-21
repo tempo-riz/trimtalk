@@ -218,4 +218,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appLanguage => 'Langue de l\'app';
+
+  @override
+  String get checkCodeOnGithub => 'Voir le code sur GitHub';
 }

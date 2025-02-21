@@ -520,6 +520,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'App language'**
   String get appLanguage;
+
+  /// No description provided for @checkCodeOnGithub.
+  ///
+  /// In en, this message translates to:
+  /// **'Check code on GitHub'**
+  String get checkCodeOnGithub;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

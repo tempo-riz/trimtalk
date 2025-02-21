@@ -18,6 +18,7 @@ import 'package:trim_talk/model/work.dart';
 import 'package:trim_talk/router.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:trim_talk/view/widgets/settings_toogle_pref.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -78,6 +79,7 @@ class SettingsScreen extends StatelessWidget {
               //   gap16,
               //   const FrequencySlider(),
               // ],
+              const SeeOnGithubButton(),
               const RateOnStoreButton(),
               const ShareButton(),
               const ClearResultsButton(),
@@ -120,6 +122,23 @@ class RateOnStoreButton extends StatelessWidget {
         InAppReview.instance.openStoreListing(appStoreId: "6720703110");
       },
       label: Text(context.t.rateTtOnStore),
+    );
+  }
+}
+
+class SeeOnGithubButton extends StatelessWidget {
+  const SeeOnGithubButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      icon: const Icon(Icons.code),
+      onPressed: () {
+        launchUrl(Uri.parse('https://github.com/tempo-riz/trimtalk'));
+      },
+      label: Text(context.t.checkCodeOnGithub),
     );
   }
 }

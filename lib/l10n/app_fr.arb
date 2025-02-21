@@ -70,5 +70,6 @@
   "copySummary": "Copier le résumé",
   "heyImUsingTtToTranscribeAndSummarizeCheckItOut": "Hey, j'utilise TrimTalk pour transcrire et résumer des messages audio:",
   "madeWithTt": "Fait avec TrimTalk",
-  "appLanguage": "Langue de l'app"
+  "appLanguage": "Langue de l'app",
+  "checkCodeOnGithub": "Voir le code sur GitHub"
 }
