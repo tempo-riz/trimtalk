@@ -1,7 +1,3 @@
-# Trim Talk
-
-Trim Talk aims to seamlessly transcribe voice messages received on WhatsApp.
-
 ## Tech Stack
 - **Flutter** (Hive, GoRouter, Riverpod, Pigeon for cleaner method channels)
 - **Groq** (Whisper)
@@ -79,16 +75,13 @@ To avoid requiring manual checks:
   - iOS: `flutter build ipa`
 
 
-## Debug Mode
+### Debug Mode
 - Notifications always appear.
 - WorkManager debug notifications are visible.
 - Transcriber returns dummy data.
 
 # Links
-Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) :)
+Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) 
 
-
-
-https://www.freeprivacypolicy.com/live/3518fab6-14b4-4047-b7d3-7ee314f6dc96
-
-https://tempo-riz.github.io/trimtalk/privacy-policy.pdf
+## Support
+If you'd like to support this project, consider contributing [here](https://github.com/sponsors/tempo-riz). Thank you! :)
