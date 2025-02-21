@@ -12,7 +12,7 @@ import 'package:trim_talk/view/settings_screen.dart';
 import 'package:trim_talk/view/transcript_screen.dart';
 
 enum NamedRoutes {
-  expain,
+  explain,
   permissions,
   dashboard,
   transcript,
@@ -42,7 +42,7 @@ Future<String> getFirstRoute() async {
 
 GoRoute buildRoute(NamedRoutes r, Widget Function(BuildContext, GoRouterState)? builder) {
   return GoRoute(
-    path: "/$r.name",
+    path: "/${r.name}",
     name: r.name,
     builder: builder,
   );
@@ -51,7 +51,7 @@ GoRoute buildRoute(NamedRoutes r, Widget Function(BuildContext, GoRouterState)? 
 final router = GoRouter(
   initialLocation: firstRoute,
   routes: [
-    buildRoute(NamedRoutes.expain, (context, state) => const ExplainScreen()),
+    buildRoute(NamedRoutes.explain, (context, state) => const ExplainScreen()),
     buildRoute(NamedRoutes.permissions, (context, state) => const PermissionsScreen()),
     buildRoute(NamedRoutes.dashboard, (context, state) => const DashboardScreen()),
     buildRoute(NamedRoutes.settings, (context, state) => const SettingsScreen()),

@@ -58,8 +58,8 @@ PODS:
     - GoogleUtilities/Network (~> 8.0)
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
     - nanopb (~> 3.30910.0)
-  - FirebaseAppCheckInterop (11.6.0)
-  - FirebaseAuthInterop (11.6.0)
+  - FirebaseAppCheckInterop (11.8.0)
+  - FirebaseAuthInterop (11.8.0)
   - FirebaseCore (11.6.0):
     - FirebaseCoreInternal (~> 11.6.0)
     - GoogleUtilities/Environment (~> 8.0)
@@ -82,7 +82,7 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
-  - FirebaseRemoteConfigInterop (11.6.0)
+  - FirebaseRemoteConfigInterop (11.8.0)
   - FirebaseSessions (11.6.0):
     - FirebaseCore (~> 11.6.0)
     - FirebaseCoreExtension (~> 11.6.0)
@@ -154,7 +154,7 @@ PODS:
   - GoogleUtilities/UserDefaults (8.0.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GTMSessionFetcher/Core (4.1.0)
+  - GTMSessionFetcher/Core (4.4.0)
   - in_app_review (2.0.0):
     - Flutter
   - just_audio (0.0.1):
@@ -293,14 +293,14 @@ SPEC CHECKSUMS:
   firebase_crashlytics: 609a5f6f4a2f5af9e40a68182e0c1be3ca2a02f6
   firebase_storage: f976f1db24f7bcfdba40777be217dc65a27e98a9
   FirebaseAnalytics: 7114c698cac995602e3b1b96663473e50d54d6e7
-  FirebaseAppCheckInterop: 347aa09a805219a31249b58fc956888e9fcb314b
-  FirebaseAuthInterop: a919d415797d23b7bfe195a04f322b86c65020ef
+  FirebaseAppCheckInterop: 7bf86d55a2b7e9bd91464120eba3e52e4b63b2e2
+  FirebaseAuthInterop: 651756e70d9a0b9160db39ead71fd5507dbb6c84
   FirebaseCore: 48b0dd707581cf9c1a1220da68223fb0a562afaa
   FirebaseCoreExtension: 2d77d6430c16cf43ca2b04608302ed02b3598361
   FirebaseCoreInternal: d98ab91e2d80a56d7b246856a8885443b302c0c2
   FirebaseCrashlytics: b21c665fb50138766480bce73ebdb1aa30f7f300
   FirebaseInstallations: efc0946fc756e4d22d8113f7c761948120322e8c
-  FirebaseRemoteConfigInterop: e75e348953352a000331eb77caf01e424248e176
+  FirebaseRemoteConfigInterop: 98897a64aa372eac3c5b3fe2816594ccfaac55ef
   FirebaseSessions: 9529d14180868e29a8da164b3a729c036204918b
   FirebaseStorage: 52fb65a69d3e87675186881a08e2a5db86452ace
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
@@ -309,7 +309,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 6a9e6317b6a6d810ad03d4a66564ca6c4c5818a3
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
-  GTMSessionFetcher: 923b710231ad3d6f3f0495ac1ced35421e07d9a6
+  GTMSessionFetcher: 75b671f9e551e4c49153d4c4f8659ef4f559b970
   in_app_review: a31b5257259646ea78e0e35fc914979b0031d011
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
