@@ -1,0 +1,16 @@
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+nullable-getter: false
+untranslated-messages-file: untranslated-messages-file.txt
+# explicitely generate the file to avoid: couldn't resolve the package 'flutter_gen'
+synthetic-package: false
+output-dir: lib/l10n/gen/
+
+# Plugin specific configuration
+# https://github.com/tempo-riz/vscode-dart-extract-arb
+translate: true # Enable translation
+key-prefix: context.t. # Key prefix for translation
+import-line: import 'package:trim_talk/model/utils.dart'; # Import line for .l10n
+auto-name-key: true # Generate keys name
+generate: true # flutter gen-l10n

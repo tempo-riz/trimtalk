@@ -1,0 +1,96 @@
+- [x] Set up the project and dependencies  
+- [x] List files and retrieve the most recent ones  
+- [x] Transcribe audio files with their duration  
+- [x] Display the transcription in a notification  
+- [x] Set up periodic tasks  
+- [x] Avoid transcribing the user's own messages (they appear identical in the audio notes folder) – solution: ask the user each time  
+- [x] Test the app  
+- [x] Open and display transcriptions in the app  
+- [x] Show current permissions  
+- [x] Improve UI/UX (onboarding, transcription, transcription list, settings)  
+- [x] Add a "Transcribe Now" button  
+- [x] Allow users to customize the delay between checks  
+- [x] Enable/disable automatic transcription  
+- [x] Disable power-saving mode: [disable_battery_optimization](https://pub.dev/packages/disable_battery_optimization)  
+- [x] Handle the first run to prevent excessive notifications (e.g., set the current runtime initially)  
+- [x] Remove debug notifications from WorkManager  
+- [x] Improve the transcription page  
+- [x] Fix notification redirection issues when the app is in the background: [flutter_local_notifications issue](https://github.com/MaikuB/flutter_local_notifications/issues/2011)  
+- [x] Optimize Whisper implementation: [whisper_flutter_plus](https://pub.dev/packages/whisper_flutter_plus) (faster in release mode)  
+- [x] Fix battery optimization prompt requiring multiple taps  
+- [x] Add a language selection UI  
+- [x] Implement audio playback with a waveform visualization: [audio_waveforms](https://pub.dev/packages/audio_waveforms)  
+- [x] Improve transcription result screen UI  
+- [x] Add a "Copy" button (clipboard)  
+- [x] Improve notification formatting  
+- [x] Remove debug notifications from background jobs  
+- [x] Also fetch yesterday’s files if the week number was different  
+- [x] Set debug mode to false  
+- [x] Create and configure the app for store publication (including design)  
+- [x] Improve date formatting ("Yesterday at...", "2 days ago...")  
+- [x] Implement a simple history list for previous transcriptions: [drift](https://pub.dev/packages/drift)  
+- [x] Ensure the history list works correctly  
+- [x] Build the Android app  
+- [x] Deploy for testing  
+- [x] Add a feedback button (opens an issue)  
+- [x] Enable sharing audio directly to the app  
+- [x] Set the transcription list as the default screen, move other features to settings (including feedback), and add "Check Now" as a floating action button (FAB)  
+- [x] Show a loading tile instead of a backdrop  
+- [x] Consider removing [flutter_slidable](https://pub.dev/packages/flutter_slidable) to save space  
+- [x] Implement retractable FAB: [flutter_scrolling_fab_animated](https://pub.dev/packages/flutter_scrolling_fab_animated)  
+- [x] Improve loading tile UI  
+- [x] Show notifications only when the app is not in the foreground (hook into main)  
+- [x] Fix notification actions not updating results properly (causing duplicates)  
+- [x] Test with Storage Access Framework (SAF) and platform channels  
+- [x] Implement `getFilesAfterDate()` in Kotlin (returns path, date, duration)  
+- [x] Implement `copyFilesToSupport()` in Kotlin  
+- [x] Integrate file handling in the transcription process  
+- [x] Fix `initialUri` picker (possibly use a generic path) and ensure the correct path is retrieved  
+- [x] Ensure compatibility with all Android versions (provide an interface for `getFilesAfterDate()` that returns `Results` objects)  
+- [x] Add new audio files directly to the database instead of passing data via notifications (partially done)  
+- [x] Prompt the user for transcription in-app instead of via notifications when the app is in the foreground  
+- [x] Fix audio playback issues (likely due to path changes)  
+- [x] Request battery optimization only if auto-check is enabled  
+- [x] Add Pigeon for platform channels  
+- [x] Add a text summarization feature: [MediaPipe LLM inference](https://github.com/google-ai-edge/mediapipe-samples/blob/main/examples/llm_inference/android/app/src/main/java/com/google/mediapipe/examples/llminference/InferenceModel.kt)  
+- [x] Implement Whisper via platform channels (starting with Android) – attempt automatic language detection: [issue](https://github.com/krikristoophe/whisper_flutter_plus/issues/10)  
+- [x] Fix incorrect folder ID calculation (e.g., 25/08/2024 → 35 instead of 34, possibly due to week start offset)  
+- [x] Use Groq for transcription (better price & accuracy) and ensure proper JSON parsing  
+- [x] Display summaries instead of full transcriptions on cards  
+- [x] Avoid duplicate audio files (check filename) – already resolved via date validation  
+- [x] Add summary display in UI  
+- [x] Fix feedback text color  
+- [x] Ensure the app is intuitive and easy to use  
+- [x] Fix notification action taps (ensure interactions work as expected)  
+- [x] Implement update checks (to maintain control over updates)  
+- [x] Publish on Play Store testing
+- [x] Implement an in-app updater  
+- [x] Ensure proper permission handling  
+- [x] Improve tutorial UX  
+- [x] Enable file receiving: [receive_sharing_intent](https://pub.dev/packages/receive_sharing_intent)  
+- [x] Restrict file sharing to audio files only  
+- [x] Ensure notifications work correctly (disable unnecessary actions)  
+- [x] Fix audio player issues on iOS  
+- [x] Disable or fix audio player (some formats not working on iOS)  
+- [x] Publish a basic iOS version  
+- [x] **Recreate a clean project and add plugins one by one**  
+- [x] Implement in-app rating  
+- [x] Add an option to share the app with friends  
+- [x] Fix missing dSYM file detected by Crashlytics  
+- [x] Fix missing `lib.so` file on Android  
+- [x] Add a delete confirmation dialog  
+- [x] Implement long-press actions (copy text/summary)  
+- [x] Update share link  
+- [x] Adjust summary length threshold  
+- [x] Improve tutorial clarity  
+- [x] Prevent empty feedback submissions  
+- [x] Set up Fastlane for automation  
+- [x] Localize the app (French/English)  
+- [x] Implement dark mode  
+- [x] Perform an automatic check on app startup (hide "Check Now" button while checking)  
+- [x] Detect notifications automatically on Android (foreground + background watcher)  
+- [x] Show author name in notifications and cards  
+- [ ] Run background job every 15 minutes (may require native implementation)  
+- [ ] Test deepseek instead of Llama model for summarization
+- [ ] improve user flow setup (android permissions)
+- [ ] add monetisation (support the app)
