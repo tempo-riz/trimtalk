@@ -90,7 +90,9 @@
 - [x] Perform an automatic check on app startup (hide "Check Now" button while checking)  
 - [x] Detect notifications automatically on Android (foreground + background watcher)  
 - [x] Show author name in notifications and cards  
+- [x] add links to github repo
+- [x] open source the app
+- [x] add feedback button in permission screen
 - [ ] Test deepseek instead of Llama model for summarization
 - [ ] improve user flow setup (android permissions)
 - [ ] add monetisation (support the app)
-- [ ] add links to github repo

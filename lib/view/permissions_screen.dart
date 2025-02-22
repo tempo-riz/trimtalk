@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:trim_talk/model/files/permissions.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/router.dart';
+import 'package:trim_talk/view/dashboard_screen.dart';
 
 class PermissionsScreen extends StatefulWidget {
   const PermissionsScreen({super.key});
@@ -42,6 +43,7 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(context.t.letsGetStarted),
+          actions: const [FeedbackButton()],
         ),
         body: Container(
           margin: const EdgeInsets.all(20),
