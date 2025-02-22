@@ -57,3 +57,32 @@ app.*.map.json
 android/trimtalk-playstore.json
 android/app/google-services.json
 firebase.json
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/GeneratedPluginRegistrant.*
+**/*.xcworkspace
+**/*.xcuserstate
+**/*.xcuserdata/
+*.ipa
+
+# Android
+/android/.gradle/
+/android/.idea/
+/android/captures/
+/android/app/*.keystore
+*.apk
+*.jks
+
+# Firebase, API keys, and certificates
+*.p8
+*.mobileprovision
+*.p12
+
+# dSYM files (iOS crash debug symbols)
+*.dSYM
+*.dSYM.zip
