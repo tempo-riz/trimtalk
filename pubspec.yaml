@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_local_notifications: ^17.1.2
-  permission_handler: 10.4.5
+  flutter_local_notifications: ^18.0.1
+  permission_handler: ^11.4.0
   flutter_dotenv: ^5.1.0
   http: ^1.2.0
   intl: any
@@ -30,7 +30,7 @@ dependencies:
     git:
       url: https://github.com/tempo-riz/optimization_battery.git
       ref: 5921eceba2b32d7117c21bbcafc6ed264e0efb6b
-  country_flags: ^2.2.0
+  country_flags: ^3.2.0
   audio_waveforms: ^1.0.5
   flutter_native_splash: ^2.4.0
   hive: ^2.2.3
@@ -43,8 +43,8 @@ dependencies:
     git:
       url: https://github.com/KasemJaffer/receive_sharing_intent.git
       ref: 2cea396
-  device_info_plus: ^10.1.0
-  flutter_slidable: ^3.1.0
+  device_info_plus: ^11.2.1
+  flutter_slidable: ^4.0.0
   flutter_scrolling_fab_animated: ^0.1.5
   flutter_hooks: ^0.20.5
   flutter_riverpod: ^2.5.1
@@ -53,14 +53,13 @@ dependencies:
   firebase_crashlytics: ^4.0.4
   firebase_analytics: ^11.2.1
   pigeon: ^22.3.0
-  mime_type: ^1.0.1
   groq_sdk:
     git:
       url: https://github.com/tempo-riz/groq-dart-sdk.git
   week_of_year: ^2.2.0
   in_app_update: ^4.2.3
-  upgrader: ^10.3.0
-  mime: ^1.0.6
+  upgrader: ^11.3.1
+  mime: ^2.0.0
   # https://github.com/arthenica/ffmpeg-kit/wiki/Packages
   ffmpeg_kit_flutter_full_gpl: ^6.0.3
   ogg_opus_player:
@@ -85,10 +84,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^4.0.0
-  custom_lint: ^0.6.4
+  flutter_lints: ^5.0.0
+  custom_lint: ^0.7.0
   riverpod_lint: ^2.3.10
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.3
   hive_generator: ^2.0.1
   build_runner: ^2.4.11
 
