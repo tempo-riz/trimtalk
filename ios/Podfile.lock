@@ -12,47 +12,47 @@ PODS:
   - ffmpeg_kit_flutter_full_gpl/full-gpl (6.0.3):
     - ffmpeg-kit-ios-full-gpl (= 6.0)
     - Flutter
-  - Firebase/Analytics (11.6.0):
+  - Firebase/Analytics (11.8.0):
     - Firebase/Core
-  - Firebase/Core (11.6.0):
+  - Firebase/Core (11.8.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 11.6.0)
-  - Firebase/CoreOnly (11.6.0):
-    - FirebaseCore (~> 11.6.0)
-  - Firebase/Crashlytics (11.6.0):
+    - FirebaseAnalytics (~> 11.8.0)
+  - Firebase/CoreOnly (11.8.0):
+    - FirebaseCore (~> 11.8.0)
+  - Firebase/Crashlytics (11.8.0):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 11.6.0)
-  - Firebase/Storage (11.6.0):
+    - FirebaseCrashlytics (~> 11.8.0)
+  - Firebase/Storage (11.8.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 11.6.0)
-  - firebase_analytics (11.4.0):
-    - Firebase/Analytics (= 11.6.0)
+    - FirebaseStorage (~> 11.8.0)
+  - firebase_analytics (11.4.3):
+    - Firebase/Analytics (= 11.8.0)
     - firebase_core
     - Flutter
-  - firebase_core (3.10.0):
-    - Firebase/CoreOnly (= 11.6.0)
+  - firebase_core (3.12.0):
+    - Firebase/CoreOnly (= 11.8.0)
     - Flutter
-  - firebase_crashlytics (4.3.0):
-    - Firebase/Crashlytics (= 11.6.0)
+  - firebase_crashlytics (4.3.3):
+    - Firebase/Crashlytics (= 11.8.0)
     - firebase_core
     - Flutter
-  - firebase_storage (12.4.0):
-    - Firebase/Storage (= 11.6.0)
+  - firebase_storage (12.4.3):
+    - Firebase/Storage (= 11.8.0)
     - firebase_core
     - Flutter
-  - FirebaseAnalytics (11.6.0):
-    - FirebaseAnalytics/AdIdSupport (= 11.6.0)
-    - FirebaseCore (~> 11.6.0)
+  - FirebaseAnalytics (11.8.0):
+    - FirebaseAnalytics/AdIdSupport (= 11.8.0)
+    - FirebaseCore (~> 11.8.0)
     - FirebaseInstallations (~> 11.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
     - GoogleUtilities/MethodSwizzler (~> 8.0)
     - GoogleUtilities/Network (~> 8.0)
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
     - nanopb (~> 3.30910.0)
-  - FirebaseAnalytics/AdIdSupport (11.6.0):
-    - FirebaseCore (~> 11.6.0)
+  - FirebaseAnalytics/AdIdSupport (11.8.0):
+    - FirebaseCore (~> 11.8.0)
     - FirebaseInstallations (~> 11.0)
-    - GoogleAppMeasurement (= 11.6.0)
+    - GoogleAppMeasurement (= 11.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
     - GoogleUtilities/MethodSwizzler (~> 8.0)
     - GoogleUtilities/Network (~> 8.0)
@@ -60,16 +60,16 @@ PODS:
     - nanopb (~> 3.30910.0)
   - FirebaseAppCheckInterop (11.8.0)
   - FirebaseAuthInterop (11.8.0)
-  - FirebaseCore (11.6.0):
-    - FirebaseCoreInternal (~> 11.6.0)
+  - FirebaseCore (11.8.1):
+    - FirebaseCoreInternal (~> 11.8.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/Logger (~> 8.0)
-  - FirebaseCoreExtension (11.6.0):
-    - FirebaseCore (~> 11.6.0)
-  - FirebaseCoreInternal (11.6.0):
+  - FirebaseCoreExtension (11.8.0):
+    - FirebaseCore (~> 11.8.0)
+  - FirebaseCoreInternal (11.8.0):
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
-  - FirebaseCrashlytics (11.6.0):
-    - FirebaseCore (~> 11.6.0)
+  - FirebaseCrashlytics (11.8.0):
+    - FirebaseCore (~> 11.8.0)
     - FirebaseInstallations (~> 11.0)
     - FirebaseRemoteConfigInterop (~> 11.0)
     - FirebaseSessions (~> 11.0)
@@ -77,26 +77,26 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - nanopb (~> 3.30910.0)
     - PromisesObjC (~> 2.4)
-  - FirebaseInstallations (11.6.0):
-    - FirebaseCore (~> 11.6.0)
+  - FirebaseInstallations (11.8.0):
+    - FirebaseCore (~> 11.8.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
   - FirebaseRemoteConfigInterop (11.8.0)
-  - FirebaseSessions (11.6.0):
-    - FirebaseCore (~> 11.6.0)
-    - FirebaseCoreExtension (~> 11.6.0)
+  - FirebaseSessions (11.8.0):
+    - FirebaseCore (~> 11.8.0)
+    - FirebaseCoreExtension (~> 11.8.0)
     - FirebaseInstallations (~> 11.0)
     - GoogleDataTransport (~> 10.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - nanopb (~> 3.30910.0)
     - PromisesSwift (~> 2.1)
-  - FirebaseStorage (11.6.0):
+  - FirebaseStorage (11.8.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
-    - FirebaseCore (~> 11.6.0)
-    - FirebaseCoreExtension (~> 11.6.0)
+    - FirebaseCore (~> 11.8.0)
+    - FirebaseCoreExtension (~> 11.8.0)
     - GoogleUtilities/Environment (~> 8.0)
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
   - Flutter (1.0.0)
@@ -104,21 +104,21 @@ PODS:
     - Flutter
   - flutter_native_splash (2.4.3):
     - Flutter
-  - GoogleAppMeasurement (11.6.0):
-    - GoogleAppMeasurement/AdIdSupport (= 11.6.0)
+  - GoogleAppMeasurement (11.8.0):
+    - GoogleAppMeasurement/AdIdSupport (= 11.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
     - GoogleUtilities/MethodSwizzler (~> 8.0)
     - GoogleUtilities/Network (~> 8.0)
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
     - nanopb (~> 3.30910.0)
-  - GoogleAppMeasurement/AdIdSupport (11.6.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 11.6.0)
+  - GoogleAppMeasurement/AdIdSupport (11.8.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 11.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
     - GoogleUtilities/MethodSwizzler (~> 8.0)
     - GoogleUtilities/Network (~> 8.0)
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
     - nanopb (~> 3.30910.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (11.6.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (11.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
     - GoogleUtilities/MethodSwizzler (~> 8.0)
     - GoogleUtilities/Network (~> 8.0)
@@ -159,6 +159,7 @@ PODS:
     - Flutter
   - just_audio (0.0.1):
     - Flutter
+    - FlutterMacOS
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -171,7 +172,7 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - permission_handler_apple (9.1.1):
+  - permission_handler_apple (9.3.0):
     - Flutter
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
@@ -201,7 +202,7 @@ DEPENDENCIES:
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
-  - just_audio (from `.symlinks/plugins/just_audio/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/darwin`)
   - ogg_opus_player (from `.symlinks/plugins/ogg_opus_player/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -261,7 +262,7 @@ EXTERNAL SOURCES:
   in_app_review:
     :path: ".symlinks/plugins/in_app_review/ios"
   just_audio:
-    :path: ".symlinks/plugins/just_audio/ios"
+    :path: ".symlinks/plugins/just_audio/darwin"
   ogg_opus_player:
     :path: ".symlinks/plugins/ogg_opus_player/ios"
   package_info_plus:
@@ -282,41 +283,41 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/workmanager/ios"
 
 SPEC CHECKSUMS:
-  audio_session: 088d2483ebd1dc43f51d253d4a1c517d9a2e7207
+  audio_session: 19e9480dbdd4e5f6c4543826b2e8b0e4ab6145fe
   audio_waveforms: cd736909ebc6b6a164eb74701d8c705ce3241e1c
-  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
+  device_info_plus: bf2e3232933866d73fe290f2942f2156cdd10342
   ffmpeg-kit-ios-full-gpl: 80adc341962e55ef709e36baa8ed9a70cf4ea62b
   ffmpeg_kit_flutter_full_gpl: 8d15c14c0c3aba616fac04fe44b3d27d02e3c330
-  Firebase: 374a441a91ead896215703a674d58cdb3e9d772b
-  firebase_analytics: 07bd7cfbac54bfcdccf2bb2530f9a65486f7ef3f
-  firebase_core: feb37e79f775c2bd08dd35e02d83678291317e10
-  firebase_crashlytics: 609a5f6f4a2f5af9e40a68182e0c1be3ca2a02f6
-  firebase_storage: f976f1db24f7bcfdba40777be217dc65a27e98a9
-  FirebaseAnalytics: 7114c698cac995602e3b1b96663473e50d54d6e7
+  Firebase: d80354ed7f6df5f9aca55e9eb47cc4b634735eaf
+  firebase_analytics: 7ec1166af61987fa968766eb11587c562a5650ee
+  firebase_core: 6e223dfa350b2edceb729cea505eaaef59330682
+  firebase_crashlytics: 2a473aeb12dd2d5a3fe150f6ebb8fadc8c9664d7
+  firebase_storage: b57a7b96e6f7ce6a48e7d6cea67c3eabeaedd525
+  FirebaseAnalytics: 4fd42def128146e24e480e89f310e3d8534ea42b
   FirebaseAppCheckInterop: 7bf86d55a2b7e9bd91464120eba3e52e4b63b2e2
   FirebaseAuthInterop: 651756e70d9a0b9160db39ead71fd5507dbb6c84
-  FirebaseCore: 48b0dd707581cf9c1a1220da68223fb0a562afaa
-  FirebaseCoreExtension: 2d77d6430c16cf43ca2b04608302ed02b3598361
-  FirebaseCoreInternal: d98ab91e2d80a56d7b246856a8885443b302c0c2
-  FirebaseCrashlytics: b21c665fb50138766480bce73ebdb1aa30f7f300
-  FirebaseInstallations: efc0946fc756e4d22d8113f7c761948120322e8c
+  FirebaseCore: 99fe0c4b44a39f37d99e6404e02009d2db5d718d
+  FirebaseCoreExtension: 3d3f2017a00d06e09ab4ebe065391b0bb642565e
+  FirebaseCoreInternal: df24ce5af28864660ecbd13596fc8dd3a8c34629
+  FirebaseCrashlytics: a1102c035f18d5dd94a5969ee439c526d0c9e313
+  FirebaseInstallations: 6c963bd2a86aca0481eef4f48f5a4df783ae5917
   FirebaseRemoteConfigInterop: 98897a64aa372eac3c5b3fe2816594ccfaac55ef
-  FirebaseSessions: 9529d14180868e29a8da164b3a729c036204918b
-  FirebaseStorage: 52fb65a69d3e87675186881a08e2a5db86452ace
+  FirebaseSessions: c4d40a97f88f9eaff2834d61b4fea0a522d62123
+  FirebaseStorage: 8eede00081a6ce904eaa8d2daa66f1e053e8e6ea
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
+  flutter_local_notifications: df98d66e515e1ca797af436137b4459b160ad8c9
   flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
-  GoogleAppMeasurement: 6a9e6317b6a6d810ad03d4a66564ca6c4c5818a3
+  GoogleAppMeasurement: fc0817122bd4d4189164f85374e06773b9561896
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   GTMSessionFetcher: 75b671f9e551e4c49153d4c4f8659ef4f559b970
   in_app_review: a31b5257259646ea78e0e35fc914979b0031d011
-  just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
+  just_audio: a42c63806f16995daf5b219ae1d679deb76e6a79
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   ogg_opus_player: 01dc6eaa63d1e061f0065f41845a0a9ea76b9396
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   receive_sharing_intent: 79c848f5b045674ad60b9fea3bafea59962ad2c1

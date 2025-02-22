@@ -5,7 +5,7 @@
 - **Fastlane** for publishing
 - **Firebase** (Analytics, Crashlytics, Storage for user feedback)
 
-## How It Works (Short Version)
+## How It Works (Expand section below for more details)
 - The app checks for new voice message files when opened (manual trigger available).
 - Transcriptions are displayed in a list with a summary option.
 - Users can enable notification listening for automatic detection.
@@ -13,7 +13,7 @@
 - On iOS, users must share the audio file manually since files are not programmatically accessible.
 
 <details>
-  <summary><span style="font-size: 1.5em; ">How it works (Detailed Version)</span></summary>
+  <summary><span style="font-size: 1.5em; ">Detailed Version</span></summary>
 
 ### Finding the Audio Files
 WhatsApp stores two types of audio files:
@@ -84,4 +84,4 @@ To avoid requiring manual checks:
 Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) 
 
 ## Support
-If you'd like to support this project, consider contributing [here](https://github.com/sponsors/tempo-riz). Thank you! :)
+I built this project on my free time, if you'd like to support it, consider contributing [here](https://github.com/sponsors/tempo-riz). Thank you! :)

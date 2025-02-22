@@ -86,3 +86,4 @@ ios/Flutter/GeneratedPluginRegistrant.*
 # dSYM files (iOS crash debug symbols)
 *.dSYM
 *.dSYM.zip
+pubspec.yaml.bak

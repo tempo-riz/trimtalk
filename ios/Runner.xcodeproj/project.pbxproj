@@ -276,6 +276,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				89A5FDFB9E7B7C9AA7F2D51C /* [CP] Embed Pods Frameworks */,
 				53A675282CA5599F008D23BE /* Run Script */,
+				75D5940DE2672267343FABB5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -443,6 +444,23 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$PODS_ROOT/FirebaseCrashlytics/upload-symbols --build-phase --validate -ai 1:84127519216:ios:264118b90cddd35724cd35 -- $DWARF_DSYM_FOLDER_PATH/App.framework.dSYM\n$PODS_ROOT/FirebaseCrashlytics/upload-symbols --build-phase -ai 1:84127519216:ios:264118b90cddd35724cd35 -- $DWARF_DSYM_FOLDER_PATH/App.framework.dSYM \n\n";
+		};
+		75D5940DE2672267343FABB5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		89A5FDFB9E7B7C9AA7F2D51C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
