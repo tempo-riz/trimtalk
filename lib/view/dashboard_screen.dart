@@ -279,6 +279,7 @@ class FeedbackButton extends StatelessWidget {
       onPressed: () {
         feedback.BetterFeedback.of(context).showAndUploadToGitHub(
           allowEmptyText: false,
+          allowProdEmulatorFeedback: false,
           repoUrl: "https://github.com/tempo-riz/trimtalk",
           gitHubToken: dotenv.get("GITHUB_ISSUE_TOKEN"),
           onSucces: (_) => showSnackBar(context.t.thankYou),
