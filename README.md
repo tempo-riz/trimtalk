@@ -1,3 +1,5 @@
+## Download on [iOS & Android](https://upotq.app.link/trimtalk)
+
 ## Features
 - **Transcription** – Turn voice messages into text instantly
 - **Summarization** – Skip the "uhh" & "ahh"  and get to the key points
@@ -76,9 +78,6 @@ To avoid requiring manual checks:
 - Generate Hive: `dart run build_runner build -d`
 - Generate Pigeon API: `dart run pigeon --input pigeon_api.dart`
 - Check the `scripts` folder (fix Pods, publish, etc.)
-- Build the app:
-  - Android: `flutter build appbundle`
-  - iOS: `flutter build ipa`
 
 
 ### Debug Mode
@@ -87,7 +86,7 @@ To avoid requiring manual checks:
 - Transcriber returns dummy data.
 
 # Links
-Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) 
+Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) or share the [Universal Link](https://upotq.app.link/trimtalk).
 
 ## Support
 I built this project on my free time, if you'd like to support it, consider contributing [here](https://github.com/sponsors/tempo-riz). Thank you! :)
