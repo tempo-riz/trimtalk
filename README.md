@@ -1,3 +1,9 @@
+## Features
+- **Transcription** – Turn voice messages into text instantly
+- **Summarization** – Skip the "uhh" & "ahh"  and get to the key points
+- **Translation** – Break language barriers with a single tap
+- **Auto-detection** – Get notified when new messages arrive
+
 ## Tech Stack
 - **Flutter** (Hive, GoRouter, Riverpod, Pigeon for cleaner method channels)
 - **Groq** (Whisper)
