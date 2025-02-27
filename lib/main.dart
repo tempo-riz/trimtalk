@@ -25,7 +25,7 @@ String firstRoute = '/dashboard';
 
 bool isDebug = !foundation.kReleaseMode;
 
-bool forceUpdate = true;
+bool forceUpdate = false;
 
 late PackageInfo packageInfo;
 
