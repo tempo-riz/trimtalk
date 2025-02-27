@@ -54,6 +54,7 @@
   "autoDetect": "Détection automatique",
   "autoDetectExplain": "Écoute les notifications pour détecter les nouveaux messages",
   "todayAt": "Aujourd'hui à",
+  "at": "à",
   "yesterdayAt": "Hier à",
   "neverChecked": "Jamais vérifié",
   "receivedAt": "Reçu à",
@@ -71,5 +72,10 @@
   "heyImUsingTtToTranscribeAndSummarizeCheckItOut": "Hey, j'utilise TrimTalk pour transcrire et résumer des messages audio:",
   "madeWithTt": "Fait avec TrimTalk",
   "appLanguage": "Langue de l'app",
-  "checkCodeOnGithub": "Voir le code sur GitHub"
+  "checkCodeOnGithub": "Voir le code sur GitHub",
+  "restorePurchases": "Restaurer les achats",
+  "trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou": "TrimTalk sera toujours gratuit et sans publicité, mais votre soutien est apprécié. Merci !",
+  "supportMyWork": "Soutenir mon travail",
+  "hugeThanks": "Un grand merci !",
+  "close": "fermer"
 }

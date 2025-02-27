@@ -9,15 +9,10 @@ import 'package:trim_talk/view/dashboard_screen.dart';
 import 'package:trim_talk/view/explain_screen.dart';
 import 'package:trim_talk/view/permissions_screen.dart';
 import 'package:trim_talk/view/settings_screen.dart';
+import 'package:trim_talk/view/support_screen.dart';
 import 'package:trim_talk/view/transcript_screen.dart';
 
-enum NamedRoutes {
-  explain,
-  permissions,
-  dashboard,
-  transcript,
-  settings,
-}
+enum NamedRoutes { explain, permissions, dashboard, transcript, settings, support }
 
 /// if user finished tuto and accepted permissions
 Future<bool> isSetupOk() async {
@@ -56,5 +51,6 @@ final router = GoRouter(
     buildRoute(NamedRoutes.dashboard, (context, state) => const DashboardScreen()),
     buildRoute(NamedRoutes.settings, (context, state) => const SettingsScreen()),
     buildRoute(NamedRoutes.transcript, (context, state) => TranscriptScreen(result: state.extra as Result)),
+    buildRoute(NamedRoutes.support, (context, state) => const SupportScreen()),
   ],
 );

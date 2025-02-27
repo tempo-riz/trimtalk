@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:disable_battery_optimization/disable_battery_optimization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:notification_listener_service/notification_listener_service.dart';
 import 'package:optimization_battery/optimization_battery.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -62,6 +63,8 @@ class Permissions {
   /// permission to read files
   static Future<bool> isReadFilesAllowed() async {
     if (Platform.isIOS) return true;
+    if (kDebugMode && !(await DeviceInfoPlugin().androidInfo).isPhysicalDevice) return true;
+
     // return true;
     if (await isLegacyStorage()) {
       return await Permission.storage.isGranted;

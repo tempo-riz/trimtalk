@@ -169,6 +169,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get todayAt => 'Today at';
 
   @override
+  String get at => 'at';
+
+  @override
   String get yesterdayAt => 'Yesterday at';
 
   @override
@@ -221,4 +224,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get checkCodeOnGithub => 'Check code on GitHub';
+
+  @override
+  String get restorePurchases => 'Restore purchases';
+
+  @override
+  String get trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou => 'TrimTalk will always be free and ad-free, but your support is appreciated. Thank you!';
+
+  @override
+  String get supportMyWork => 'Support my work';
+
+  @override
+  String get hugeThanks => 'Huge thanks !';
+
+  @override
+  String get close => 'close';
 }

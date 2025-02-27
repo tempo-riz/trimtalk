@@ -54,6 +54,7 @@
   "translate": "Translate",
   "translateExplain": "Translate to the app language if different",
   "todayAt": "Today at",
+  "at": "at",
   "yesterdayAt": "Yesterday at",
   "neverChecked": "Never checked",
   "receivedAt": "Received at",
@@ -71,5 +72,10 @@
   "heyImUsingTtToTranscribeAndSummarizeCheckItOut": "Hey, I'm using TrimTalk to transcribe and summarize audio messages, check it out!",
   "madeWithTt": "Made with TrimTalk",
   "appLanguage": "App language",
-  "checkCodeOnGithub": "Check code on GitHub"
+  "checkCodeOnGithub": "Check code on GitHub",
+  "restorePurchases": "Restore purchases",
+  "trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou": "TrimTalk will always be free and ad-free, but your support is appreciated. Thank you!",
+  "supportMyWork": "Support my work",
+  "hugeThanks": "Huge thanks !",
+  "close": "close"
 }

@@ -84,6 +84,7 @@ To avoid requiring manual checks:
 - Notifications always appear.
 - WorkManager debug notifications are visible.
 - Transcriber returns dummy data.
+- read file permission is always true (android)
 
 # Links
 Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) or share the [Universal Link](https://upotq.app.link/trimtalk).

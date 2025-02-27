@@ -56,8 +56,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           return Scaffold(
             floatingActionButton: isTutoDone && !Platform.isIOS ? CheckNowFab(scrollController: _scrollController) : null,
             appBar: AppBar(
+              centerTitle: false,
               title: isTutoDone ? const LastRunIndicator() : null,
-              actions: const [FeedbackButton(), GoToSettingsButton()],
+              actions: const [GoToSupportButton(), FeedbackButton(), GoToSettingsButton()],
             ),
             body: Consumer(builder: (context, ref, child) {
               // to refresh list when action tapped on notif !
@@ -84,11 +85,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  gap8,
-                                  Text(context.t.shareAnyAudioFileToTheApp).bold(),
+                                  gap12,
+                                  Expanded(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
                                   gap8,
                                   const Icon(Icons.ios_share),
-                                  gap8,
+                                  gap12,
                                 ],
                               ),
                             ],
@@ -218,6 +219,24 @@ class GoToSettingsButton extends StatelessWidget {
         ),
         onPressed: () => context.goNamed(NamedRoutes.settings.name),
       ),
+    );
+  }
+}
+
+class GoToSupportButton extends StatelessWidget {
+  const GoToSupportButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.local_cafe_outlined,
+        size: 30,
+        color: Theme.of(context).colorScheme.surface,
+      ),
+      onPressed: () => context.goNamed(NamedRoutes.support.name),
     );
   }
 }

@@ -93,6 +93,6 @@
 - [x] add links to github repo
 - [x] open source the app
 - [x] add feedback button in permission screen
-- [ ] Test deepseek instead of Llama model for summarization
+- [x] add monetisation (support the app)
+- [x] Test deepseek instead of Llama model for summarization
 - [ ] improve user flow setup (android permissions)
-- [ ] add monetisation (support the app)

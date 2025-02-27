@@ -18,17 +18,35 @@ class Summarizer {
     final maybeLanguage = supportedTranscritionLanguages.where((L) => (L.code == code && code != "auto")).firstOrNull;
 
     final prompt = buildPromptSummaryOnly(res.transcript!, language: maybeLanguage?.name);
+
+    const deepSeekId = "deepseek-r1-distill-llama-70b";
+
+    try {
+      // First try with deepseek
+      // https://console.groq.com/settings/limits
+      // https://console.groq.com/settings/billing
+      // TODO : https://arc.net/l/quote/jdzwgwwj
+      String? result = await tryWithModel(deepSeekId, prompt);
+
+      // fallback to gemma2-9b-it
+      result ??= await tryWithModel(GroqModels.gemma2_9b, prompt);
+
+      return await parseJsonAnswerSummaryOnly(result!, res);
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  static Future<String?> tryWithModel(String modelId, String prompt) async {
     final groq = Groq(dotenv.get("GROQ_API_KEY"));
 
     try {
-      // models here : https://console.groq.com/settings/billing gemma 7b seems cheeper !
-      final (summary, usage) = await groq.startNewChat(GroqModels.gemma2_9b, settings: GroqChatSettings()).sendMessage(prompt);
-      print('Usage: $usage');
-      print(summary.choices.first.message);
-      print("parsing json");
-      return await parseJsonAnswerSummaryOnly(summary.choices.first.message, res);
+      final (summary, _) = await groq.startNewChat(modelId, settings: GroqChatSettings()).sendMessage(prompt);
+      print("success with model $modelId");
+      return summary.choices.first.message;
     } catch (e) {
-      print(e);
+      print("Error with model $modelId: $e");
       return null;
     }
   }

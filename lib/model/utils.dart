@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:trim_talk/l10n/gen/app_localizations.dart';
+import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/types/result.dart';
 import 'package:trim_talk/router.dart';
 import 'package:trim_talk/types/language.dart';
@@ -127,7 +128,7 @@ extension FormatDateTime on DateTime {
     }
 
     if (difference.inDays == 0) {
-      return "${context.t.todayAt} ${DateFormat('HH:mm').format(this)}";
+      return " ${DateFormat('HH:mm').format(this)}";
     } else if (difference.inDays == 1) {
       return "${context.t.yesterdayAt} ${DateFormat('HH:mm').format(this)}";
     } else {
@@ -455,6 +456,11 @@ String formatAudioDate(DateTime date) {
 
   if (diffInDays == 1) {
     return "${context.t.yesterdayAt} $d"; // 18
+  }
+
+  final String code = DB.getPref(Prefs.appLanguageCode);
+  if (code == "fr") {
+    return "il y a $diffInDays jours à $d";
   }
 
   return "$diffInDays ${context.t.daysAgoAt} $d";

@@ -419,6 +419,12 @@ abstract class AppLocalizations {
   /// **'Today at'**
   String get todayAt;
 
+  /// No description provided for @at.
+  ///
+  /// In en, this message translates to:
+  /// **'at'**
+  String get at;
+
   /// No description provided for @yesterdayAt.
   ///
   /// In en, this message translates to:
@@ -526,6 +532,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Check code on GitHub'**
   String get checkCodeOnGithub;
+
+  /// No description provided for @restorePurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get restorePurchases;
+
+  /// No description provided for @trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou.
+  ///
+  /// In en, this message translates to:
+  /// **'TrimTalk will always be free and ad-free, but your support is appreciated. Thank you!'**
+  String get trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou;
+
+  /// No description provided for @supportMyWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Support my work'**
+  String get supportMyWork;
+
+  /// No description provided for @hugeThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Huge thanks !'**
+  String get hugeThanks;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'close'**
+  String get close;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
