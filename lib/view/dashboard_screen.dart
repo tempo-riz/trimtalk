@@ -85,13 +85,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Column(
                             children: [
                               Text(context.t.nothingToSeeHere),
+                              gapH20,
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   gap12,
-                                  Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
-                                  gap8,
                                   const Icon(Icons.ios_share),
+                                  gap12,
+                                  Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
+                                  gap12,
+                                ],
+                              ),
+                              gapH24,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  gap12,
+                                  const Icon(Icons.file_download_outlined),
+                                  gap12,
+                                  Flexible(child: Text("Or pick a file using this button").bold()),
                                   gap12,
                                 ],
                               ),
