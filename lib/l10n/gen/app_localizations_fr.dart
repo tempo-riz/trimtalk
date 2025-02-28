@@ -239,4 +239,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get close => 'fermer';
+
+  @override
+  String get never => 'Jamais';
 }

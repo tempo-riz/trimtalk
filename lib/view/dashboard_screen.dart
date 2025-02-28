@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:feedback_github/feedback_github.dart' as feedback;
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,12 +14,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:trim_talk/model/files/db.dart';
+import 'package:trim_talk/model/stt/transcriber.dart';
 import 'package:trim_talk/model/stt/translator.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/model/work.dart';
 import 'package:trim_talk/main.dart';
 import 'package:trim_talk/router.dart';
+import 'package:trim_talk/types/result.dart';
 import 'package:trim_talk/view/widgets/result_card.dart';
 
 final needRefreshProvider = StateProvider((ref) => false);
@@ -58,7 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             appBar: AppBar(
               centerTitle: false,
               title: isTutoDone ? const LastRunIndicator() : null,
-              actions: const [GoToSupportButton(), FeedbackButton(), GoToSettingsButton()],
+              actions: const [PickFileButton(), GoToSupportButton(), FeedbackButton(), GoToSettingsButton()],
             ),
             body: Consumer(builder: (context, ref, child) {
               // to refresh list when action tapped on notif !
@@ -86,7 +89,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   gap12,
-                                  Expanded(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
+                                  Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
                                   gap8,
                                   const Icon(Icons.ios_share),
                                   gap12,
@@ -307,6 +310,53 @@ class FeedbackButton extends StatelessWidget {
         );
       },
       icon: const Icon(Icons.feedback_outlined),
+      iconSize: 30,
+      color: Theme.of(context).colorScheme.surface,
+    );
+  }
+}
+
+class PickFileButton extends StatelessWidget {
+  const PickFileButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () async {
+        print("picking file");
+        FilePickerResult? picked = await FilePicker.platform.pickFiles(
+          // type: FileType.audio, doesn't seem to work properly
+          type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'aac', 'flac', 'ogg', 'm4a', 'opus'],
+          allowCompression: false,
+        );
+        print("result: $picked");
+        if (picked == null) return;
+
+        File file = File(picked.files.single.path!);
+
+        if (!isAudioFile(file.path)) {
+          print('Not an audio file');
+          return;
+        }
+        print('Processing shared file: ${file.path}');
+
+        String date = formatAudioDate(DateTime.now());
+        String duration = "";
+
+        final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last, loadingTranscript: true);
+        final key = await DB.resultBox.add(result);
+
+        final newRes = await Transcriber.fromResult(result);
+        if (newRes == null) {
+          DB.resultBox.put(key, result.copyWith(loadingTranscript: false));
+          return;
+        }
+        DB.resultBox.put(key, newRes);
+        print(newRes);
+      },
+      icon: const Icon(Icons.file_download_outlined),
       iconSize: 30,
       color: Theme.of(context).colorScheme.surface,
     );

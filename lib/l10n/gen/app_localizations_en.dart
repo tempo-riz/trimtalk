@@ -239,4 +239,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get close => 'close';
+
+  @override
+  String get never => 'Never';
 }

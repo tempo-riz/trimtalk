@@ -562,6 +562,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'close'**
   String get close;
+
+  /// No description provided for @never.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get never;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

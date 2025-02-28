@@ -81,6 +81,7 @@ dependencies:
   deepl_dart: ^1.5.0
   in_app_purchase: ^3.2.1
   in_app_purchase_storekit: ^0.3.21
+  file_picker: ^9.0.2
 
 dev_dependencies:
   flutter_test:

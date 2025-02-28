@@ -96,3 +96,4 @@
 - [x] add monetisation (support the app)
 - [x] Test deepseek instead of Llama model for summarization
 - [ ] improve user flow setup (android permissions)
+- [ ] on ios add option to pick files

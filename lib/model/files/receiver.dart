@@ -7,16 +7,6 @@ import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/stt/transcriber.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/types/result.dart';
-import 'package:mime/mime.dart';
-
-bool isAudioFile(String filePath) {
-  if (filePath.split('.').last == 'opus') {
-    return true;
-  }
-  final mimeType = lookupMimeType(filePath);
-  return mimeType != null && mimeType.startsWith('audio/');
-}
-// bool _isInit = false;
 
 class Receiver {
   static void init() {

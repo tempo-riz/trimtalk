@@ -1,9 +1,11 @@
+import 'package:trim_talk/model/utils.dart';
 import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:mime/mime.dart';
 import 'package:trim_talk/l10n/gen/app_localizations.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/types/result.dart';
@@ -133,7 +135,7 @@ extension FormatDateTime on DateTime {
       return "${context.t.yesterdayAt} ${DateFormat('HH:mm').format(this)}";
     } else {
       if (difference.inDays > 365) {
-        return context.t.neverChecked;
+        return context.t.never;
       }
       return DateFormat('EEE dd/MM, HH:mm').format(this);
     }
@@ -468,4 +470,12 @@ String formatAudioDate(DateTime date) {
 
 extension L10nBuildContext on BuildContext {
   AppLocalizations get t => AppLocalizations.of(this);
+}
+
+bool isAudioFile(String filePath) {
+  if (filePath.split('.').last == 'opus') {
+    return true;
+  }
+  final mimeType = lookupMimeType(filePath);
+  return mimeType != null && mimeType.startsWith('audio/');
 }

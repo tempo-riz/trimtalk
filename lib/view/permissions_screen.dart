@@ -43,7 +43,12 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(context.t.letsGetStarted),
-          actions: const [FeedbackButton()],
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: FeedbackButton(),
+            )
+          ],
         ),
         body: Container(
           margin: const EdgeInsets.all(20),

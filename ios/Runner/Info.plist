@@ -85,5 +85,8 @@
 
 		<key>NSCameraUsageDescription</key>
 		<string>Requires access to the camera for media-related features.</string>
+
+		<key>NSAppleMusicUsageDescription</key>
+		<string>Requires access to Apple Music to pick audio files</string>
 	</dict>
 </plist>
