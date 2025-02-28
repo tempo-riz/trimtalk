@@ -95,5 +95,5 @@
 - [x] add feedback button in permission screen
 - [x] add monetisation (support the app)
 - [x] Test deepseek instead of Llama model for summarization
+- [x] add option to pick files
 - [ ] improve user flow setup (android permissions)
-- [ ] on ios add option to pick files

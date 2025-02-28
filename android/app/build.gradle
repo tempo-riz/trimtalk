@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.example.trim_talk"
-    compileSdk 34 // flutter.compileSdkVersion
+    compileSdk 35 // flutter.compileSdkVersion
     ndkVersion "27.0.11902837" // flutter.ndkVersion
 
     compileOptions {

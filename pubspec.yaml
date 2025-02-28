@@ -2,7 +2,7 @@ name: trim_talk
 description: "Transcribes voice messages automatically, making conversations clear and efficient."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.1+26
+version: 1.1.2+27
 
 environment:
   sdk: ">=3.4.0 <4.0.0"

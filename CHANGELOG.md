@@ -1,3 +1,7 @@
+
+# 1.1.2
+- add file picking feature
+
 # 1.1.1
 - use deepseek for summarization
 - add support options
