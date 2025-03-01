@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/router.dart';
 import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
@@ -148,33 +149,40 @@ class _SupportScreenState extends State<SupportScreen> {
           children: [
             Text(context.t.trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou),
             gapH24,
-            ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: purchaseProducts.length,
-              itemBuilder: (context, index) {
-                final product = purchaseProducts[index];
+            purchaseProducts.isEmpty
+                ? Center(
+                    child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: Theme.of(context).colorScheme.primary,
+                      size: 30,
+                    ),
+                  )
+                : ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: purchaseProducts.length,
+                    itemBuilder: (context, index) {
+                      final product = purchaseProducts[index];
 
-                return ListTile(
-                  leading: switch (product.id) {
-                    coffeeId => Icon(Icons.local_cafe_outlined),
-                    cookieId => Icon(Icons.cookie_outlined),
-                    sandwichId => Icon(Icons.lunch_dining_outlined),
-                    coffeeSubscriptionId => Icon(Icons.coffee_maker_outlined),
-                    _ => null,
-                  },
-                  title: Text(
-                    product.title.replaceAll("(TrimTalk)", ""), // for some reason google play adds (TrimTalk) to the title
+                      return ListTile(
+                        leading: switch (product.id) {
+                          coffeeId => Icon(Icons.local_cafe_outlined),
+                          cookieId => Icon(Icons.cookie_outlined),
+                          sandwichId => Icon(Icons.lunch_dining_outlined),
+                          coffeeSubscriptionId => Icon(Icons.coffee_maker_outlined),
+                          _ => null,
+                        },
+                        title: Text(
+                          product.title.replaceAll("(TrimTalk)", ""), // for some reason google play adds (TrimTalk) to the title
+                        ),
+                        subtitle: Text(product.price),
+                        trailing: ElevatedButton(
+                          onPressed: () => buyProduct(product),
+                          child: Icon(Icons.volunteer_activism_outlined),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) => const Divider(),
                   ),
-                  subtitle: Text(product.price),
-                  trailing: ElevatedButton(
-                    onPressed: () => buyProduct(product),
-                    child: Icon(Icons.volunteer_activism_outlined),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => const Divider(),
-            ),
             gapH16,
             SeeOnGithubButton(),
             gapH12,
