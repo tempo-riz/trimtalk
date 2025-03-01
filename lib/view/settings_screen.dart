@@ -102,7 +102,10 @@ class ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
         onPressed: () {
-          Share.share("${context.t.heyImUsingTtToTranscribeAndSummarizeCheckItOut} \n\nhttps://upotq.app.link/trimtalk");
+          Share.share(
+            "${context.t.heyImUsingTtToTranscribeAndSummarizeCheckItOut} \n\nhttps://upotq.app.link/trimtalk",
+            sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 2),
+          );
         },
         label: Text(context.t.shareTt),
         icon: Icon(Icons.adaptive.share));

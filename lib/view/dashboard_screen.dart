@@ -162,7 +162,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     case Reactions.copy:
                                       Clipboard.setData(ClipboardData(text: txt));
                                     case Reactions.share:
-                                      Share.share(txt);
+                                      Share.share(
+                                        txt,
+                                        sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 2),
+                                      );
                                     case Reactions.delete:
                                       box.delete(key);
                                     case Reactions.translate:
@@ -358,14 +361,15 @@ class PickFileButton extends StatelessWidget {
         String duration = "";
 
         final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last, loadingTranscript: true);
-        final key = await DB.resultBox.add(result);
+        final box = await DB.asyncResultBox;
+        final key = await box.add(result);
 
         final newRes = await Transcriber.fromResult(result);
         if (newRes == null) {
-          DB.resultBox.put(key, result.copyWith(loadingTranscript: false));
+          box.put(key, result.copyWith(loadingTranscript: false));
           return;
         }
-        DB.resultBox.put(key, newRes);
+        box.put(key, newRes);
         print(newRes);
       },
       icon: const Icon(Icons.file_download_outlined),

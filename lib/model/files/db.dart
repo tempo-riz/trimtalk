@@ -85,6 +85,7 @@ class DB {
     return Hive.box<Result>(_resultBoxKey);
   }
 
+  /// make sure its open
   static Future<Box<Result>> get asyncResultBox async {
     return await Hive.openBox<Result>(_resultBoxKey);
   }

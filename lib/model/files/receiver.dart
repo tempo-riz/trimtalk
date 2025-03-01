@@ -45,14 +45,15 @@ class Receiver {
     String duration = "";
 
     final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last, loadingTranscript: true);
-    final key = await DB.resultBox.add(result);
+    final box = await DB.asyncResultBox;
+    final key = await box.add(result);
 
     final newRes = await Transcriber.fromResult(result);
     if (newRes == null) {
-      DB.resultBox.put(key, result.copyWith(loadingTranscript: false));
+      box.put(key, result.copyWith(loadingTranscript: false));
       return;
     }
-    DB.resultBox.put(key, newRes);
+    box.put(key, newRes);
     print(newRes);
   }
 }

@@ -10,8 +10,8 @@ StreamSubscription<ServiceNotificationEvent>? stream;
 
 /// sender and duration of a voice note
 class ResultExtraMetadata {
-  final String author;
-  final String duration;
+  final String? author;
+  final String? duration;
 
   ResultExtraMetadata(this.author, this.duration);
 }
@@ -37,8 +37,8 @@ class NotificationWatcher {
       // remove ( and ) from the title
 
       // 🎤 Message vocal (0:24) -> (0:24) -> 0:24
-      final String duration = event.content!.split(' ').last.replaceAll(RegExp(r'[()]'), '');
-      final String author = event.title!; // Fafa 🐣🦕🦆
+      final String? duration = event.content?.split(' ').last.replaceAll(RegExp(r'[()]'), '');
+      final String? author = event.title; // Fafa 🐣🦕🦆
       final meta = ResultExtraMetadata(author, duration);
 
       print(event);

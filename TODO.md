@@ -97,3 +97,4 @@
 - [x] Test deepseek instead of Llama model for summarization
 - [x] add option to pick files
 - [ ] improve user flow setup (android permissions)
+- [x] add missing ipad share options
