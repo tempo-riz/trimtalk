@@ -27,7 +27,7 @@ platform :ios do
     upload_to_app_store(
       ipa: "../build/ios/ipa/TrimTalk.ipa",
       force: true,# Skip verification of HTML preview file
-      precheck_include_in_app_purchases: false,
+      precheck_include_in_app_purchases: true,
       skip_metadata: false,
       skip_screenshots: true,
       submit_for_review: true, 

@@ -1,3 +1,5 @@
+# 1.1.3
+- bugfixes
 
 # 1.1.2
 - add file picking feature
