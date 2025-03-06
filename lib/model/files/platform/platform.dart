@@ -20,14 +20,14 @@ class NativePlatform {
     return result.whereType<String>().toList();
   }
 
-  static Future<Uint8List?> readFile(String uri) async {
+  static Future<Uint8List?> readSafFile(String uri) async {
     final Uint8List? result = await api.readFileBytes(uri);
     return result;
   }
 
-  /// android/ios via shared intent -> return it as is
+  /// android/ios via shared intent -> return it as is because os copied it for us
   ///
-  /// android (saf) -> copy to app support dir
+  /// android (saf) -> copy to app support dir via method channel
   static Future<Result?> copyToSupportDirFromNative(Result res) async {
     final destDir = await getApplicationSupportDirectory();
     final newFile = File(p.join(destDir.path, res.filename));
@@ -40,7 +40,7 @@ class NativePlatform {
       return res;
     }
 
-    final bytes = await readFile(res.path);
+    final bytes = await readSafFile(res.path);
     if (bytes == null) {
       print("bytes is null");
       return null;

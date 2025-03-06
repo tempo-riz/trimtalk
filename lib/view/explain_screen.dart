@@ -27,13 +27,6 @@ class ExplainScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // gap20,
-
-            // const Text(
-            //   "The concept is pretty simple !",
-            // ).bold().fontSize(20),
-            // gap24,
-            // gap20,
             const Center(child: AppLanguageDropDown()),
             gap24,
             Text(
@@ -99,7 +92,6 @@ class ExplainScreen extends StatelessWidget {
               ),
             ],
             gap24,
-
             Center(
               child: ElevatedButton.icon(
                 label: Text(context.t.okay),
@@ -116,23 +108,6 @@ class ExplainScreen extends StatelessWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   elevation: 1,
-      //   // height: 100,
-      //   padding: EdgeInsets.zero,
-      //   child: Container(
-      //     alignment: Alignment.center,
-      //     // height: 100,
-      //     color: Colors.blue,
-      //     child: ElevatedButton(
-      //         onPressed: () {
-      //           Prefs.setUserAcknowledged().then((_) {
-      //             context.goNamed(Routes.permissions.name);
-      //           });
-      //         },
-      //         child: Text("Got it !")),
-      //   ),
-      // ),
     );
   }
 }

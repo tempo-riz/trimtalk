@@ -1,7 +1,3 @@
-// import 'package:receive_sharing_intent/receive_sharing_intent.dart';
-
-import 'dart:io';
-
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/stt/result_extensions.dart';
@@ -15,7 +11,7 @@ class Receiver {
       if (files.isEmpty) {
         return;
       }
-      _process(files.first);
+      _processFile(files.first);
       ReceiveSharingIntent.instance.reset();
     }, onError: (err) {
       print('getMediaStream Shared files error: $err');
@@ -26,28 +22,24 @@ class Receiver {
       if (files.isEmpty) {
         return;
       }
-      _process(files.first);
+      _processFile(files.first);
       ReceiveSharingIntent.instance.reset();
     }).catchError((err) {
       print('getInitialSharing Shared files error: $err');
     });
   }
 
-  static void _process(SharedMediaFile sharedFile) async {
+  static void _processFile(SharedMediaFile sharedFile) async {
     if (sharedFile.type != SharedMediaType.file || !isAudioFile(sharedFile.path)) {
       print('Not an audio file');
       return;
     }
     print('Processing shared file: ${sharedFile.path}');
-    final file = File(sharedFile.path);
 
-    String date = formatAudioDate(DateTime.now());
-    String duration = "";
+    final res = Result.fromShare(sharedFile.path);
 
-    final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last);
-    final box = await DB.asyncResultBox;
-    final key = await box.add(result);
+    final key = await DB.createResultAsync(res);
 
-    await result.transcribe(key);
+    await res.transcribe(key);
   }
 }

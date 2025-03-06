@@ -14,6 +14,10 @@ import 'package:trim_talk/view/transcript_screen.dart';
 
 enum NamedRoutes { explain, permissions, dashboard, transcript, settings, support }
 
+extension NamedRoutesExt on NamedRoutes {
+  String get path => "/$name";
+}
+
 /// if user finished tuto and accepted permissions
 Future<bool> isSetupOk() async {
   final ack = DB.getPref<bool>(Prefs.isTutoDone);
@@ -27,17 +31,17 @@ Future<bool> isSetupOk() async {
 
 Future<String> getFirstRoute() async {
   final ack = DB.getPref(Prefs.isAcknowledged);
-  if (!ack) return '/explain';
+  if (!ack) return NamedRoutes.explain.path;
 
   final allowed = await Permissions.isReadFilesAllowed();
-  if (!allowed) return '/permissions';
+  if (!allowed) return NamedRoutes.permissions.path;
 
-  return '/dashboard';
+  return NamedRoutes.dashboard.path;
 }
 
 GoRoute buildRoute(NamedRoutes r, Widget Function(BuildContext, GoRouterState)? builder) {
   return GoRoute(
-    path: "/${r.name}",
+    path: r.path,
     name: r.name,
     builder: builder,
   );

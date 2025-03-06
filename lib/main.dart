@@ -72,11 +72,9 @@ Future<void> initApp() async {
   await dotenv.load();
   await DB.init();
   await NotificationSender.init();
-  // Task.init();
 
   Receiver.init();
   NotificationWatcher.init();
-  // Accessibility.init();
 
   firstRoute = await getFirstRoute();
   print("First route: $firstRoute");

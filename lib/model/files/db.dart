@@ -8,6 +8,7 @@ const _resultBoxKey = 'results';
 const _prefsBoxKey = 'prefs';
 const _dummyResultKey = 'dummyRes';
 
+// CAREFUL: renaming will lose current data (using key.name)
 enum Prefs {
   lastRun,
   isAcknowledged,
