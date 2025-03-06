@@ -342,6 +342,7 @@ class EnableAutoCheckToggle extends StatelessWidget {
         pref: Prefs.isTaskRunning,
         title: context.t.periodicCheck,
         subtitle: context.t.whenAppIsInBackground,
+        enabledIcon: Icons.alarm,
         onToggleCheck: (newVal) async {
           if (!newVal) {
             Task.cancel();
@@ -363,6 +364,7 @@ class AutoTranscriptToogle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsTooglePref(
+      enabledIcon: Icons.done_all,
       pref: Prefs.isAutoTranscript,
       title: context.t.alwaysAutoTranscribe,
       subtitle: context.t.dontAskConfirmation,

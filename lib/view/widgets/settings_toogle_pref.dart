@@ -7,9 +7,9 @@ class SettingsTooglePref extends StatelessWidget {
     super.key,
     required this.pref,
     required this.title,
-    this.subtitle,
+    required this.enabledIcon,
     this.disabledIcon,
-    this.enabledIcon,
+    this.subtitle,
     this.onToggleCheck,
   });
 
@@ -17,7 +17,7 @@ class SettingsTooglePref extends StatelessWidget {
   final String title;
   final String? subtitle;
   final IconData? disabledIcon;
-  final IconData? enabledIcon;
+  final IconData enabledIcon;
 
   /// return false to prevent the toggle update
   final Future<bool> Function(bool)? onToggleCheck;
@@ -44,16 +44,12 @@ class SettingsTooglePref extends StatelessWidget {
                 (Set<WidgetState> states) {
                   if (states.contains(WidgetState.selected)) {
                     return Icon(
-                      enabledIcon ?? Icons.check,
+                      enabledIcon,
                     );
                   }
-                  if (disabledIcon != null) {
-                    return Icon(
-                      disabledIcon,
-                    );
-                  }
-                  // default thumb
-                  return null;
+                  return Icon(
+                    disabledIcon ?? enabledIcon,
+                  );
                 },
               ),
               onChanged: (bool value) async {
