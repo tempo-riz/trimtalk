@@ -17,7 +17,6 @@ enum Prefs {
   isTaskRunning,
   frequencyMinutes,
   transcriptLanguageCode,
-  currentWhisperModel,
   isAppInForeground,
   isNotificationEnabled,
   isWatchingNotification,
@@ -146,7 +145,6 @@ extension BoxPref on Box {
       Prefs.frequencyMinutes => 15,
       Prefs.isFirstRun => true,
       Prefs.transcriptLanguageCode => "auto", //supportedLanguages.map((L) => L.code).contains(system) ? system : 'en',
-      Prefs.currentWhisperModel => '', // to check if model is downloaded or not
       Prefs.lastRun => DateTime.fromMicrosecondsSinceEpoch(0).toIso8601String(),
       Prefs.isAppInForeground => false,
       Prefs.isTutoDone => false,

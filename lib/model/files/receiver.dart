@@ -48,12 +48,19 @@ class Receiver {
     final box = await DB.asyncResultBox;
     final key = await box.add(result);
 
-    final newRes = await Transcriber.fromResult(result);
-    if (newRes == null) {
-      box.put(key, result.copyWith(loadingTranscript: false));
-      return;
+    try {
+      final newRes = await Transcriber.fromResult(result);
+      if (newRes == null) {
+        // transcribe failed
+        return box.put(key, result.copyWith(loadingTranscript: false));
+      }
+      // success
+      box.put(key, newRes);
+      print(newRes);
+    } catch (e) {
+      // transcribe failed with error, allow retry
+      print(e);
+      return box.put(key, result.copyWith(loadingTranscript: false));
     }
-    box.put(key, newRes);
-    print(newRes);
   }
 }
