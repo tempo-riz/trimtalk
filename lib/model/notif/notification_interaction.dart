@@ -2,11 +2,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/notif/notification_sender.dart';
-import 'package:trim_talk/model/work.dart';
-import 'package:trim_talk/model/stt/transcriber.dart';
+import 'package:trim_talk/model/stt/result_extensions.dart';
+import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/main.dart';
 import 'package:trim_talk/router.dart';
-import 'package:trim_talk/types/result.dart';
 
 enum ActionType { dismiss, transcribe, summarize, copy }
 
@@ -49,17 +48,11 @@ void onNotifTap(NotificationResponse notif) async {
   }
   //otherwise transcribe it
 
-  await DB.resultBox.put(resKey, res.copyWith(loadingTranscript: true));
+  final transcribed = await res.transcribe(resKey);
 
-  Result? resultWithTranscript = await Transcriber.fromResult(res);
-
-  if (resultWithTranscript == null) {
-    DB.resultBox.put(resKey, res.copyWith(loadingTranscript: false));
+  if (transcribed.transcript == null) {
     return NotificationSender.showError(notifId, "Failed to transcribe ${res.duration} (empty result)");
   }
-
-  //update the result with the transcript
-  DB.resultBox.put(resKey, resultWithTranscript);
 }
 
 /// ACTION TAP WILL NOT OPEN THE APP -> talk in notif to user

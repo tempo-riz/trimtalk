@@ -13,7 +13,7 @@ import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/notif/notification_sender.dart';
 import 'package:trim_talk/model/files/receiver.dart';
 import 'package:trim_talk/model/notif/notification_watcher.dart';
-import 'package:trim_talk/model/work.dart';
+import 'package:trim_talk/model/check_new.dart';
 
 import 'package:trim_talk/router.dart';
 import 'package:flutter/foundation.dart' as foundation;

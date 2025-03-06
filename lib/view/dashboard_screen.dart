@@ -14,11 +14,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:trim_talk/model/files/db.dart';
-import 'package:trim_talk/model/stt/transcriber.dart';
-import 'package:trim_talk/model/stt/translator.dart';
+import 'package:trim_talk/model/stt/result_extensions.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/model/files/wa_files.dart';
-import 'package:trim_talk/model/work.dart';
+import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/main.dart';
 import 'package:trim_talk/router.dart';
 import 'package:trim_talk/types/result.dart';
@@ -169,11 +168,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     case Reactions.delete:
                                       box.delete(key);
                                     case Reactions.translate:
-                                      Translator.translateRes(res).then((translatedRes) {
-                                        if (translatedRes != null) {
-                                          box.put(key, translatedRes);
-                                        }
-                                      });
+                                      res.translate(key);
                                   }
                                 },
                                 boxPadding: const EdgeInsets.all(4),
@@ -357,20 +352,10 @@ class PickFileButton extends StatelessWidget {
         }
         print('Processing shared file: ${file.path}');
 
-        String date = formatAudioDate(DateTime.now());
-        String duration = "";
+        final res = Result.fromShare(file.path);
+        final key = await DB.createResultAsync(res);
 
-        final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last, loadingTranscript: true);
-        final box = await DB.asyncResultBox;
-        final key = await box.add(result);
-
-        final newRes = await Transcriber.fromResult(result);
-        if (newRes == null) {
-          box.put(key, result.copyWith(loadingTranscript: false));
-          return;
-        }
-        box.put(key, newRes);
-        print(newRes);
+        await res.transcribe(key);
       },
       icon: const Icon(Icons.file_download_outlined),
       iconSize: 30,

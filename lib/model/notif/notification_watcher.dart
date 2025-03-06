@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:notification_listener_service/notification_event.dart';
 import 'package:notification_listener_service/notification_listener_service.dart';
-import 'package:trim_talk/model/work.dart';
+import 'package:trim_talk/model/check_new.dart';
 
 // avoid listenting multiple times
 StreamSubscription<ServiceNotificationEvent>? stream;

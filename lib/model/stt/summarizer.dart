@@ -8,7 +8,7 @@ import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/types/result.dart';
 
 class Summarizer {
-  static Future<Result?> formatAndSummarizeGroq(Result res) async {
+  static Future<Result?> summarize(Result res) async {
     if (res.transcript == null) {
       print('Transcript is null in summarizer');
       return null;
@@ -17,7 +17,7 @@ class Summarizer {
 
     final maybeLanguage = supportedTranscritionLanguages.where((L) => (L.code == code && code != "auto")).firstOrNull;
 
-    final prompt = buildPromptSummaryOnly(res.transcript!, language: maybeLanguage?.name);
+    final prompt = _buildPromptSummaryOnly(res.transcript!, language: maybeLanguage?.name);
 
     const deepSeekId = "deepseek-r1-distill-llama-70b";
 
@@ -26,19 +26,19 @@ class Summarizer {
       // https://console.groq.com/settings/limits
       // https://console.groq.com/settings/billing
       // TODO : https://arc.net/l/quote/jdzwgwwj
-      String? result = await tryWithModel(deepSeekId, prompt);
+      String? result = await _tryWithModel(deepSeekId, prompt);
 
       // fallback to gemma2-9b-it
-      result ??= await tryWithModel(GroqModels.gemma2_9b, prompt);
+      result ??= await _tryWithModel(GroqModels.gemma2_9b, prompt);
 
-      return await parseJsonAnswerSummaryOnly(result!, res);
+      return await _parseJsonAnswerSummaryOnly(result!, res);
     } catch (e) {
       print(e);
       return null;
     }
   }
 
-  static Future<String?> tryWithModel(String modelId, String prompt) async {
+  static Future<String?> _tryWithModel(String modelId, String prompt) async {
     final groq = Groq(dotenv.get("GROQ_API_KEY"));
 
     try {
@@ -51,7 +51,7 @@ class Summarizer {
     }
   }
 
-  static String buildPromptSummaryOnly(String transcript, {String? language}) {
+  static String _buildPromptSummaryOnly(String transcript, {String? language}) {
     final langStr = language != null ? "($language)" : '';
 
     return '''
@@ -64,6 +64,7 @@ The value of the "summary" key should be in the source language $langStr. Here i
 
 $transcript
 ''';
+
 //     return '''
 // Please summarize the provided text, which is an audio transcript, and return the result in JSON format. The JSON should contain two keys:
 
@@ -76,7 +77,8 @@ $transcript
 // ''';
   }
 
-  static Future<Result> parseJsonAnswerSummaryOnly(String jsonStr, Result res) async {
+  /// This can throw
+  static Future<Result?> _parseJsonAnswerSummaryOnly(String jsonStr, Result res) async {
     // Example JSON response from the language model
     // {
     //   "transcript": "This is the enhanced version of the audio transcript with improved clarity.",
@@ -94,7 +96,7 @@ $transcript
     String? summary = parsedResponse['summary'];
 
     if (summary == null) {
-      return res;
+      return null;
     }
     return res.copyWith(summary: summary.trim(), loadingSummary: false, loadingTranscript: false);
   }

@@ -14,7 +14,7 @@ import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/model/notif/notification_watcher.dart';
 import 'package:trim_talk/model/task.dart';
 import 'package:trim_talk/model/utils.dart';
-import 'package:trim_talk/model/work.dart';
+import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/router.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:trim_talk/view/widgets/settings_toogle_pref.dart';
@@ -515,7 +515,7 @@ class DebugWidget extends StatelessWidget {
             print(results.first.path);
             // final uri = results.first.path;
             // final
-            final path = await NativePlatform.copyToSupportDir(results.first);
+            final path = await NativePlatform.copyToSupportDirFromNative(results.first);
             // copy to dir
             print("2 ----- ${stopwatch.elapsed}");
 

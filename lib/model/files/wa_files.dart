@@ -130,8 +130,8 @@ class WAFiles {
   }
 
   static Future<Result?> copyToSupportDir(Result res) async {
-    final isLegacy = await Permissions.isLegacyStorage();
-    if (isLegacy) {
+    final isLegacyAndroid = Platform.isAndroid && await Permissions.isLegacyStorage();
+    if (isLegacyAndroid) {
       // if legacy need to copy file in support dir
       final supDir = await getApplicationSupportDirectory();
       final sourceFile = File(res.path);
@@ -144,7 +144,7 @@ class WAFiles {
         return null;
       }
     }
-    return await NativePlatform.copyToSupportDir(res);
+    return await NativePlatform.copyToSupportDirFromNative(res);
   }
 
   static Future<void> deleteFile(String path) async {

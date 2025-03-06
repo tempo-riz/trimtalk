@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:trim_talk/model/stt/summarizer.dart';
+import 'package:trim_talk/model/stt/result_extensions.dart';
 import 'package:trim_talk/model/utils.dart';
-import 'package:trim_talk/model/work.dart';
+import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/types/result.dart';
 import 'package:trim_talk/router.dart';
 import 'package:trim_talk/view/widgets/scale_on_press.dart';
@@ -83,13 +83,7 @@ class _ResultCardState extends State<ResultCard> {
         return;
       }
 
-      box.put(resKey, res.copyWith(loadingSummary: true));
-      final resWithSummary = await Summarizer.formatAndSummarizeGroq(res);
-      if (resWithSummary == null) {
-        box.put(resKey, res.copyWith(loadingSummary: false));
-        return;
-      }
-      box.put(resKey, resWithSummary);
+      await res.summarize(resKey);
     }
 
     return LayoutBuilder(builder: (context, constraints) {

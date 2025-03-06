@@ -27,6 +27,8 @@ class Permissions {
   }
 
   /// below Android 13 (sdk 33) use legacy storage permission
+  ///
+  /// ios always returns false
   static Future<bool> isLegacyStorage() async {
     if (Platform.isIOS) return false;
     final androidInfo = await DeviceInfoPlugin().androidInfo; // this doesnt need to run after runApp it's for package info

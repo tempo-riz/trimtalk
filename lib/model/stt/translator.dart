@@ -1,7 +1,6 @@
 import 'package:deepl_dart/deepl_dart.dart' as deepl;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:trim_talk/model/files/db.dart';
-import 'package:trim_talk/types/result.dart';
 
 class Translator {
   /// translate to app language
@@ -21,20 +20,20 @@ class Translator {
   }
 
   /// translate a result (transcript and summary)
-  static Future<Result?> translateRes(Result res) async {
-    final transcript = res.transcript;
-    final summary = res.summary;
+  // static Future<Result?> translateRes(Result res) async {
+  //   final transcript = res.transcript;
+  //   final summary = res.summary;
 
-    if (transcript == null) return null;
+  //   if (transcript == null) return null;
 
-    final translatedTranscript = await translate(text: transcript);
-    final translatedSummary = summary == null ? null : await translate(text: summary);
+  //   final translatedTranscript = await translate(text: transcript);
+  //   final translatedSummary = summary == null ? null : await translate(text: summary);
 
-    if (translatedTranscript == null) return null;
+  //   if (translatedTranscript == null) return null;
 
-    return res.copyWith(
-      transcript: translatedTranscript,
-      summary: translatedSummary,
-    );
-  }
+  //   return res.copyWith(
+  //     transcript: translatedTranscript,
+  //     summary: translatedSummary,
+  //   );
+  // }
 }

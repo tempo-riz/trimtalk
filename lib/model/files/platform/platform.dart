@@ -25,8 +25,10 @@ class NativePlatform {
     return result;
   }
 
-  /// return the new path
-  static Future<Result?> copyToSupportDir(Result res) async {
+  /// android/ios via shared intent -> return it as is
+  ///
+  /// android (saf) -> copy to app support dir
+  static Future<Result?> copyToSupportDirFromNative(Result res) async {
     final destDir = await getApplicationSupportDirectory();
     final newFile = File(p.join(destDir.path, res.filename));
 

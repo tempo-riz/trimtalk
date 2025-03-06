@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:trim_talk/model/files/db.dart';
-import 'package:trim_talk/model/stt/transcriber.dart';
+import 'package:trim_talk/model/stt/result_extensions.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/types/result.dart';
 
@@ -44,23 +44,10 @@ class Receiver {
     String date = formatAudioDate(DateTime.now());
     String duration = "";
 
-    final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last, loadingTranscript: true);
+    final result = Result(date: date, duration: duration, path: file.path, filename: file.path.split('/').last);
     final box = await DB.asyncResultBox;
     final key = await box.add(result);
 
-    try {
-      final newRes = await Transcriber.fromResult(result);
-      if (newRes == null) {
-        // transcribe failed
-        return box.put(key, result.copyWith(loadingTranscript: false));
-      }
-      // success
-      box.put(key, newRes);
-      print(newRes);
-    } catch (e) {
-      // transcribe failed with error, allow retry
-      print(e);
-      return box.put(key, result.copyWith(loadingTranscript: false));
-    }
+    await result.transcribe(key);
   }
 }

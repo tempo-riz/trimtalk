@@ -134,6 +134,11 @@ class DB {
   static Future<void> setPref(Prefs pref, dynamic value) async {
     await prefsBox.put(pref.name, value);
   }
+
+  static Future<int> createResultAsync(Result res) async {
+    final box = await asyncResultBox;
+    return await box.add(res);
+  }
 }
 
 extension BoxPref on Box {

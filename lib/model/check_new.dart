@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/notif/notification_sender.dart';
 import 'package:trim_talk/model/notif/notification_watcher.dart';
-import 'package:trim_talk/model/stt/transcriber.dart';
+import 'package:trim_talk/model/stt/result_extensions.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/types/result.dart';
@@ -74,20 +74,14 @@ Future<void> transcribeFileAndShowResult(int resKey) async {
 
   NotificationSender.showLoading(notifId, res.duration);
 
+  final newRes = await res.transcribe(resKey);
   // show loading result
-  DB.resultBox.put(resKey, res.copyWith(loadingTranscript: true));
 
-  Result? resultWithTranscript = await Transcriber.fromResult(res);
-
-  if (resultWithTranscript == null) {
-    // DB.resultBox.delete(key);
-    DB.resultBox.put(resKey, res.copyWith(loadingTranscript: false));
-    return NotificationSender.showError(notifId, "Failed to transcribe ${res.duration} (empty result)");
+  if (newRes.transcript == null) {
+    return NotificationSender.showError(notifId, "Failed to transcribe ${res.duration} (empty transcript)");
   }
 
-  DB.resultBox.put(resKey, resultWithTranscript);
-
-  NotificationSender.showTranscriptResult(resultWithTranscript, resKey, notifId);
+  NotificationSender.showTranscriptResult(newRes, resKey, notifId);
 }
 
 /// DEBUG ONLY create a new files and then check

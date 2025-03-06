@@ -8,45 +8,39 @@ import 'package:trim_talk/model/files/converter.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/stt/translator.dart';
 import 'package:trim_talk/model/utils.dart';
-import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/types/result.dart';
 
 class Transcriber {
-  /// copy the file to the support directory and transcribe it, return the updated result
-  static Future<Result?> fromResult(Result result) async {
-    final resWithUpdatedPath = await WAFiles.copyToSupportDir(result);
-    if (resWithUpdatedPath == null) {
+  // null if one of the chunks failed
+  static Future<Result?> _transcribeBigFile(Result res, String path) async {
+    try {
+      final tup = await AudioTools.splitAudio(File(path));
+      if (tup == null) {
+        return res.copyWith(loadingTranscript: false);
+      }
+      final List<File> files = tup.$1;
+      final double dur = tup.$2;
+
+      // keep duration in case transcription fails
+      final tmpRes = res.copyWith(duration: formatDuration(Duration(seconds: dur.floor())));
+
+      String transcript = "";
+
+      for (final file in files) {
+        final partRes = await transcribe(tmpRes.copyWith(path: file.path), skipConvert: true, skipResize: true);
+        if (partRes == null) {
+          return null;
+        }
+        transcript += "${partRes.transcript} ";
+      }
+
+      return tmpRes.copyWith(transcript: transcript.trim());
+    } catch (e) {
       return null;
     }
-    print('Transcribing copied file ${resWithUpdatedPath.path}');
-
-    final newRes = await fromGroqWhisper(resWithUpdatedPath);
-
-    return newRes;
   }
 
-  static Future<Result> transcribeBigFile(Result res, String path) async {
-    final tup = await AudioTools.splitAudio(File(path));
-    if (tup == null) {
-      return res.copyWith(loadingTranscript: false);
-    }
-    final List<File> files = tup.$1;
-    final double dur = tup.$2;
-
-    // keep duration in case transcription fails
-    final tmpRes = res.copyWith(duration: formatDuration(Duration(seconds: dur.floor())));
-
-    String transcript = "";
-
-    for (final file in files) {
-      final partRes = await fromGroqWhisper(tmpRes.copyWith(path: file.path), skipConvert: true, skipResize: true);
-      transcript += "${partRes.transcript} ";
-    }
-
-    return tmpRes.copyWith(transcript: transcript.trim());
-  }
-
-  static Future<Result> fromGroqWhisper(
+  static Future<Result?> transcribe(
     Result res, {
     bool skipConvert = false,
     bool skipResize = false,
@@ -75,7 +69,7 @@ class Transcriber {
         print('file size: $size');
         if (size > maxSizeInBytes) {
           print('File too big, splitting it');
-          return transcribeBigFile(res, effectiveFile.path);
+          return _transcribeBigFile(res, effectiveFile.path);
         }
       }
 
@@ -127,7 +121,7 @@ class Transcriber {
       ); // The transcribed text
     } catch (e) {
       print('Error transcribing audio: $e');
-      return res.copyWith(loadingTranscript: false);
+      return null;
     }
   }
 }

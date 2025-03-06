@@ -63,6 +63,15 @@ class Result extends HiveObject {
     );
   }
 
+  factory Result.fromShare(String path) {
+    return Result(
+      date: formatAudioDate(DateTime.now()),
+      duration: "",
+      path: path,
+      filename: path.split('/').last,
+    );
+  }
+
   factory Result.fromNative(NativeResult res) {
     final datetime = DateTime.fromMillisecondsSinceEpoch(res.dateMs);
     final dur = Duration(milliseconds: res.durationMs);
