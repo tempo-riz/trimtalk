@@ -11,35 +11,6 @@ import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/types/result.dart';
 
 class Transcriber {
-  // null if one of the chunks failed
-  static Future<Result?> _transcribeBigFile(Result res, String path) async {
-    try {
-      final tup = await AudioTools.splitAudio(File(path));
-      if (tup == null) {
-        return res.copyWith(loadingTranscript: false);
-      }
-      final List<File> files = tup.$1;
-      final double dur = tup.$2;
-
-      // keep duration in case transcription fails
-      final tmpRes = res.copyWith(duration: formatDuration(Duration(seconds: dur.floor())));
-
-      String transcript = "";
-
-      for (final file in files) {
-        final partRes = await transcribe(tmpRes.copyWith(path: file.path), skipConvert: true, skipResize: true);
-        if (partRes == null) {
-          return null;
-        }
-        transcript += "${partRes.transcript} ";
-      }
-
-      return tmpRes.copyWith(transcript: transcript.trim());
-    } catch (e) {
-      return null;
-    }
-  }
-
   static Future<Result?> transcribe(
     Result res, {
     bool skipConvert = false,
@@ -121,6 +92,35 @@ class Transcriber {
       ); // The transcribed text
     } catch (e) {
       print('Error transcribing audio: $e');
+      return null;
+    }
+  }
+
+  // null if one of the chunks failed
+  static Future<Result?> _transcribeBigFile(Result res, String path) async {
+    try {
+      final tup = await AudioTools.splitAudio(File(path));
+      if (tup == null) {
+        return res.copyWith(loadingTranscript: false);
+      }
+      final List<File> files = tup.$1;
+      final double dur = tup.$2;
+
+      // keep duration in case transcription fails
+      final tmpRes = res.copyWith(duration: formatDuration(Duration(seconds: dur.floor())));
+
+      String transcript = "";
+
+      for (final file in files) {
+        final partRes = await transcribe(tmpRes.copyWith(path: file.path), skipConvert: true, skipResize: true);
+        if (partRes == null) {
+          return null;
+        }
+        transcript += "${partRes.transcript} ";
+      }
+
+      return tmpRes.copyWith(transcript: transcript.trim());
+    } catch (e) {
       return null;
     }
   }

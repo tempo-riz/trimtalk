@@ -96,5 +96,8 @@
 - [x] add monetisation (support the app)
 - [x] Test deepseek instead of Llama model for summarization
 - [x] add option to pick files
-- [ ] improve user flow setup (android permissions)
 - [x] add missing ipad share options
+- [ ] improve user flow setup (android permissions)
+- [ ] select model option for summarization
+- [ ] custom prompt option
+- [ ] summarization on notif action (android)

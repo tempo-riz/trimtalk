@@ -18,22 +18,4 @@ class Translator {
     if (deeplRes.text.isEmpty) return null;
     return deeplRes.text;
   }
-
-  /// translate a result (transcript and summary)
-  // static Future<Result?> translateRes(Result res) async {
-  //   final transcript = res.transcript;
-  //   final summary = res.summary;
-
-  //   if (transcript == null) return null;
-
-  //   final translatedTranscript = await translate(text: transcript);
-  //   final translatedSummary = summary == null ? null : await translate(text: summary);
-
-  //   if (translatedTranscript == null) return null;
-
-  //   return res.copyWith(
-  //     transcript: translatedTranscript,
-  //     summary: translatedSummary,
-  //   );
-  // }
 }
