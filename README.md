@@ -1,4 +1,4 @@
-## Download on [iOS & Android](https://upotq.app.link/trimtalk)
+## Download on [iOS & Android](https://zealousfoundry.com/trimtalk)
 
 ## Features
 - **Transcription** – Turn voice messages into text instantly
@@ -87,7 +87,7 @@ To avoid requiring manual checks:
 - read file permission is always true (android)
 
 # Links
-Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) or share the [Universal Link](https://upotq.app.link/trimtalk).
+Download on [iOS](https://apps.apple.com/ug/app/trimtalk/id6720703110?platform=iphone) and [Android](https://play.google.com/store/apps/details?id=com.trimtalk.app) or share the [Universal Link](https://zealousfoundry.com/trimtalk).
 
 ## Support
 I built this project on my free time, if you'd like to support it, consider contributing [here](https://github.com/sponsors/tempo-riz). Thank you! :)
