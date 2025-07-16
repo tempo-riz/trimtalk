@@ -316,14 +316,14 @@ class FrequencySlider extends StatelessWidget {
                   children: [
                     Text("${context.t.checkFrequency}: ${minutesToString(minutes)}").bold(),
                     gap12,
-                    Slider(
-                      value: minutesToSlider(minutes),
-                      onChangeEnd: (lastSliderValue) => Task.start(updateView: false),
-                      onChangeStart: (firstSliderValue) => Task.cancel(updateView: false),
-                      onChanged: (newSliderValue) => DB.setPref(Prefs.frequencyMinutes, sliderToMinutes(newSliderValue)),
-                      divisions: 5,
-                      label: minutesToString(minutes),
-                    ),
+                    // Slider(
+                    //   value: minutesToSlider(minutes),
+                    //   onChangeEnd: (lastSliderValue) => Task.start(updateView: false),
+                    //   onChangeStart: (firstSliderValue) => Task.cancel(updateView: false),
+                    //   onChanged: (newSliderValue) => DB.setPref(Prefs.frequencyMinutes, sliderToMinutes(newSliderValue)),
+                    //   divisions: 5,
+                    //   label: minutesToString(minutes),
+                    // ),
                   ],
                 );
               });
@@ -345,12 +345,12 @@ class EnableAutoCheckToggle extends StatelessWidget {
         enabledIcon: Icons.alarm,
         onToggleCheck: (newVal) async {
           if (!newVal) {
-            Task.cancel();
+            // Task.cancel();
             return true; // always allow to disable
           }
           final isAllowed = await Permissions.isBatteryOptimizationDisabled() || await Permissions.askDisableBatteryOptimization();
           if (!isAllowed) return false;
-          Task.start();
+          // Task.start();
           return true;
         });
   }

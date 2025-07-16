@@ -97,8 +97,8 @@ flutter {
 
 dependencies {
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
-    implementation 'com.google.mediapipe:tasks-genai:0.10.15'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+    // implementation 'com.google.mediapipe:tasks-genai:0.10.15'
 
     // Kotlin fragment activity (i added this)
     //implementation "androidx.activity:activity-ktx:1.9.2"

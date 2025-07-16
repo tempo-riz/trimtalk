@@ -35,10 +35,18 @@ class Transcriber {
       final effectiveFile = tmpWavFile ?? File(res.path);
 
       if (!skipResize) {
-        const maxSizeInBytes = 25 * 1024 * 1024;
+        const maxProcessableSizeInBytes = 25 * 1024 * 1024; // 25MB
+        // avoid transcribing big files
+        const maxSizeInBytes = 76 * 1024 * 1024; // 76MB (allow to chunk 3x25MB files no more)
         final size = effectiveFile.lengthSync();
-        print('file size: $size');
         if (size > maxSizeInBytes) {
+          print('File too big, skipping transcription');
+          return res.copyWith(loadingTranscript: false);
+        }
+
+        //
+        print('file size: $size');
+        if (size > maxProcessableSizeInBytes) {
           print('File too big, splitting it');
           return _transcribeBigFile(res, effectiveFile.path);
         }

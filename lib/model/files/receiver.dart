@@ -37,6 +37,6 @@ class Receiver {
 
     final key = await DB.createResultAsync(res);
 
-    await res.transcribe(key);
+    res.transcribe(key);
   }
 }

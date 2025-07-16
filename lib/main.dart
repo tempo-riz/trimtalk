@@ -73,7 +73,6 @@ Future<void> initApp() async {
   await DB.init();
   await NotificationSender.init();
 
-  Receiver.init();
   NotificationWatcher.init();
 
   firstRoute = await getFirstRoute();
@@ -88,6 +87,8 @@ void main() async {
     localeOverride: Locale('en'),
     child: ProviderScope(child: App()),
   ));
+
+  Receiver.init();
 
   updateIfAvailable();
 

@@ -1,7 +1,7 @@
 import UIKit
 import Flutter
 import flutter_local_notifications
-import workmanager
+// import workmanager
 
 @main
 @objc class AppDelegate: FlutterAppDelegate {
@@ -22,7 +22,7 @@ import workmanager
     // WorkmanagerPlugin.registerBGProcessingTask(withIdentifier: "task-identifier")
 
     // Register a periodic task in iOS 13+
-    WorkmanagerPlugin.registerPeriodicTask(withIdentifier: "com.trimtalk.app.iOSBackgroundAppRefresh", frequency: NSNumber(value: 20 * 60))
+    // WorkmanagerPlugin.registerPeriodicTask(withIdentifier: "com.trimtalk.app.iOSBackgroundAppRefresh", frequency: NSNumber(value: 20 * 60))
 
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)

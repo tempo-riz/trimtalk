@@ -65,153 +65,185 @@ class _DashboardScreenState extends State<DashboardScreen> {
             body: Consumer(builder: (context, ref, child) {
               // to refresh list when action tapped on notif !
               ref.watch(needRefreshProvider);
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: ValueListenableBuilder(
-                  valueListenable: DB.resultBox.listenable(),
-                  builder: (context, box, widget) {
-                    if (!isTutoDone) {
-                      return const Tutorial();
-                    }
+              return ValueListenableBuilder(
+                valueListenable: DB.resultBox.listenable(),
+                builder: (context, box, widget) {
+                  if (!isTutoDone) {
+                    return const Tutorial();
+                  }
 
-                    final keys = box.keys.toList().reversed.toList();
+                  final keys = box.keys.toList().reversed.toList();
 
-                    if (keys.isEmpty) {
-                      if (Platform.isIOS) {
-                        return Container(
-                          padding: const EdgeInsets.only(top: 40),
-                          alignment: Alignment.topCenter,
-                          child: Column(
-                            children: [
-                              Text(context.t.nothingToSeeHere),
-                              gapH20,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  gap12,
-                                  const Icon(Icons.ios_share),
-                                  gap12,
-                                  Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
-                                  gap12,
-                                ],
-                              ),
-                              gapH24,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  gap12,
-                                  const Icon(Icons.file_download_outlined),
-                                  gap12,
-                                  Flexible(child: Text("Or pick a file using this button").bold()),
-                                  gap12,
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      }
+                  if (keys.isEmpty) {
+                    if (Platform.isIOS) {
                       return Container(
                         padding: const EdgeInsets.only(top: 40),
                         alignment: Alignment.topCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Column(
                           children: [
-                            Text(context.t.tapCheckNow).bold(),
-                            gap8,
-                            const Icon(Icons.arrow_downward),
+                            Text(context.t.nothingToSeeHere),
+                            gapH20,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                gap12,
+                                const Icon(Icons.ios_share),
+                                gap12,
+                                Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
+                                gap12,
+                              ],
+                            ),
+                            gapH24,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                gap12,
+                                const Icon(Icons.folder_open_outlined),
+                                gap12,
+                                Flexible(child: Text("Or pick a file using this button").bold()),
+                                gap12,
+                              ],
+                            ),
                           ],
                         ),
                       );
                     }
-
-                    return ListView.separated(
-                      controller: _scrollController,
-                      // reverse: true,
-                      padding: const EdgeInsets.only(bottom: 100, top: 12),
-                      separatorBuilder: (context, index) => gap12,
-                      itemCount: keys.length,
-                      itemBuilder: (context, index) {
-                        final int key = keys[index];
-                        final res = box.get(key);
-                        if (res == null) {
-                          return const SizedBox();
-                        }
-
-                        final String? displayText = res.summary ?? res.transcript;
-
-                        final txt = "$displayText\n\n${context.t.madeWithTt} https://upotq.app.link/trimtalk";
-
-                        return Dismissible(
-                            direction: DismissDirection.none,
-                            key: Key(key.toString()),
-                            onDismissed: (direction) {
-                              print("deleting $key");
-                              box.delete(key);
-                              // also delete associated file
-                              WAFiles.deleteFile(res.path);
-                            },
-                            onUpdate: (details) {},
-                            resizeDuration: null,
-                            movementDuration: const Duration(milliseconds: 200),
-                            child: ReactionButton<Reactions>(
-                                onReactionChanged: (r) {
-                                  if (r == null || r.value == null) return;
-
-                                  switch (r.value!) {
-                                    case Reactions.copy:
-                                      Clipboard.setData(ClipboardData(text: txt));
-                                    case Reactions.share:
-                                      Share.share(
-                                        txt,
-                                        sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 2),
-                                      );
-                                    case Reactions.delete:
-                                      box.delete(key);
-                                    case Reactions.translate:
-                                      res.translate(key);
-                                  }
-                                },
-                                boxPadding: const EdgeInsets.all(4),
-                                boxColor: Theme.of(context).colorScheme.surface,
-                                // toggle: false,
-                                boxOffset: const Offset(0, -15),
-                                isChecked: false,
-                                itemSize: const Size(40, 40),
-                                itemsSpacing: 8,
-                                reactions: [
-                                  if (displayText != null)
-                                    Reaction(
-                                      value: Reactions.copy,
-                                      icon: const Icon(Icons.copy),
-                                      title: Text(context.t.copy),
-                                    ),
-                                  if (displayText != null)
-                                    Reaction(
-                                      value: Reactions.share,
-                                      icon: Icon(Icons.adaptive.share),
-                                      title: Text(context.t.share),
-                                    ),
-                                  Reaction(
-                                    value: Reactions.delete,
-                                    icon: const Icon(Icons.delete),
-                                    title: Text(context.t.delete),
-                                  ),
-                                  if (displayText != null)
-                                    Reaction(
-                                      value: Reactions.translate,
-                                      icon: const Icon(Icons.translate),
-                                      title: Text(context.t.translate),
-                                    ),
-                                ],
-                                child: ResultCard(result: res, box: box, resKey: key)));
-                      },
+                    return Container(
+                      padding: const EdgeInsets.only(top: 40),
+                      alignment: Alignment.topCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(context.t.tapCheckNow).bold(),
+                          gap8,
+                          const Icon(Icons.arrow_downward),
+                        ],
+                      ),
                     );
-                  },
-                ),
+                  }
+
+                  return ListView.separated(
+                    controller: _scrollController,
+                    // reverse: true,
+                    padding: const EdgeInsets.only(bottom: 100, top: 12),
+                    separatorBuilder: (context, index) => gap12,
+                    itemCount: keys.length,
+                    itemBuilder: (context, index) {
+                      final int resKey = keys[index];
+                      final res = box.get(resKey);
+                      if (res == null) {
+                        return const SizedBox();
+                      }
+
+                      return ItemWidget(
+                        resKey: resKey,
+                        res: res,
+                        box: box,
+                        onDelete: () {
+                          {
+                            print("deleting $resKey");
+                            box.delete(resKey);
+                            // also delete associated file
+                            WAFiles.deleteFile(res.path);
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
               );
             }),
           );
         });
+  }
+}
+
+class ItemWidget extends StatelessWidget {
+  const ItemWidget({
+    super.key,
+    required this.resKey,
+    required this.res,
+    required this.onDelete,
+    required this.box,
+  });
+
+  final int resKey;
+  final Result res;
+  final void Function() onDelete;
+  final Box<Result> box;
+
+  @override
+  Widget build(BuildContext context) {
+    final String? displayText = res.summary ?? res.transcript;
+
+    final txt = "$displayText\n\n${context.t.madeWithTt} https://upotq.app.link/trimtalk";
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Dismissible(
+          direction: DismissDirection.horizontal,
+          key: Key(resKey.toString()),
+          onDismissed: (direction) => onDelete(),
+          onUpdate: (details) {
+            print(details.progress);
+          },
+          resizeDuration: null,
+          movementDuration: const Duration(milliseconds: 200),
+          child: ReactionButton<Reactions>(
+              onReactionChanged: (r) {
+                if (r == null || r.value == null) return;
+
+                switch (r.value!) {
+                  case Reactions.copy:
+                    Clipboard.setData(ClipboardData(text: txt));
+                  case Reactions.share:
+                    SharePlus.instance.share(
+                      ShareParams(
+                        text: txt,
+                        subject: context.t.share,
+                        sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 2),
+                      ),
+                    );
+                  case Reactions.delete:
+                    onDelete();
+                  case Reactions.translate:
+                    res.translate(resKey);
+                }
+              },
+              boxPadding: const EdgeInsets.all(4),
+              boxColor: Theme.of(context).colorScheme.surface,
+              // toggle: false,
+              boxOffset: const Offset(0, -15),
+              isChecked: false,
+              itemSize: const Size(40, 40),
+              itemsSpacing: 8,
+              reactions: [
+                if (displayText != null)
+                  Reaction(
+                    value: Reactions.copy,
+                    icon: const Icon(Icons.copy),
+                    title: Text(context.t.copy),
+                  ),
+                if (displayText != null)
+                  Reaction(
+                    value: Reactions.share,
+                    icon: Icon(Icons.adaptive.share),
+                    title: Text(context.t.share),
+                  ),
+                Reaction(
+                  value: Reactions.delete,
+                  icon: const Icon(Icons.delete),
+                  title: Text(context.t.delete),
+                ),
+                if (displayText != null)
+                  Reaction(
+                    value: Reactions.translate,
+                    icon: const Icon(Icons.translate),
+                    title: Text(context.t.translate),
+                  ),
+              ],
+              child: ResultCard(result: res, box: box, resKey: resKey))),
+    );
   }
 }
 
@@ -357,7 +389,7 @@ class PickFileButton extends StatelessWidget {
 
         await res.transcribe(key);
       },
-      icon: const Icon(Icons.file_download_outlined),
+      icon: const Icon(Icons.folder_open_outlined),
       iconSize: 30,
       color: Theme.of(context).colorScheme.surface,
     );
