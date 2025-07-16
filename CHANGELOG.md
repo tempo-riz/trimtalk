@@ -1,3 +1,8 @@
+# 1.1.5
+- remove unecessary deps
+- swipe to delete items
+- allow to share multiple audio files with the app
+
 # 1.1.4
 - better error handling & retry
 
