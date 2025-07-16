@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -7,37 +9,45 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get ttMeaning => 'TrimTalk means converting audio messages into concise and accurate text transcripts.';
+  String get ttMeaning =>
+      'TrimTalk means converting audio messages into concise and accurate text transcripts.';
 
   @override
-  String get transcribeAndSummarizeBySharingThemWithTheApp => 'Transcribe and summarize audio messages by sharing them with the app.';
+  String get transcribeAndSummarizeBySharingThemWithTheApp =>
+      'Transcribe and summarize audio messages by sharing them with the app.';
 
   @override
-  String get transcribeAndSummarizeWhatsAppAudioMessages => 'Transcribe and summarize WhatsApp audio messages.';
+  String get transcribeAndSummarizeWhatsAppAudioMessages =>
+      'Transcribe and summarize WhatsApp audio messages.';
 
   @override
-  String get youCanAlsoTranscribeOtherAudioFilesBySharingThemWithTheApp => 'You can also transcribe other audio files by sharing it with the app.';
+  String get youCanAlsoTranscribeOtherAudioFilesBySharingThemWithTheApp =>
+      'You can also transcribe other audio files by sharing it with the app.';
 
   @override
-  String get stillInDevDisclaimer => 'The app is in developpement, If you find a bug or have ideas please use this button later to send feedback :)';
+  String get stillInDevDisclaimer =>
+      'The app is in developpement, If you find a bug or have ideas please use this button later to send feedback :)';
 
   @override
   String get letsGetStarted => 'Let\'s get started';
 
   @override
-  String get ttNeedsToAccesAudioFiles => 'Trim Talk needs access to audio files to transcribe them !';
+  String get ttNeedsToAccesAudioFiles =>
+      'Trim Talk needs access to audio files to transcribe them !';
 
   @override
   String get readAudioFiles => 'Read audio files';
 
   @override
-  String get yourDataIsPrivateAndNeverShared => 'Your data is private and never shared';
+  String get yourDataIsPrivateAndNeverShared =>
+      'Your data is private and never shared';
 
   @override
   String get givePermission => 'Give permission';
 
   @override
-  String get giveAccesToTheFollowingFolder => 'Give access to the following folder : ';
+  String get giveAccesToTheFollowingFolder =>
+      'Give access to the following folder : ';
 
   @override
   String get nothingToSeeHere => 'Nothing to see here...';
@@ -67,7 +77,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thankYou => 'Thank you';
 
   @override
-  String get failedToSendFeedbackPleaseTryAgain => 'Failed to send feedback, please try again';
+  String get failedToSendFeedbackPleaseTryAgain =>
+      'Failed to send feedback, please try again';
 
   @override
   String get pleaseTryAgainWithText => 'Please try again with text';
@@ -79,7 +90,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get audioMessagesAppearLikeThat => 'Audio messages appear like that:';
 
   @override
-  String get tapTheCardToLoadTheTranscript => 'Tap the card to load the transcript';
+  String get tapTheCardToLoadTheTranscript =>
+      'Tap the card to load the transcript';
 
   @override
   String get tap => 'Tap';
@@ -106,7 +118,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get areYouSure => 'Are you sure ?';
 
   @override
-  String get doYouReallyWantToDeleteEveryTranscriptThisCantBeUndone => 'Do you really want to delete every transcript ? This can\'t be undone.';
+  String get doYouReallyWantToDeleteEveryTranscriptThisCantBeUndone =>
+      'Do you really want to delete every transcript ? This can\'t be undone.';
 
   @override
   String get yes => 'Yes';
@@ -157,7 +170,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get autoDetect => 'Auto detect';
 
   @override
-  String get autoDetectExplain => 'Listens to notifications to detect new messages';
+  String get autoDetectExplain =>
+      'Listens to notifications to detect new messages';
 
   @override
   String get translate => 'Translate';
@@ -214,7 +228,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get copySummary => 'Copy summary';
 
   @override
-  String get heyImUsingTtToTranscribeAndSummarizeCheckItOut => 'Hey, I\'m using TrimTalk to transcribe and summarize audio messages, check it out!';
+  String get heyImUsingTtToTranscribeAndSummarizeCheckItOut =>
+      'Hey, I\'m using TrimTalk to transcribe and summarize audio messages, check it out!';
 
   @override
   String get madeWithTt => 'Made with TrimTalk';
@@ -229,7 +244,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get restorePurchases => 'Restore purchases';
 
   @override
-  String get trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou => 'TrimTalk will always be free and ad-free, but your support is appreciated. Thank you!';
+  String get trimtalkWillAlwaysBeFreeAndAdFreeButYourSupportIsAppreciatedThankYou =>
+      'TrimTalk will always be free and ad-free, but your support is appreciated. Thank you!';
 
   @override
   String get supportMyWork => 'Support my work';

@@ -7,29 +7,26 @@ import 'package:trim_talk/types/result.dart';
 class Receiver {
   static void init() {
     // For sharing images coming from outside the app while the app is in the memory
-    ReceiveSharingIntent.instance.getMediaStream().listen((files) {
-      if (files.isEmpty) {
-        return;
-      }
-      _processFile(files.first);
-      ReceiveSharingIntent.instance.reset();
-    }, onError: (err) {
+    ReceiveSharingIntent.instance.getMediaStream().listen(_processFiles, onError: (err) {
       print('getMediaStream Shared files error: $err');
     });
 
     // For sharing images coming from outside the app while the app is closed
-    ReceiveSharingIntent.instance.getInitialMedia().then((files) {
-      if (files.isEmpty) {
-        return;
-      }
-      _processFile(files.first);
-      ReceiveSharingIntent.instance.reset();
-    }).catchError((err) {
+    ReceiveSharingIntent.instance.getInitialMedia().then(_processFiles).catchError((err) {
       print('getInitialSharing Shared files error: $err');
     });
   }
 
-  static void _processFile(SharedMediaFile sharedFile) async {
+  static void _processFiles(final List<SharedMediaFile> sharedFiles) async {
+    // Reset the intent to avoid receiving the same files again
+    ReceiveSharingIntent.instance.reset();
+
+    for (final f in sharedFiles) {
+      await _processFile(f);
+    }
+  }
+
+  static Future<void> _processFile(final SharedMediaFile sharedFile) async {
     if (sharedFile.type != SharedMediaType.file || !isAudioFile(sharedFile.path)) {
       print('Not an audio file');
       return;
