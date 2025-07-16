@@ -10,11 +10,10 @@ class Translator {
     final String appLangCode = DB.getPref(Prefs.appLanguageCode);
 
     if (appLangCode == sourceCode) return null;
-
     // translate if enabled and if different than app language
-    final translator = deepl.Translator(authKey: dotenv.get("DEEPL_API_KEY"));
+    final translator = deepl.DeepL(authKey: dotenv.get("DEEPL_API_KEY"));
     // convert to app language
-    final deeplRes = await translator.translateTextSingular(text, appLangCode, sourceLang: sourceCode);
+    final deeplRes = await translator.translate.translateText(text, appLangCode, sourceLang: sourceCode);
     if (deeplRes.text.isEmpty) return null;
     return deeplRes.text;
   }

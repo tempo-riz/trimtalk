@@ -371,7 +371,6 @@ class PickFileButton extends StatelessWidget {
         FilePickerResult? picked = await FilePicker.platform.pickFiles(
           // type: FileType.audio, doesn't seem to work properly
           type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'aac', 'flac', 'ogg', 'm4a', 'opus'],
-          allowCompression: false,
         );
         print("result: $picked");
         if (picked == null) return;

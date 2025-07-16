@@ -12,7 +12,6 @@ import 'package:trim_talk/model/files/permissions.dart';
 import 'package:trim_talk/model/files/platform/platform.dart';
 import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/model/notif/notification_watcher.dart';
-import 'package:trim_talk/model/task.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/router.dart';
@@ -102,10 +101,11 @@ class ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
         onPressed: () {
-          Share.share(
-            "${context.t.heyImUsingTtToTranscribeAndSummarizeCheckItOut} \n\nhttps://upotq.app.link/trimtalk",
+          SharePlus.instance.share(ShareParams(
+            text: "${context.t.heyImUsingTtToTranscribeAndSummarizeCheckItOut} \n\nhttps://upotq.app.link/trimtalk",
+            subject: context.t.shareTt,
             sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 2),
-          );
+          )); // Share
         },
         label: Text(context.t.shareTt),
         icon: Icon(Icons.adaptive.share));
