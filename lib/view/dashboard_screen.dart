@@ -22,6 +22,7 @@ import 'package:trim_talk/main.dart';
 import 'package:trim_talk/router.dart';
 import 'package:trim_talk/types/result.dart';
 import 'package:trim_talk/view/widgets/result_card.dart';
+import 'package:trim_talk/view/widgets/result_group_card.dart';
 import 'package:uuid/uuid.dart';
 
 final needRefreshProvider = StateProvider((ref) => false);
@@ -73,7 +74,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     return const Tutorial();
                   }
 
-                  final keys = box.keys.toList().reversed.toList();
+                  final List<int> keys = List<int>.from(box.keys.toList().reversed);
 
                   if (keys.isEmpty) {
                     if (Platform.isIOS) {
@@ -127,7 +128,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     controller: _scrollController,
                     // reverse: true,
                     padding: const EdgeInsets.only(bottom: 100, top: 12),
-                    separatorBuilder: (context, index) => gap12,
+                    separatorBuilder: (context, index) {
+                      return gap12;
+                    },
                     itemCount: keys.length,
                     itemBuilder: (context, index) {
                       final int resKey = keys[index];
@@ -136,18 +139,48 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         return const SizedBox();
                       }
 
-                      return ItemWidget(
-                        resKey: resKey,
-                        res: res,
-                        box: box,
-                        onDelete: () {
-                          {
-                            print("deleting $resKey");
-                            box.delete(resKey);
-                            // also delete associated file
-                            WAFiles.deleteFile(res.path);
-                          }
-                        },
+                      final nextRes = index < keys.length - 1 ? box.get(keys[index + 1]) : null;
+                      final prevRes = index > 0 ? box.get(keys[index - 1]) : null;
+
+                      final isLastOfGroup = index == keys.length - 1 || nextRes?.groupId != res.groupId;
+                      final isFirstOfGroup = prevRes?.groupId != res.groupId;
+                      final isNotAlone = nextRes?.groupId == res.groupId || prevRes?.groupId == res.groupId;
+
+                      return Column(
+                        children: [
+                          // if the first of group id, show group ID (last or previous is different)
+                          if (isFirstOfGroup && res.groupId != null && isNotAlone && index != 0)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Divider(
+                                height: 30,
+                                color: Theme.of(context).colorScheme.primary.withValues(alpha: 1),
+                                indent: 12,
+                                radius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                endIndent: 12,
+                                // color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
+                                // height: 5,
+                                thickness: 5,
+                              ),
+                            ),
+                          // if the first of group id, show group ID (last or next is different
+                          ItemWidget(
+                            resKey: resKey,
+                            res: res,
+                            box: box,
+                            onDelete: () {
+                              print("deleting $resKey");
+                              box.delete(resKey);
+                              // also delete associated file
+                              WAFiles.deleteFile(res.path);
+                            },
+                          ),
+                          // if the last of group id, show group ID (last or next is different)
+                          if (isLastOfGroup && res.groupId != null)
+                            ResultGroupCard(box: box, keys: keys.where((k) => box.get(k)?.groupId == res.groupId).toList()),
+                        ],
                       );
                     },
                   );
@@ -377,7 +410,7 @@ class PickFileButton extends StatelessWidget {
         print("result: $picked");
         if (picked == null) return;
         final groupId = picked.files.length > 1 ? Uuid().v4() : null;
-
+        print("groupId: $groupId");
         List<File> files = picked.files.map((file) => File(file.path!)).toList();
 
         for (File file in files) {
@@ -425,16 +458,19 @@ class Tutorial extends StatelessWidget {
                   // gap16,
                   // Text(context.t.audioMessagesAppearLikeThat),
                   gap12,
-                  ResultCard(
-                    result: res,
-                    box: box,
-                    resKey: key,
-                    isDummy: true,
-                    onTap: () {
-                      // only when it's transcribed
-                      DB.setPref(Prefs.isTutoDone, true);
-                      print("tapped");
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ResultCard(
+                      result: res,
+                      box: box,
+                      resKey: key,
+                      isDummy: true,
+                      onTap: () {
+                        // only when it's transcribed
+                        DB.setPref(Prefs.isTutoDone, true);
+                        print("tapped");
+                      },
+                    ),
                   ),
                   gap8,
                   if (res.transcript == null) Text(context.t.tapTheCardToLoadTheTranscript).textColor(color).bold(),

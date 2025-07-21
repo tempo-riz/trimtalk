@@ -3,12 +3,32 @@ import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/model/stt/summarizer.dart';
 import 'package:trim_talk/model/stt/transcriber.dart';
 import 'package:trim_talk/model/stt/translator.dart';
+import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/types/result.dart';
 
 /// these methods will :
 /// - return itself if failed
 /// - manage their loading state
 /// - manage the db update
+extension ResultListExtension on List<Result> {
+  Future<Result?> summarizeAsOneAndMerge() async {
+    final fullText = map((r) => r.transcript).whereType<String>().join('\n\n');
+    final newDuration = fold<Duration?>(null, (total, element) {
+      final d = parseDuration(element.duration);
+      return total == null ? d : total + d;
+    });
+    final summary = await Summarizer.summarize(fullText);
+    final newRes = first.copyWith(
+      transcript: fullText,
+      summary: summary,
+      loadingTranscript: false,
+      loadingSummary: false,
+      duration: "${formatDuration(newDuration)} (x$length)",
+    );
+
+    return newRes;
+  }
+}
 
 extension ResultExtension on Result {
   /// this will also update the db and loading state
@@ -37,9 +57,9 @@ extension ResultExtension on Result {
     DB.resultBox.put(key, copyWith(loadingSummary: true));
 
     try {
-      final summarized = await Summarizer.summarize(this);
+      final summarized = await Summarizer.summarize(transcript);
 
-      final succes = summarized!.copyWith(summary: summary, loadingSummary: false, loadingTranscript: false);
+      final succes = copyWith(summary: summarized, loadingSummary: false, loadingTranscript: false);
 
       await DB.resultBox.put(key, succes);
 

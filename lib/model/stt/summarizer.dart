@@ -5,11 +5,10 @@ import 'package:groq_sdk/models/groq_chat.dart';
 import 'package:groq_sdk/models/groq_llm_model.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/utils.dart';
-import 'package:trim_talk/types/result.dart';
 
 class Summarizer {
-  static Future<Result?> summarize(Result res) async {
-    if (res.transcript == null) {
+  static Future<String?> summarize(String? transcript) async {
+    if (transcript == null) {
       print('Transcript is null in summarizer');
       return null;
     }
@@ -17,7 +16,7 @@ class Summarizer {
 
     final maybeLanguage = supportedTranscritionLanguages.where((L) => (L.code == code && code != "auto")).firstOrNull;
 
-    final prompt = _buildPromptSummaryOnly(res.transcript!, language: maybeLanguage?.name);
+    final prompt = _buildPromptSummaryOnly(transcript, language: maybeLanguage?.name);
 
     const deepSeekId = "deepseek-r1-distill-llama-70b";
 
@@ -31,7 +30,7 @@ class Summarizer {
       // fallback to gemma2-9b-it
       result ??= await _tryWithModel(GroqModels.gemma2_9b, prompt);
 
-      return await _parseJsonAnswerSummaryOnly(result!, res);
+      return await _parseJsonAnswerSummaryOnly(result!);
     } catch (e) {
       print(e);
       return null;
@@ -78,7 +77,7 @@ $transcript
   }
 
   /// This can throw
-  static Future<Result?> _parseJsonAnswerSummaryOnly(String jsonStr, Result res) async {
+  static Future<String?> _parseJsonAnswerSummaryOnly(String jsonStr) async {
     // Example JSON response from the language model
     // {
     //   "transcript": "This is the enhanced version of the audio transcript with improved clarity.",
@@ -98,6 +97,6 @@ $transcript
     if (summary == null) {
       return null;
     }
-    return res.copyWith(summary: summary.trim(), loadingSummary: false, loadingTranscript: false);
+    return summary.trim();
   }
 }

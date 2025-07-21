@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:hive/hive.dart';
@@ -90,21 +91,24 @@ class Result extends HiveObject {
   }
 
   /// used on return of android method chanel
-  factory Result.fromMap(Map map) {
-    final String path = map["path"];
-    final int date = map["date"];
-    final int durationMs = map["duration"];
-    final String name = map["name"];
-
-    final datetime = DateTime.fromMillisecondsSinceEpoch(date);
-    final dur = Duration(milliseconds: durationMs);
-
+  factory Result.fromMap(Map<String, dynamic> map) {
     return Result(
-      date: formatAudioDate(datetime),
-      duration: formatDuration(dur),
-      path: path,
-      filename: name,
+      date: map['date'] as String,
+      duration: map['duration'] as String,
+      path: map['path'] as String,
+      filename: map['filename'] as String,
+      transcript: map['transcript'] != null ? map['transcript'] as String : null,
+      summary: map['summary'] != null ? map['summary'] as String : null,
+      loadingTranscript: map['loadingTranscript'] as bool,
+      loadingSummary: map['loadingSummary'] as bool,
+      sender: map['sender'] != null ? map['sender'] as String : null,
+      groupId: map['groupId'] != null ? map['groupId'] as String : null,
     );
+  }
+
+  @override
+  String toString() {
+    return 'Result(date: $date, duration: $duration, path: $path, filename: $filename, transcript: $transcript, summary: $summary, loadingTranscript: $loadingTranscript, loadingSummary: $loadingSummary, sender: $sender, groupId: $groupId)';
   }
 
   Result copyWith({
@@ -117,6 +121,7 @@ class Result extends HiveObject {
     bool? loadingTranscript,
     bool? loadingSummary,
     String? sender,
+    String? groupId,
   }) {
     return Result(
       date: date ?? this.date,
@@ -128,8 +133,28 @@ class Result extends HiveObject {
       loadingTranscript: loadingTranscript ?? this.loadingTranscript,
       loadingSummary: loadingSummary ?? this.loadingSummary,
       sender: sender ?? this.sender,
+      groupId: groupId ?? this.groupId,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'date': date,
+      'duration': duration,
+      'path': path,
+      'filename': filename,
+      'transcript': transcript,
+      'summary': summary,
+      'loadingTranscript': loadingTranscript,
+      'loadingSummary': loadingSummary,
+      'sender': sender,
+      'groupId': groupId,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Result.fromJson(String source) => Result.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool operator ==(covariant Result other) {
@@ -143,7 +168,8 @@ class Result extends HiveObject {
         other.summary == summary &&
         other.loadingTranscript == loadingTranscript &&
         other.loadingSummary == loadingSummary &&
-        other.sender == sender;
+        other.sender == sender &&
+        other.groupId == groupId;
   }
 
   @override
@@ -156,11 +182,7 @@ class Result extends HiveObject {
         summary.hashCode ^
         loadingTranscript.hashCode ^
         loadingSummary.hashCode ^
-        sender.hashCode;
-  }
-
-  @override
-  String toString() {
-    return 'Result(date: $date, duration: $duration, path: $path, filename: $filename, transcript: $transcript, summary: $summary, loading: $loadingTranscript $loadingSummary sender: $sender)';
+        sender.hashCode ^
+        groupId.hashCode;
   }
 }
