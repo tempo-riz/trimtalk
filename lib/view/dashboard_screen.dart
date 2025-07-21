@@ -22,6 +22,7 @@ import 'package:trim_talk/main.dart';
 import 'package:trim_talk/router.dart';
 import 'package:trim_talk/types/result.dart';
 import 'package:trim_talk/view/widgets/result_card.dart';
+import 'package:uuid/uuid.dart';
 
 final needRefreshProvider = StateProvider((ref) => false);
 
@@ -369,24 +370,28 @@ class PickFileButton extends StatelessWidget {
       onPressed: () async {
         print("picking file");
         FilePickerResult? picked = await FilePicker.platform.pickFiles(
+          allowMultiple: true,
           // type: FileType.audio, doesn't seem to work properly
           type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'aac', 'flac', 'ogg', 'm4a', 'opus'],
         );
         print("result: $picked");
         if (picked == null) return;
+        final groupId = picked.files.length > 1 ? Uuid().v4() : null;
 
-        File file = File(picked.files.single.path!);
+        List<File> files = picked.files.map((file) => File(file.path!)).toList();
 
-        if (!isAudioFile(file.path)) {
-          print('Not an audio file');
-          return;
+        for (File file in files) {
+          if (!isAudioFile(file.path)) {
+            print('Not an audio file');
+            continue;
+          }
+          print('Processing shared file: ${file.path}');
+
+          final res = Result.fromShare(file.path, groupId);
+          final key = await DB.createResultAsync(res);
+
+          await res.transcribe(key);
         }
-        print('Processing shared file: ${file.path}');
-
-        final res = Result.fromShare(file.path);
-        final key = await DB.createResultAsync(res);
-
-        await res.transcribe(key);
       },
       icon: const Icon(Icons.folder_open_outlined),
       iconSize: 30,

@@ -3,6 +3,7 @@ import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/stt/result_extensions.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/types/result.dart';
+import 'package:uuid/uuid.dart';
 
 class Receiver {
   static void init() {
@@ -21,19 +22,22 @@ class Receiver {
     // Reset the intent to avoid receiving the same files again
     ReceiveSharingIntent.instance.reset();
 
+    //uuid for the group, if any
+    final groupId = sharedFiles.length > 1 ? Uuid().v4() : null;
+
     for (final f in sharedFiles) {
-      await _processFile(f);
+      await _processFile(f, groupId);
     }
   }
 
-  static Future<void> _processFile(final SharedMediaFile sharedFile) async {
+  static Future<void> _processFile(final SharedMediaFile sharedFile, final String? groupId) async {
     if (sharedFile.type != SharedMediaType.file || !isAudioFile(sharedFile.path)) {
       print('Not an audio file');
       return;
     }
     print('Processing shared file: ${sharedFile.path}');
 
-    final res = Result.fromShare(sharedFile.path);
+    final res = Result.fromShare(sharedFile.path, groupId);
 
     final key = await DB.createResultAsync(res);
 

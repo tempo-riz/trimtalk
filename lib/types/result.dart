@@ -40,6 +40,9 @@ class Result extends HiveObject {
   @HiveField(8)
   final String? sender;
 
+  @HiveField(9)
+  final String? groupId;
+
   Result({
     required this.date,
     required this.duration,
@@ -50,6 +53,7 @@ class Result extends HiveObject {
     this.loadingTranscript = false,
     this.loadingSummary = false,
     this.sender,
+    this.groupId,
   });
 
   factory Result.dummy() {
@@ -63,12 +67,13 @@ class Result extends HiveObject {
     );
   }
 
-  factory Result.fromShare(String path) {
+  factory Result.fromShare(String path, String? groupId) {
     return Result(
       date: formatAudioDate(DateTime.now()),
       duration: "",
       path: path,
       filename: path.split('/').last,
+      groupId: groupId,
     );
   }
 
