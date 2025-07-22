@@ -44,6 +44,10 @@ class Result extends HiveObject {
   @HiveField(9)
   final String? groupId;
 
+  /// in milliseconds
+  @HiveField(10)
+  final int dateMs;
+
   Result({
     required this.date,
     required this.duration,
@@ -55,6 +59,7 @@ class Result extends HiveObject {
     this.loadingSummary = false,
     this.sender,
     this.groupId,
+    required this.dateMs,
   });
 
   factory Result.dummy() {
@@ -65,12 +70,14 @@ class Result extends HiveObject {
       summary: "summary${Random().nextInt(100)}",
       path: "path",
       filename: "filename",
+      dateMs: DateTime.now().millisecondsSinceEpoch,
     );
   }
 
   factory Result.fromShare(String path, String? groupId) {
     return Result(
       date: formatAudioDate(DateTime.now()),
+      dateMs: DateTime.now().millisecondsSinceEpoch,
       duration: "",
       path: path,
       filename: path.split('/').last,
@@ -87,6 +94,7 @@ class Result extends HiveObject {
       duration: formatDuration(dur),
       path: res.path,
       filename: res.name,
+      dateMs: res.dateMs,
     );
   }
 
@@ -103,12 +111,13 @@ class Result extends HiveObject {
       loadingSummary: map['loadingSummary'] as bool,
       sender: map['sender'] != null ? map['sender'] as String : null,
       groupId: map['groupId'] != null ? map['groupId'] as String : null,
+      dateMs: map['dateMs'] as int,
     );
   }
 
   @override
   String toString() {
-    return 'Result(date: $date, duration: $duration, path: $path, filename: $filename, transcript: $transcript, summary: $summary, loadingTranscript: $loadingTranscript, loadingSummary: $loadingSummary, sender: $sender, groupId: $groupId)';
+    return 'Result(date: $date, duration: $duration, path: $path, filename: $filename, transcript: $transcript, summary: $summary, loadingTranscript: $loadingTranscript, loadingSummary: $loadingSummary, sender: $sender, groupId: $groupId, dateMs: $dateMs)';
   }
 
   Result copyWith({
@@ -122,6 +131,7 @@ class Result extends HiveObject {
     bool? loadingSummary,
     String? sender,
     String? groupId,
+    int? dateMs,
   }) {
     return Result(
       date: date ?? this.date,
@@ -134,6 +144,7 @@ class Result extends HiveObject {
       loadingSummary: loadingSummary ?? this.loadingSummary,
       sender: sender ?? this.sender,
       groupId: groupId ?? this.groupId,
+      dateMs: dateMs ?? this.dateMs,
     );
   }
 
@@ -149,6 +160,7 @@ class Result extends HiveObject {
       'loadingSummary': loadingSummary,
       'sender': sender,
       'groupId': groupId,
+      'dateMs': dateMs,
     };
   }
 
@@ -169,7 +181,8 @@ class Result extends HiveObject {
         other.loadingTranscript == loadingTranscript &&
         other.loadingSummary == loadingSummary &&
         other.sender == sender &&
-        other.groupId == groupId;
+        other.groupId == groupId &&
+        other.dateMs == dateMs;
   }
 
   @override
@@ -183,6 +196,7 @@ class Result extends HiveObject {
         loadingTranscript.hashCode ^
         loadingSummary.hashCode ^
         sender.hashCode ^
-        groupId.hashCode;
+        groupId.hashCode ^
+        dateMs.hashCode;
   }
 }

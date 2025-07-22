@@ -27,13 +27,14 @@ class ResultAdapter extends TypeAdapter<Result> {
       loadingSummary: fields[7] as bool,
       sender: fields[8] as String?,
       groupId: fields[9] as String?,
+      dateMs: fields[10] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Result obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.date)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class ResultAdapter extends TypeAdapter<Result> {
       ..writeByte(8)
       ..write(obj.sender)
       ..writeByte(9)
-      ..write(obj.groupId);
+      ..write(obj.groupId)
+      ..writeByte(10)
+      ..write(obj.dateMs);
   }
 
   @override

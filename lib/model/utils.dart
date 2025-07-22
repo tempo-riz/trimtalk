@@ -396,6 +396,7 @@ const dummyDate = "Received at 12:13";
 
 final dummyEmptyResult = Result(
   date: dummyDate,
+  dateMs: DateTime.now().millisecondsSinceEpoch,
   duration: dummyDuration,
   path: "",
   filename: "",
@@ -422,6 +423,7 @@ extension FilesToResult on List<File> {
         duration: dur,
         path: file.path,
         filename: file.path.split("/").last,
+        dateMs: DateTime.now().millisecondsSinceEpoch,
       ));
     }
     return results;
