@@ -2,7 +2,7 @@ name: trim_talk
 description: "Transcribes voice messages automatically, making conversations clear and efficient."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.5+30
+version: 1.1.6+31
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
@@ -83,8 +83,8 @@ dependencies:
   notification_listener_service: ^0.3.4
   collection: ^1.18.0
   deepl_dart: ^2.0.0
-  in_app_purchase: ^3.2.1
-  in_app_purchase_storekit: ^0.4.3
+  in_app_purchase: 3.2.1
+  in_app_purchase_storekit: 0.3.22
   file_picker: ^10.2.0
   uuid: ^4.5.1
 
