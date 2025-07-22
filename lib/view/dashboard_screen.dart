@@ -68,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               // to refresh list when action tapped on notif !
               ref.watch(needRefreshProvider);
               if (!DB.isResultBoxOpen) {
-                DB.refreshResult();
+                // DB.refreshResult();
                 return SizedBox();
               }
               return ValueListenableBuilder(
@@ -138,7 +138,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     itemCount: keys.length,
                     itemBuilder: (context, index) {
                       final int resKey = keys[index];
-                      print("resKey: $resKey, index: $index");
+
                       final res = box.get(resKey);
                       if (res == null) {
                         return const SizedBox();

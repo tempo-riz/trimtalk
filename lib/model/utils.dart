@@ -445,7 +445,7 @@ Future<String> getAudioFileDate(File f) async {
 
 String formatAudioDate(DateTime date) {
 // if yesterday or older, return date "yesterday" or "2 days ago"
-  final diffInDays = DateTime.now().difference(date).inDays;
+  final diffInDays = (DateTime.now().day - date.day).abs();
 
   final d = DateFormat("HH:mm").format(date);
 

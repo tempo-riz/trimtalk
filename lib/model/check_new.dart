@@ -41,7 +41,7 @@ Future<void> checkForNewAudios({
     }
 
     for (Result r in results) {
-      print("Processing ${r.path}");
+      // print("Processing ${r.path}");
 
       // add sender if in extra and same duration
       if (extraMetadata != null && extraMetadata.duration == r.duration) {
