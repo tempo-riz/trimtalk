@@ -32,8 +32,9 @@ class DB {
     await Hive.initFlutter();
     // await Hive.deleteBoxFromDisk(_resultBoxKey);
     // await Hive.deleteBoxFromDisk(_dummyResultKey);
-    if (!Hive.isAdapterRegistered(1)) {
-      Hive.registerAdapter(ResultAdapter());
+    final adapter = ResultAdapter();
+    if (!Hive.isAdapterRegistered(adapter.typeId)) {
+      Hive.registerAdapter(adapter, override: true);
     }
     // await Hive.deleteBoxFromDisk(_resultBoxKey); to clear during debug
 
@@ -43,7 +44,7 @@ class DB {
     } catch (e) {
       debugPrint('result box is corrupted: $e');
 
-      await Hive.deleteBoxFromDisk(_resultBoxKey);
+      await Hive.deleteBoxFromDisk(_resultBoxKey).catchError((e) {});
 
       await Hive.openBox(_resultBoxKey);
     }
@@ -53,7 +54,7 @@ class DB {
     } catch (e) {
       debugPrint('pref box is corrupted: $e');
 
-      await Hive.deleteBoxFromDisk(_prefsBoxKey);
+      await Hive.deleteBoxFromDisk(_prefsBoxKey).catchError((e) {});
 
       await Hive.openBox(_prefsBoxKey);
     }
@@ -67,7 +68,7 @@ class DB {
     } catch (e) {
       debugPrint('result box is corrupted: $e');
 
-      await Hive.deleteBoxFromDisk(_dummyResultKey);
+      await Hive.deleteBoxFromDisk(_dummyResultKey).catchError((e) {});
     }
 
     // await Hive.openBox(_prefsBoxKey);
@@ -83,6 +84,10 @@ class DB {
       Hive.openBox<Result>(_resultBoxKey);
     }
     return Hive.box<Result>(_resultBoxKey);
+  }
+
+  static bool get isResultBoxOpen {
+    return Hive.isBoxOpen(_resultBoxKey);
   }
 
   /// make sure its open
@@ -114,7 +119,7 @@ class DB {
 
   /// reopens the result box (to get data lost in notif action isolate)
   static Future<void> refreshResult() async {
-    await resultBox.close();
+    if (isResultBoxOpen) await resultBox.close();
     await Hive.openBox<Result>(_resultBoxKey);
   }
 

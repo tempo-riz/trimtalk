@@ -67,6 +67,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             body: Consumer(builder: (context, ref, child) {
               // to refresh list when action tapped on notif !
               ref.watch(needRefreshProvider);
+              if (!DB.isResultBoxOpen) {
+                DB.refreshResult();
+                return SizedBox();
+              }
               return ValueListenableBuilder(
                 valueListenable: DB.resultBox.listenable(),
                 builder: (context, box, widget) {
@@ -134,6 +138,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     itemCount: keys.length,
                     itemBuilder: (context, index) {
                       final int resKey = keys[index];
+                      print("resKey: $resKey, index: $index");
                       final res = box.get(resKey);
                       if (res == null) {
                         return const SizedBox();
@@ -148,6 +153,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                       return Column(
                         children: [
+                          // Text(res.dateFormatted),
+                          // only if first of this date
+                          if (res.isAnotherDay(prevRes) && index != 0)
+                            Container(
+                              padding: const EdgeInsets.all(6.0),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
+                              ),
+                              child: Text(
+                                res.dateFormatted,
+                                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                              ),
+                            ),
                           // if the first of group id, show group ID (last or previous is different)
                           if (isFirstOfGroup && res.groupId != null && isNotAlone && index != 0)
                             Padding(

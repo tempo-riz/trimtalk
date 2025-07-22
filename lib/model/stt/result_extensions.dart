@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/model/stt/summarizer.dart';
@@ -91,5 +92,14 @@ extension ResultExtension on Result {
     } catch (e) {
       return this;
     }
+  }
+
+  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(dateMs);
+
+  String get dateFormatted => DateFormat("d MMMM y", DB.prefsBox.get(Prefs.appLanguageCode.name)).format(dateTime);
+
+  bool isAnotherDay(Result? other) {
+    if (other == null) return false;
+    return dateTime.year != other.dateTime.year || dateTime.month != other.dateTime.month || dateTime.day != other.dateTime.day;
   }
 }
