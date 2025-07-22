@@ -28,7 +28,7 @@ class App extends HookConsumerWidget {
       print('App state: $state');
       // update the result list when app is resumed (after a notif action tap because uddated is separate isolate)
       if (state == AppLifecycleState.resumed) {
-        await DB.refreshResult();
+        // await DB.refreshResult();
         ref.read(needRefreshProvider.notifier).state = !ref.read(needRefreshProvider);
         // Future.delayed(const Duration(seconds: 1), () async {
         //   await DB.refreshResult();

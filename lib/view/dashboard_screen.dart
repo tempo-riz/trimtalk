@@ -67,145 +67,150 @@ class _DashboardScreenState extends State<DashboardScreen> {
             body: Consumer(builder: (context, ref, child) {
               // to refresh list when action tapped on notif !
               ref.watch(needRefreshProvider);
-              if (!DB.isResultBoxOpen) {
-                // DB.refreshResult();
-                return SizedBox();
-              }
-              return ValueListenableBuilder(
-                valueListenable: DB.resultBox.listenable(),
-                builder: (context, box, widget) {
-                  if (!isTutoDone) {
-                    return const Tutorial();
-                  }
 
-                  final List<int> keys = List<int>.from(box.keys.toList().reversed);
+              return FutureBuilder(
+                  future: DB.asyncResultBox,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) return const SizedBox();
 
-                  if (keys.isEmpty) {
-                    if (Platform.isIOS) {
-                      return Container(
-                        padding: const EdgeInsets.only(top: 40),
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                          children: [
-                            Text(context.t.nothingToSeeHere),
-                            gapH20,
-                            Row(
+                    final resultBox = snapshot.data!;
+
+                    return ValueListenableBuilder(
+                      valueListenable: resultBox.listenable(),
+                      builder: (context, box, widget) {
+                        if (!isTutoDone) {
+                          return const Tutorial();
+                        }
+
+                        final List<int> keys = List<int>.from(box.keys.toList().reversed);
+
+                        if (keys.isEmpty) {
+                          if (Platform.isIOS) {
+                            return Container(
+                              padding: const EdgeInsets.only(top: 40),
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: [
+                                  Text(context.t.nothingToSeeHere),
+                                  gapH20,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      gap12,
+                                      const Icon(Icons.ios_share),
+                                      gap12,
+                                      Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
+                                      gap12,
+                                    ],
+                                  ),
+                                  gapH24,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      gap12,
+                                      const Icon(Icons.folder_open_outlined),
+                                      gap12,
+                                      Flexible(child: Text("Or pick a file using this button").bold()),
+                                      gap12,
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          return Container(
+                            padding: const EdgeInsets.only(top: 40),
+                            alignment: Alignment.topCenter,
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                gap12,
-                                const Icon(Icons.ios_share),
-                                gap12,
-                                Flexible(child: Text(context.t.shareAnyAudioFileToTheApp).bold()),
-                                gap12,
+                                Text(context.t.tapCheckNow).bold(),
+                                gap8,
+                                const Icon(Icons.arrow_downward),
                               ],
                             ),
-                            gapH24,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                          );
+                        }
+
+                        return ListView.separated(
+                          controller: _scrollController,
+                          // reverse: true,
+                          padding: const EdgeInsets.only(bottom: 100, top: 12),
+                          separatorBuilder: (context, index) {
+                            return gap12;
+                          },
+                          itemCount: keys.length,
+                          itemBuilder: (context, index) {
+                            final int resKey = keys[index];
+
+                            final res = box.get(resKey);
+                            if (res == null) {
+                              return const SizedBox();
+                            }
+
+                            final nextRes = index < keys.length - 1 ? box.get(keys[index + 1]) : null;
+                            final prevRes = index > 0 ? box.get(keys[index - 1]) : null;
+
+                            final isLastOfGroup = index == keys.length - 1 || nextRes?.groupId != res.groupId;
+                            final isFirstOfGroup = prevRes?.groupId != res.groupId;
+                            final isNotAlone = nextRes?.groupId == res.groupId || prevRes?.groupId == res.groupId;
+
+                            return Column(
                               children: [
-                                gap12,
-                                const Icon(Icons.folder_open_outlined),
-                                gap12,
-                                Flexible(child: Text("Or pick a file using this button").bold()),
-                                gap12,
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return Container(
-                      padding: const EdgeInsets.only(top: 40),
-                      alignment: Alignment.topCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(context.t.tapCheckNow).bold(),
-                          gap8,
-                          const Icon(Icons.arrow_downward),
-                        ],
-                      ),
-                    );
-                  }
-
-                  return ListView.separated(
-                    controller: _scrollController,
-                    // reverse: true,
-                    padding: const EdgeInsets.only(bottom: 100, top: 12),
-                    separatorBuilder: (context, index) {
-                      return gap12;
-                    },
-                    itemCount: keys.length,
-                    itemBuilder: (context, index) {
-                      final int resKey = keys[index];
-
-                      final res = box.get(resKey);
-                      if (res == null) {
-                        return const SizedBox();
-                      }
-
-                      final nextRes = index < keys.length - 1 ? box.get(keys[index + 1]) : null;
-                      final prevRes = index > 0 ? box.get(keys[index - 1]) : null;
-
-                      final isLastOfGroup = index == keys.length - 1 || nextRes?.groupId != res.groupId;
-                      final isFirstOfGroup = prevRes?.groupId != res.groupId;
-                      final isNotAlone = nextRes?.groupId == res.groupId || prevRes?.groupId == res.groupId;
-
-                      return Column(
-                        children: [
-                          // Text(res.dateFormatted),
-                          // only if first of this date
-                          if (res.isAnotherDay(prevRes) && index != 0)
-                            Container(
-                              padding: const EdgeInsets.all(6.0),
-                              margin: const EdgeInsets.only(bottom: 12),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
-                              ),
-                              child: Text(
-                                res.dateFormatted,
-                                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-                              ),
-                            ),
-                          // if the first of group id, show group ID (last or previous is different)
-                          if (isFirstOfGroup && res.groupId != null && isNotAlone && index != 0)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 12.0),
-                              child: Divider(
-                                height: 30,
-                                color: Theme.of(context).colorScheme.primary.withValues(alpha: 1),
-                                indent: 12,
-                                radius: BorderRadius.all(
-                                  Radius.circular(10),
+                                // Text(res.dateFormatted),
+                                // only if first of this date
+                                if (res.isAnotherDay(prevRes) && index != 0)
+                                  Container(
+                                    padding: const EdgeInsets.all(6.0),
+                                    margin: const EdgeInsets.only(bottom: 12),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
+                                    ),
+                                    child: Text(
+                                      res.dateFormatted,
+                                      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                                    ),
+                                  ),
+                                // if the first of group id, show group ID (last or previous is different)
+                                if (isFirstOfGroup && res.groupId != null && isNotAlone && index != 0)
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 12.0),
+                                    child: Divider(
+                                      height: 30,
+                                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 1),
+                                      indent: 12,
+                                      radius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                      endIndent: 12,
+                                      // color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
+                                      // height: 5,
+                                      thickness: 5,
+                                    ),
+                                  ),
+                                // if the first of group id, show group ID (last or next is different
+                                ItemWidget(
+                                  resKey: resKey,
+                                  res: res,
+                                  box: box,
+                                  onDelete: () {
+                                    print("deleting $resKey");
+                                    box.delete(resKey);
+                                    // also delete associated file
+                                    WAFiles.deleteFile(res.path);
+                                  },
                                 ),
-                                endIndent: 12,
-                                // color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
-                                // height: 5,
-                                thickness: 5,
-                              ),
-                            ),
-                          // if the first of group id, show group ID (last or next is different
-                          ItemWidget(
-                            resKey: resKey,
-                            res: res,
-                            box: box,
-                            onDelete: () {
-                              print("deleting $resKey");
-                              box.delete(resKey);
-                              // also delete associated file
-                              WAFiles.deleteFile(res.path);
-                            },
-                          ),
-                          // if the last of group id, show group ID (last or next is different)
-                          if (isLastOfGroup && res.groupId != null)
-                            ResultGroupCard(box: box, keys: keys.where((k) => box.get(k)?.groupId == res.groupId).toList()),
-                        ],
-                      );
-                    },
-                  );
-                },
-              );
+                                // if the last of group id, show group ID (last or next is different)
+                                if (isLastOfGroup && res.groupId != null)
+                                  ResultGroupCard(box: box, keys: keys.where((k) => box.get(k)?.groupId == res.groupId).toList()),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    );
+                  });
             }),
           );
         });
