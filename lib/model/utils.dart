@@ -99,6 +99,9 @@ String formatDuration(Duration? duration) {
 
 Duration parseDuration(String durationStr) {
   List<String> parts = durationStr.split(':');
+  // remove possible (x3) in last part
+  parts[parts.length - 1] = parts.last.split(' (')[0];
+
   int seconds = 0, minutes = 0, hours = 0;
 
   if (parts.length == 2) {
