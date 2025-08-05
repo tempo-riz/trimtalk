@@ -18,19 +18,6 @@ class TranscriptScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final path = result.path;
-
-    Widget player;
-    if (Platform.isIOS) {
-      if (path.endsWith(".opus")) {
-        player = AudioPlayerOpus(path: path, duration: result.duration);
-      } else {
-        player = AudioPlayerStandard(path: path, duration: result.duration);
-      }
-    } else {
-      player = AudioPlayerWave(path: path);
-    }
-
     return Scaffold(
       appBar: AppBar(
         // bottom: const PreferredSize(
@@ -78,7 +65,7 @@ class TranscriptScreen extends StatelessWidget {
               gap8,
               // gap8,
 
-              player,
+              MultiplatformAudioPlayer(result: result),
               // gap8,
               CopyTextButton(label: context.t.copyTranscript, textToCopy: result.transcript),
               gap64,
@@ -87,6 +74,31 @@ class TranscriptScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MultiplatformAudioPlayer extends StatelessWidget {
+  const MultiplatformAudioPlayer({super.key, required this.result});
+
+  final Result result;
+
+  @override
+  Widget build(BuildContext context) {
+    final path = result.path;
+
+    if (path.isEmpty) return const SizedBox.shrink(); // dummy
+
+    Widget player;
+    if (Platform.isIOS) {
+      if (path.endsWith(".opus")) {
+        player = AudioPlayerOpus(path: path, duration: result.duration);
+      } else {
+        player = AudioPlayerStandard(path: path, duration: result.duration);
+      }
+    } else {
+      player = AudioPlayerWave(path: path);
+    }
+    return player;
   }
 }
 
@@ -168,20 +180,25 @@ class _CopyTextButtonState extends State<CopyTextButton> {
 
     final txt = "${widget.textToCopy}\n\n${context.t.madeWithTt} https://upotq.app.link/trimtalk";
 
-    return ElevatedButton.icon(
-        onPressed: () {
-          Clipboard.setData(ClipboardData(text: txt));
-          setState(() {
-            isCopied = true;
-          });
-          Future.delayed(const Duration(seconds: 2), () {
-            if (!mounted) return;
-            setState(() {
-              isCopied = false;
-            });
-          });
-        },
-        label: Text(isCopied ? context.t.copied : widget.label),
-        icon: Icon(isCopied ? Icons.done : Icons.copy));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ElevatedButton.icon(
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: txt));
+              setState(() {
+                isCopied = true;
+              });
+              Future.delayed(const Duration(seconds: 2), () {
+                if (!mounted) return;
+                setState(() {
+                  isCopied = false;
+                });
+              });
+            },
+            label: Text(isCopied ? context.t.copied : widget.label),
+            icon: Icon(isCopied ? Icons.done : Icons.copy)),
+      ],
+    );
   }
 }

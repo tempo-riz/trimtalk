@@ -4,7 +4,6 @@ import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:trim_talk/model/notif/notification_sender.dart';
 import 'package:trim_talk/main.dart';
 import 'package:trim_talk/model/files/db.dart';
@@ -15,9 +14,7 @@ import 'package:trim_talk/model/notif/notification_watcher.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/router.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:trim_talk/view/widgets/settings_toogle_pref.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -78,9 +75,7 @@ class SettingsScreen extends StatelessWidget {
               //   gap16,
               //   const FrequencySlider(),
               // ],
-              const SeeOnGithubButton(),
-              const RateOnStoreButton(),
-              const ShareButton(),
+
               const ClearResultsButton(),
               gap48,
               const DebugWidget(),
@@ -92,60 +87,6 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class ShareButton extends StatelessWidget {
-  const ShareButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-        onPressed: () {
-          SharePlus.instance.share(ShareParams(
-            text: "${context.t.heyImUsingTtToTranscribeAndSummarizeCheckItOut} \n\nhttps://upotq.app.link/trimtalk",
-            subject: context.t.shareTt,
-            sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, MediaQuery.of(context).size.height / 2),
-          )); // Share
-        },
-        label: Text(context.t.shareTt),
-        icon: Icon(Icons.adaptive.share));
-  }
-}
-
-class RateOnStoreButton extends StatelessWidget {
-  const RateOnStoreButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      icon: const Icon(Icons.star_border),
-      onPressed: () {
-        InAppReview.instance.openStoreListing(appStoreId: "6720703110");
-      },
-      label: Text(context.t.rateTtOnStore),
-    );
-  }
-}
-
-class SeeOnGithubButton extends StatelessWidget {
-  const SeeOnGithubButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      icon: const Icon(Icons.code),
-      onPressed: () {
-        launchUrl(Uri.parse('https://github.com/tempo-riz/trimtalk'));
-      },
-      label: Text(context.t.checkCodeOnGithub),
-    );
-  }
-}
-
 class ClearResultsButton extends StatelessWidget {
   const ClearResultsButton({
     super.key,
@@ -153,44 +94,49 @@ class ClearResultsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: () async {
-        bool? confirmed = await showDialog<bool>(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(context.t.areYouSure),
-              content: Text(context.t.doYouReallyWantToDeleteEveryTranscriptThisCantBeUndone),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(false); // User pressed No
-                  },
-                  child: Text(context.t.no),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(true); // User pressed Yes
-                  },
-                  child: Text(context.t.yes),
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ElevatedButton.icon(
+          onPressed: () async {
+            bool? confirmed = await showDialog<bool>(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(context.t.areYouSure),
+                  content: Text(context.t.doYouReallyWantToDeleteEveryTranscriptThisCantBeUndone),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(false); // User pressed No
+                      },
+                      child: Text(context.t.no),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(true); // User pressed Yes
+                      },
+                      child: Text(context.t.yes),
+                    ),
+                  ],
+                );
+              },
             );
-          },
-        );
 
-        if (confirmed == true) {
-          // ITERATE OVER ALL FILES AND DELETE THEM
-          final results = DB.resultBox.values.toList();
-          for (final result in results) {
-            WAFiles.deleteFile(result.path);
-            await DB.resultBox.delete(result.key);
-          }
-        }
-      },
-      label: Text(context.t.deleteAllTranscripts),
-      icon: const Icon(Icons.delete_forever),
-      style: ElevatedButton.styleFrom(iconColor: Theme.of(context).colorScheme.error),
+            if (confirmed == true) {
+              // ITERATE OVER ALL FILES AND DELETE THEM
+              final results = DB.resultBox.values.toList();
+              for (final result in results) {
+                WAFiles.deleteFile(result.path);
+                await DB.resultBox.delete(result.key);
+              }
+            }
+          },
+          label: Text(context.t.deleteAllTranscripts),
+          icon: const Icon(Icons.delete_forever),
+          style: ElevatedButton.styleFrom(iconColor: Theme.of(context).colorScheme.error),
+        ),
+      ],
     );
   }
 }

@@ -8,7 +8,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/router.dart';
 import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
-import 'package:trim_talk/view/settings_screen.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
@@ -184,8 +183,8 @@ class _SupportScreenState extends State<SupportScreen> {
                     separatorBuilder: (context, index) => const Divider(),
                   ),
             gapH16,
-            SeeOnGithubButton(),
-            gapH12,
+            // SeeOnGithubButton(),
+            // gapH12,
             TextButton.icon(
               onPressed: () => InAppPurchase.instance.restorePurchases(),
               label: Text(context.t.restorePurchases),

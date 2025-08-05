@@ -31,36 +31,35 @@ class _ResultGroupCardState extends State<ResultGroupCard> {
 
     return Padding(
       padding: const EdgeInsets.all(8.0).copyWith(top: 20),
-      child: CircleAvatar(
-        maxRadius: 30,
-        child: Center(
-          child: loadingSummary
-              ? LoadingWidget()
-              : IconButton(
-                  onPressed: () async {
-                    setState(() => loadingSummary = true);
-                    // remove the keys from the box and add the new result
-                    final res = await results.summarizeAsOneAndMerge();
-                    if (mounted) {
-                      setState(() => loadingSummary = false);
-                    }
-                    if (res == null) {
-                      return;
-                    }
+      child: Center(
+        child: loadingSummary
+            ? LoadingWidget()
+            : ElevatedButton.icon(
+                onPressed: () async {
+                  setState(() => loadingSummary = true);
+                  // remove the keys from the box and add the new result
+                  final res = await results.summarizeAsOneAndMerge();
+                  if (mounted) {
+                    setState(() => loadingSummary = false);
+                  }
+                  if (res == null) {
+                    return;
+                  }
 
-                    for (final key in widget.keys) {
-                      await widget.box.delete(key);
-                    }
-                    widget.box.add(res);
+                  for (final key in widget.keys) {
+                    await widget.box.delete(key);
+                  }
+                  widget.box.add(res);
 
-                    // it will disapear alone
-                    // setState(() => done = true);
-                  },
-                  icon: Icon(
-                    Icons.auto_fix_high,
-                    size: 30,
-                  )),
-        ),
+                  // it will disapear alone
+                  // setState(() => done = true);
+                },
+                icon: Icon(
+                  Icons.auto_fix_high,
+                  size: 30,
+                ),
+                label: Text("Merge & summarize"),
+              ),
       ),
     );
   }

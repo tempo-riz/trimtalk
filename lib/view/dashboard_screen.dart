@@ -1,15 +1,12 @@
 import 'dart:io';
 
 import 'package:awesome_extensions/awesome_extensions.dart';
-import 'package:feedback_github/feedback_github.dart' as feedback;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:share_plus/share_plus.dart';
@@ -19,8 +16,8 @@ import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/model/files/wa_files.dart';
 import 'package:trim_talk/model/check_new.dart';
 import 'package:trim_talk/main.dart';
-import 'package:trim_talk/router.dart';
 import 'package:trim_talk/types/result.dart';
+import 'package:trim_talk/view/widgets/dropdown_menu.dart';
 import 'package:trim_talk/view/widgets/result_card.dart';
 import 'package:trim_talk/view/widgets/result_group_card.dart';
 import 'package:uuid/uuid.dart';
@@ -62,7 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             appBar: AppBar(
               centerTitle: false,
               title: isTutoDone ? const LastRunIndicator() : null,
-              actions: const [PickFileButton(), GoToSupportButton(), FeedbackButton(), GoToSettingsButton()],
+              actions: const [PickFileButton(), MenuDropdown()],
             ),
             body: Consumer(builder: (context, ref, child) {
               // to refresh list when action tapped on notif !
@@ -306,45 +303,6 @@ class ItemWidget extends StatelessWidget {
   }
 }
 
-class GoToSettingsButton extends StatelessWidget {
-  const GoToSettingsButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
-      child: IconButton(
-        icon: Icon(
-          Icons.tune,
-          size: 30,
-          color: Theme.of(context).colorScheme.surface,
-        ),
-        onPressed: () => context.goNamed(NamedRoutes.settings.name),
-      ),
-    );
-  }
-}
-
-class GoToSupportButton extends StatelessWidget {
-  const GoToSupportButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        Icons.local_cafe_outlined,
-        size: 30,
-        color: Theme.of(context).colorScheme.surface,
-      ),
-      onPressed: () => context.goNamed(NamedRoutes.support.name),
-    );
-  }
-}
-
 class CheckNowFab extends StatelessWidget {
   const CheckNowFab({
     super.key,
@@ -388,32 +346,6 @@ class CheckNowFab extends StatelessWidget {
             width: 156,
           );
         });
-  }
-}
-
-class FeedbackButton extends StatelessWidget {
-  const FeedbackButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        feedback.BetterFeedback.of(context).showAndUploadToGitHub(
-          allowEmptyText: false,
-          allowProdEmulatorFeedback: false,
-          repoUrl: "https://github.com/tempo-riz/trimtalk",
-          gitHubToken: dotenv.get("GITHUB_ISSUE_TOKEN"),
-          onSucces: (_) => showSnackBar(context.t.thankYou),
-          onError: (e) => showSnackBar(context.t.failedToSendFeedbackPleaseTryAgain),
-          onCancel: () => showSnackBar(context.t.pleaseTryAgainWithText),
-        );
-      },
-      icon: const Icon(Icons.feedback_outlined),
-      iconSize: 30,
-      color: Theme.of(context).colorScheme.surface,
-    );
   }
 }
 

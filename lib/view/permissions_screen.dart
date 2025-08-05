@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:trim_talk/model/files/permissions.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/router.dart';
-import 'package:trim_talk/view/dashboard_screen.dart';
 
 class PermissionsScreen extends StatefulWidget {
   const PermissionsScreen({super.key});
@@ -46,7 +45,7 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
           actions: const [
             Padding(
               padding: EdgeInsets.only(right: 8.0),
-              child: FeedbackButton(),
+              child: _FeedbackButton(),
             )
           ],
         ),
@@ -113,6 +112,21 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
   //     },
   //   );
   // }
+}
+
+class _FeedbackButton extends StatelessWidget {
+  const _FeedbackButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => openFeedbackPanel(context),
+      icon: const Icon(
+        Icons.feedback_outlined,
+        color: Colors.white,
+      ),
+    );
+  }
 }
 
 class FilePermissionButton extends StatelessWidget {

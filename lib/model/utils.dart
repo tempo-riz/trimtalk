@@ -1,3 +1,5 @@
+import 'package:feedback_github/feedback_github.dart' as feedback;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'dart:io';
 import 'dart:math';
@@ -483,4 +485,16 @@ bool isAudioFile(String filePath) {
   }
   final mimeType = lookupMimeType(filePath);
   return mimeType != null && mimeType.startsWith('audio/');
+}
+
+void openFeedbackPanel(BuildContext context) {
+  feedback.BetterFeedback.of(context).showAndUploadToGitHub(
+    allowEmptyText: false,
+    allowProdEmulatorFeedback: false,
+    repoUrl: "https://github.com/tempo-riz/trimtalk",
+    gitHubToken: dotenv.get("GITHUB_ISSUE_TOKEN"),
+    onSucces: (_) => showSnackBar(context.t.thankYou),
+    onError: (e) => showSnackBar(context.t.failedToSendFeedbackPleaseTryAgain),
+    onCancel: () => showSnackBar(context.t.pleaseTryAgainWithText),
+  );
 }
