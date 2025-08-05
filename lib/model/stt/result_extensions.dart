@@ -94,7 +94,7 @@ extension ResultExtension on Result {
     }
   }
 
-  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(dateMs);
+  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(dateMs ?? DateTime.now().millisecondsSinceEpoch);
 
   String get dateFormatted => DateFormat("d MMMM y", DB.prefsBox.get(Prefs.appLanguageCode.name)).format(dateTime);
 

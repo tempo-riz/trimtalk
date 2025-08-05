@@ -46,7 +46,7 @@ class Result extends HiveObject {
 
   /// in milliseconds
   @HiveField(10)
-  final int dateMs;
+  final int? dateMs;
 
   Result({
     required this.date,
@@ -111,7 +111,7 @@ class Result extends HiveObject {
       loadingSummary: map['loadingSummary'] as bool,
       sender: map['sender'] != null ? map['sender'] as String : null,
       groupId: map['groupId'] != null ? map['groupId'] as String : null,
-      dateMs: map['dateMs'] as int,
+      dateMs: map['dateMs'] != null ? map['dateMs'] as int : null,
     );
   }
 
