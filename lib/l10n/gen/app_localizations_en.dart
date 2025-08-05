@@ -258,4 +258,89 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get never => 'Never';
+
+  @override
+  String get trimming => 'Trimming...';
+
+  @override
+  String get androidMediaComWhatsappWhatsappMediaWhatsappVoiceNotes =>
+      'Android > media > com.whatsapp > WhatsApp > Media > WhatsApp Voice Notes';
+
+  @override
+  String get trimtalk => 'TrimTalk';
+
+  @override
+  String get test => 'test';
+
+  @override
+  String get pick => 'pick';
+
+  @override
+  String get throwTestException => 'Throw Test Exception';
+
+  @override
+  String get refreshResults => 'refresh results';
+
+  @override
+  String get clearResults => 'clear results';
+
+  @override
+  String get addLoadingSummary => 'Add loading summary';
+
+  @override
+  String get addTranscriptResult => 'Add transcript result';
+
+  @override
+  String get addLoadingResult => 'Add loading result';
+
+  @override
+  String get addEmptyResult => 'Add empty result';
+
+  @override
+  String get readFiles => 'read files';
+
+  @override
+  String get debug1File => 'Debug 1 file';
+
+  @override
+  String get persistentPath => 'persistent path';
+
+  @override
+  String get getPromptSize => 'get prompt size';
+
+  @override
+  String get weekNumber => 'week number';
+
+  @override
+  String get resetExplain => 'reset explain';
+
+  @override
+  String get resetDemo => 'reset demo';
+
+  @override
+  String get dummyReset => 'dummy reset';
+
+  @override
+  String get resetFirstCard => 'reset first card';
+
+  @override
+  String get orPickAFileUsingThisButton => 'Or pick a file using this button';
+
+  @override
+  String get mergeSummarize => 'Merge & summarize';
+
+  @override
+  String get checkTheCode => 'Check the code';
+
+  @override
+  String get rateTrimtalk => 'Rate TrimTalk';
+
+  @override
+  String get shareTheApp => 'Share the app';
+
+  @override
+  String get feedback => 'Feedback';
+
+  @override
+  String get support => 'Support me';
 }

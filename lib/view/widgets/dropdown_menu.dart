@@ -58,7 +58,7 @@ class GoToSettingsButton extends StatelessWidget {
         onPressed: () => context.goNamed(NamedRoutes.settings.name),
         label: SizedBox(
           width: double.infinity,
-          child: Text("Settings"),
+          child: Text(context.t.settings),
         ),
         icon: const Icon(
           Icons.tune,
@@ -83,7 +83,7 @@ class GoToSupportButton extends StatelessWidget {
       label: SizedBox(
         width: double.infinity,
         child: Text(
-          "Support",
+          context.t.support,
         ),
       ),
     );
@@ -113,7 +113,7 @@ class FeedbackButton extends StatelessWidget {
           onCancel: () => showSnackBar(context.t.pleaseTryAgainWithText),
         );
       },
-      label: SizedBox(child: Text("Feedback")),
+      label: SizedBox(child: Text(context.t.feedback)),
       icon: const Icon(
         Icons.feedback_outlined,
         size: 26,
@@ -139,7 +139,7 @@ class ShareButton extends StatelessWidget {
         },
         label: SizedBox(
           width: double.infinity,
-          child: Text("Share the app"),
+          child: Text(context.t.shareTheApp),
         ),
         icon: Icon(
           Icons.adaptive.share,
@@ -165,7 +165,7 @@ class RateOnStoreButton extends StatelessWidget {
       },
       label: SizedBox(
         width: double.infinity,
-        child: Text("Rate TrimTalk"),
+        child: Text(context.t.rateTrimtalk),
       ),
     );
   }
@@ -188,7 +188,7 @@ class SeeOnGithubButton extends StatelessWidget {
       },
       label: SizedBox(
         width: double.infinity,
-        child: Text("Check the code"),
+        child: Text(context.t.checkTheCode),
       ),
     );
   }

@@ -17,7 +17,7 @@ class ExplainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("TrimTalk"),
+        title: Text(context.t.trimtalk),
       ),
       body: Container(
         margin: const EdgeInsets.all(30),

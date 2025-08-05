@@ -572,6 +572,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Never'**
   String get never;
+
+  /// No description provided for @trimming.
+  ///
+  /// In en, this message translates to:
+  /// **'Trimming...'**
+  String get trimming;
+
+  /// No description provided for @androidMediaComWhatsappWhatsappMediaWhatsappVoiceNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Android > media > com.whatsapp > WhatsApp > Media > WhatsApp Voice Notes'**
+  String get androidMediaComWhatsappWhatsappMediaWhatsappVoiceNotes;
+
+  /// No description provided for @trimtalk.
+  ///
+  /// In en, this message translates to:
+  /// **'TrimTalk'**
+  String get trimtalk;
+
+  /// No description provided for @test.
+  ///
+  /// In en, this message translates to:
+  /// **'test'**
+  String get test;
+
+  /// No description provided for @pick.
+  ///
+  /// In en, this message translates to:
+  /// **'pick'**
+  String get pick;
+
+  /// No description provided for @throwTestException.
+  ///
+  /// In en, this message translates to:
+  /// **'Throw Test Exception'**
+  String get throwTestException;
+
+  /// No description provided for @refreshResults.
+  ///
+  /// In en, this message translates to:
+  /// **'refresh results'**
+  String get refreshResults;
+
+  /// No description provided for @clearResults.
+  ///
+  /// In en, this message translates to:
+  /// **'clear results'**
+  String get clearResults;
+
+  /// No description provided for @addLoadingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Add loading summary'**
+  String get addLoadingSummary;
+
+  /// No description provided for @addTranscriptResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Add transcript result'**
+  String get addTranscriptResult;
+
+  /// No description provided for @addLoadingResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Add loading result'**
+  String get addLoadingResult;
+
+  /// No description provided for @addEmptyResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Add empty result'**
+  String get addEmptyResult;
+
+  /// No description provided for @readFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'read files'**
+  String get readFiles;
+
+  /// No description provided for @debug1File.
+  ///
+  /// In en, this message translates to:
+  /// **'Debug 1 file'**
+  String get debug1File;
+
+  /// No description provided for @persistentPath.
+  ///
+  /// In en, this message translates to:
+  /// **'persistent path'**
+  String get persistentPath;
+
+  /// No description provided for @getPromptSize.
+  ///
+  /// In en, this message translates to:
+  /// **'get prompt size'**
+  String get getPromptSize;
+
+  /// No description provided for @weekNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'week number'**
+  String get weekNumber;
+
+  /// No description provided for @resetExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'reset explain'**
+  String get resetExplain;
+
+  /// No description provided for @resetDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'reset demo'**
+  String get resetDemo;
+
+  /// No description provided for @dummyReset.
+  ///
+  /// In en, this message translates to:
+  /// **'dummy reset'**
+  String get dummyReset;
+
+  /// No description provided for @resetFirstCard.
+  ///
+  /// In en, this message translates to:
+  /// **'reset first card'**
+  String get resetFirstCard;
+
+  /// No description provided for @orPickAFileUsingThisButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Or pick a file using this button'**
+  String get orPickAFileUsingThisButton;
+
+  /// No description provided for @mergeSummarize.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge & summarize'**
+  String get mergeSummarize;
+
+  /// No description provided for @checkTheCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the code'**
+  String get checkTheCode;
+
+  /// No description provided for @rateTrimtalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate TrimTalk'**
+  String get rateTrimtalk;
+
+  /// No description provided for @shareTheApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the app'**
+  String get shareTheApp;
+
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedback;
+
+  /// No description provided for @support.
+  ///
+  /// In en, this message translates to:
+  /// **'Support me'**
+  String get support;
 }
 
 class _AppLocalizationsDelegate

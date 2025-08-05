@@ -84,7 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         if (keys.isEmpty) {
                           if (Platform.isIOS) {
                             return Container(
-                              padding: const EdgeInsets.only(top: 40),
+                              padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
                               alignment: Alignment.topCenter,
                               child: Column(
                                 children: [
@@ -107,7 +107,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       gap12,
                                       const Icon(Icons.folder_open_outlined),
                                       gap12,
-                                      Flexible(child: Text("Or pick a file using this button").bold()),
+                                      Flexible(child: Text(context.t.orPickAFileUsingThisButton).bold()),
                                       gap12,
                                     ],
                                   ),
@@ -483,7 +483,7 @@ class LastRunIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
-      return const Text("TrimTalk");
+      return Text(context.t.trimtalk);
     }
     return PrefBuilder<String>(
         pref: Prefs.lastRun,

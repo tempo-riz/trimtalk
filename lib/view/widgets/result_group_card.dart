@@ -1,3 +1,4 @@
+import 'package:trim_talk/model/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:trim_talk/model/stt/result_extensions.dart';
@@ -58,7 +59,7 @@ class _ResultGroupCardState extends State<ResultGroupCard> {
                   Icons.auto_fix_high,
                   size: 30,
                 ),
-                label: Text("Merge & summarize"),
+                label: Text(context.t.mergeSummarize),
               ),
       ),
     );

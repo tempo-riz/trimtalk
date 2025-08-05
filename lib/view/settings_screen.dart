@@ -424,34 +424,34 @@ class DebugWidget extends StatelessWidget {
 
               DB.resultBox.put(key, dummyEmptyResult.copyWith(path: res.path));
             },
-            child: const Text('reset first card')),
+            child: Text(context.t.resetFirstCard)),
         ElevatedButton(
             onPressed: () async {
               await DB.dummyResultBox.clear();
               await DB.dummyResultBox.add(dummyEmptyResult);
             },
-            child: const Text('reset dummy')),
-        ElevatedButton(onPressed: () => DB.setPref(Prefs.isTutoDone, false), child: const Text('reset demo')),
-        ElevatedButton(onPressed: () => DB.setPref(Prefs.isAcknowledged, false), child: const Text('reset explain')),
-        ElevatedButton(onPressed: () => weekNumber(DateTime.now()), child: const Text('week number')),
-        ElevatedButton(onPressed: () => print(dummyResultWithShortTranscript.transcript!.length), child: const Text('get prompt size')),
-        ElevatedButton(onPressed: () => NativePlatform.getPersistedUrisPermissions().then(print), child: const Text('persistent path')),
-        ElevatedButton(onPressed: () async => await createAndCheck(), child: const Text("Debug 1 file")),
-        ElevatedButton(onPressed: () async => WAFiles.debug(), child: const Text("read files")),
-        ElevatedButton(onPressed: () => DB.resultBox.add(dummyEmptyResult).then(print), child: const Text('Add empty result')),
-        ElevatedButton(onPressed: () => DB.resultBox.add(dummyLoadingResult).then(print), child: const Text('Add loading result')),
-        ElevatedButton(onPressed: () => DB.resultBox.add(dummyResultWithTranscript).then(print), child: const Text('Add transcript result')),
+            child: Text(context.t.dummyReset)),
+        ElevatedButton(onPressed: () => DB.setPref(Prefs.isTutoDone, false), child: Text(context.t.resetDemo)),
+        ElevatedButton(onPressed: () => DB.setPref(Prefs.isAcknowledged, false), child: Text(context.t.resetExplain)),
+        ElevatedButton(onPressed: () => weekNumber(DateTime.now()), child: Text(context.t.weekNumber)),
+        ElevatedButton(onPressed: () => print(dummyResultWithShortTranscript.transcript!.length), child: Text(context.t.getPromptSize)),
+        ElevatedButton(onPressed: () => NativePlatform.getPersistedUrisPermissions().then(print), child: Text(context.t.persistentPath)),
+        ElevatedButton(onPressed: () async => await createAndCheck(), child: Text(context.t.debug1File)),
+        ElevatedButton(onPressed: () async => WAFiles.debug(), child: Text(context.t.readFiles)),
+        ElevatedButton(onPressed: () => DB.resultBox.add(dummyEmptyResult).then(print), child: Text(context.t.addEmptyResult)),
+        ElevatedButton(onPressed: () => DB.resultBox.add(dummyLoadingResult).then(print), child: Text(context.t.addLoadingResult)),
+        ElevatedButton(onPressed: () => DB.resultBox.add(dummyResultWithTranscript).then(print), child: Text(context.t.addTranscriptResult)),
         ElevatedButton(
-            onPressed: () => DB.resultBox.add(dummyResultWithTranscript.copyWith(loadingSummary: true)).then(print), child: const Text('Add loading summary')),
-        ElevatedButton(onPressed: () => DB.resultBox.clear(), child: const Text('clear results')),
-        ElevatedButton(onPressed: () => DB.refreshResult(), child: const Text('refresh results')),
+            onPressed: () => DB.resultBox.add(dummyResultWithTranscript.copyWith(loadingSummary: true)).then(print), child: Text(context.t.addLoadingSummary)),
+        ElevatedButton(onPressed: () => DB.resultBox.clear(), child: Text(context.t.clearResults)),
+        ElevatedButton(onPressed: () => DB.refreshResult(), child: Text(context.t.refreshResults)),
         ElevatedButton(
           onPressed: () => throw Exception(),
-          child: const Text("Throw Test Exception"),
+          child: Text(context.t.throwTestException),
         ),
         ElevatedButton(
           onPressed: () => NativePlatform.pickFolder(),
-          child: const Text("pick"),
+          child: Text(context.t.pick),
         ),
         ElevatedButton(
           onPressed: () async {
@@ -479,7 +479,7 @@ class DebugWidget extends StatelessWidget {
             // if (newPath == null) return;
             // print(File(newPath).existsSync());
           },
-          child: const Text("test"),
+          child: Text(context.t.test),
         ),
       ],
     );

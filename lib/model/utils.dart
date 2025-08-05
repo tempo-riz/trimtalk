@@ -177,13 +177,13 @@ void showLoader() async {
     context: ctx,
     barrierDismissible: true,
     builder: (BuildContext context) {
-      return const Dialog(
+      return Dialog(
         backgroundColor: Colors.transparent,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Trimming...", style: TextStyle(color: Colors.white)),
+              Text(context.t.trimming, style: TextStyle(color: Colors.white)),
               gap16,
               CircularProgressIndicator(
                 backgroundColor: Colors.white,

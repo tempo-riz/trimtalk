@@ -263,4 +263,90 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get never => 'Jamais';
+
+  @override
+  String get trimming => 'Trimming...';
+
+  @override
+  String get androidMediaComWhatsappWhatsappMediaWhatsappVoiceNotes =>
+      'Android > media > com.whatsapp > WhatsApp > Media > WhatsApp Voice Notes';
+
+  @override
+  String get trimtalk => 'TrimTalk';
+
+  @override
+  String get test => 'test';
+
+  @override
+  String get pick => 'choisir';
+
+  @override
+  String get throwTestException => 'Lancer l\'exception de test';
+
+  @override
+  String get refreshResults => 'rafraîchir les résultats';
+
+  @override
+  String get clearResults => 'des résultats clairs';
+
+  @override
+  String get addLoadingSummary => 'Ajouter un résumé de chargement';
+
+  @override
+  String get addTranscriptResult => 'Ajouter le résultat de la transcription';
+
+  @override
+  String get addLoadingResult => 'Ajouter le résultat du chargement';
+
+  @override
+  String get addEmptyResult => 'Ajouter un résultat vide';
+
+  @override
+  String get readFiles => 'lire les fichiers';
+
+  @override
+  String get debug1File => 'Fichier Debug 1';
+
+  @override
+  String get persistentPath => 'persistent path';
+
+  @override
+  String get getPromptSize => 'obtenir une taille rapide';
+
+  @override
+  String get weekNumber => 'numéro de semaine';
+
+  @override
+  String get resetExplain => 'réinitialiser expliquer';
+
+  @override
+  String get resetDemo => 'reset demo';
+
+  @override
+  String get dummyReset => 'réinitialisation fictive';
+
+  @override
+  String get resetFirstCard => 'réinitialisation de la première carte';
+
+  @override
+  String get orPickAFileUsingThisButton =>
+      'Ou choisis un fichier en utilisant ce bouton';
+
+  @override
+  String get mergeSummarize => 'Fusionner et résumer';
+
+  @override
+  String get checkTheCode => 'Voir le code';
+
+  @override
+  String get rateTrimtalk => 'Noter TrimTalk';
+
+  @override
+  String get shareTheApp => 'Partager l\'app';
+
+  @override
+  String get feedback => 'Retours & bugs';
+
+  @override
+  String get support => 'Me soutenir';
 }
