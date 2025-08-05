@@ -1,3 +1,9 @@
+# 1.1.8
+- bugs and QoL improvements
+- fix some layout issues
+- add support for sharing multiple audio files with the app
+- allow merging and summarizing these
+
 # 1.1.5
 - remove unecessary deps
 - swipe to delete items
