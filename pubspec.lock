@@ -969,15 +969,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.4"
-  ogg_opus_player:
-    dependency: "direct main"
-    description:
-      path: "packages/ogg_opus_player"
-      ref: "3a6e62178864a5c0028d85c3fef52505d6839b90"
-      resolved-ref: "3a6e62178864a5c0028d85c3fef52505d6839b90"
-      url: "https://github.com/tempo-riz/flutter-plugins-pr"
-    source: git
-    version: "0.7.0"
   optimization_battery:
     dependency: "direct main"
     description:
@@ -1409,14 +1400,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.0"
-  system_clock:
-    dependency: transitive
-    description:
-      name: system_clock
-      sha256: "8133d7707b4bed8a5e62f0809f040975f8854e11b1c7ee851e56f929f153cc8a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   term_glyph:
     dependency: transitive
     description:

@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:trim_talk/model/utils.dart';
 import 'package:trim_talk/router.dart';
 import 'package:trim_talk/types/result.dart';
-import 'package:trim_talk/view/widgets/audio_player_opus.dart';
 import 'package:trim_talk/view/widgets/audio_player_standard.dart';
 import 'package:trim_talk/view/widgets/audio_player_wave.dart';
 
@@ -91,7 +90,8 @@ class MultiplatformAudioPlayer extends StatelessWidget {
     Widget player;
     if (Platform.isIOS) {
       if (path.endsWith(".opus")) {
-        player = AudioPlayerOpus(path: path, duration: result.duration);
+        // player = AudioPlayerOpus(path: path, duration: result.duration);
+        player = SizedBox.shrink();
       } else {
         player = AudioPlayerStandard(path: path, duration: result.duration);
       }
