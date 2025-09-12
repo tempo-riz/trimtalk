@@ -17,7 +17,6 @@ import 'package:trim_talk/model/check_new.dart';
 
 import 'package:trim_talk/router.dart';
 import 'package:flutter/foundation.dart' as foundation;
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

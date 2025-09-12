@@ -34,8 +34,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.example.trim_talk"
-    compileSdk 35 // flutter.compileSdkVersion
-    ndkVersion "27.0.11902837" // flutter.ndkVersion
+    compileSdk 36 // flutter.compileSdkVersion
+    ndkVersion "27.0.12077973" // flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17 //VERSION_17
@@ -58,7 +58,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 24
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         // versionCode 1
@@ -79,8 +79,8 @@ android {
     buildTypes {
         release {
             // maybe one can stay but not both (otherwise llm won't find some fields optimised by R8)
-            shrinkResources false // strip resources (assets, drawable, etc.) by removing those that are not used in your app.
-            minifyEnabled false // strip the code (Java/Kotlin code) and its obfuscation, optimization, and removal of unused code.
+            shrinkResources true // strip resources (assets, drawable, etc.) by removing those that are not used in your app.
+            minifyEnabled true // strip the code (Java/Kotlin code) and its obfuscation, optimization, and removal of unused code.
             signingConfig signingConfigs.release
         }
         debug {

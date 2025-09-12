@@ -161,8 +161,10 @@ class TranscriptLanguageDropDown extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: CountryFlag.fromCountryCode(
                     supportedTranscritionLanguages.where((L) => L.code == languageCode).first.flagCode,
-                    width: 30,
-                    height: 20,
+                    theme: ImageTheme(
+                      width: 30,
+                      height: 20,
+                    ),
                   ),
                 ),
                 initialSelection: languageCode,
@@ -177,8 +179,10 @@ class TranscriptLanguageDropDown extends StatelessWidget {
                           label: L.name,
                           leadingIcon: CountryFlag.fromCountryCode(
                             L.flagCode,
-                            width: 30,
-                            height: 20,
+                            theme: ImageTheme(
+                              width: 30,
+                              height: 20,
+                            ),
                           ),
                         ))
                     .toList(),
@@ -212,8 +216,10 @@ class AppLanguageDropDown extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: CountryFlag.fromCountryCode(
                     supportedAppLanguages.where((L) => L.code == languageCode).first.flagCode,
-                    width: 30,
-                    height: 20,
+                    theme: ImageTheme(
+                      width: 30,
+                      height: 20,
+                    ),
                   ),
                 ),
                 initialSelection: languageCode,
@@ -228,8 +234,10 @@ class AppLanguageDropDown extends StatelessWidget {
                           label: L.name,
                           leadingIcon: CountryFlag.fromCountryCode(
                             L.flagCode,
-                            width: 30,
-                            height: 20,
+                            theme: ImageTheme(
+                              width: 30,
+                              height: 20,
+                            ),
                           ),
                         ))
                     .toList(),
