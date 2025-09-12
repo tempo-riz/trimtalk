@@ -1,3 +1,6 @@
+# 1.1.9
+- add support for 16ko page size
+
 # 1.1.8
 - bugs and QoL improvements
 - fix some layout issues
