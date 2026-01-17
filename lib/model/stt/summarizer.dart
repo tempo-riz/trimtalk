@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:groq_sdk/models/groq.dart';
 import 'package:groq_sdk/models/groq_chat.dart';
-import 'package:groq_sdk/models/groq_llm_model.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/utils.dart';
 
@@ -18,17 +17,18 @@ class Summarizer {
 
     final prompt = _buildPromptSummaryOnly(transcript, language: maybeLanguage?.name);
 
-    const deepSeekId = "deepseek-r1-distill-llama-70b";
+    const model1 = "openai/gpt-oss-120b";
+    const model2 = "llama-3.3-70b-versatile";
 
     try {
       // First try with deepseek
       // https://console.groq.com/settings/limits
       // https://console.groq.com/settings/billing
       // TODO : https://arc.net/l/quote/jdzwgwwj
-      String? result = await _tryWithModel(deepSeekId, prompt);
+      String? result = await _tryWithModel(model1, prompt);
 
       // fallback to gemma2-9b-it
-      result ??= await _tryWithModel(GroqModels.gemma2_9b, prompt);
+      result ??= await _tryWithModel(model2, prompt);
 
       return await _parseJsonAnswerSummaryOnly(result!);
     } catch (e) {
