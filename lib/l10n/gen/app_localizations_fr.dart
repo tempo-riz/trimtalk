@@ -352,4 +352,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get summaryPrompt => 'Prompt de résumé';
+
+  @override
+  String get numberOfReturnsAfterPonctuation =>
+      'Retours à la ligne après ponctuation';
 }

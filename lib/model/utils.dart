@@ -163,6 +163,11 @@ extension Str on String {
   String toReadableTime() {
     return DateTime.parse(this).toReadable();
   }
+
+  String addReturnsAfterPonctuation() {
+    final nbReturns = DB.getPref(Prefs.numberOfReturns);
+    return replaceAllMapped(RegExp(r'([.?!])\s+'), (match) => match[1]!.padRight(nbReturns, "\n")).trim();
+  }
 }
 
 BuildContext? get getContext => router.routerDelegate.navigatorKey.currentState?.context ?? router.routerDelegate.navigatorKey.currentContext;

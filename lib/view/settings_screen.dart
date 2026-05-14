@@ -99,7 +99,32 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     );
                   }),
-
+              Padding(
+                padding: EdgeInsetsGeometry.only(left: 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.t.numberOfReturnsAfterPonctuation,
+                    textAlign: TextAlign.left,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+              ),
+              PrefBuilder<int>(
+                  pref: Prefs.numberOfReturns,
+                  builder: (context, value) {
+                    return Slider(
+                        label: value.toString(),
+                        // showValueIndicator: ShowValueIndicator.alwaysVisible,
+                        value: value.toDouble(),
+                        onChanged: (value) {
+                          print(value);
+                          DB.setPref(Prefs.numberOfReturns, value.round());
+                        },
+                        min: 0,
+                        max: 2,
+                        divisions: 2);
+                  }),
               // if (Platform.isAndroid) ...[
               //   gap16,
               //   const EnableAutoCheckToggle(),

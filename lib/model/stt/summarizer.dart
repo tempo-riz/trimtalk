@@ -97,6 +97,6 @@ $transcript
     if (summary == null) {
       return null;
     }
-    return summary.replaceAllMapped(RegExp(r'([.?!])\s+'), (match) => '${match[1]}\n').trim();
+    return summary.addReturnsAfterPonctuation();
   }
 }

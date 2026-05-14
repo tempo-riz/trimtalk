@@ -107,5 +107,6 @@
   "shareTheApp": "Partager l'app",
   "feedback": "Retours & bugs",
   "support": "Me soutenir",
-  "summaryPrompt": "Prompt de résumé"
+  "summaryPrompt": "Prompt de résumé",
+  "numberOfReturnsAfterPonctuation": "Retours à la ligne après ponctuation"
 }

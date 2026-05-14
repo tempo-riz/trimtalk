@@ -746,6 +746,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Summary prompt'**
   String get summaryPrompt;
+
+  /// No description provided for @numberOfReturnsAfterPonctuation.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of returns after ponctuation'**
+  String get numberOfReturnsAfterPonctuation;
 }
 
 class _AppLocalizationsDelegate

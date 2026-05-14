@@ -107,5 +107,6 @@
   "shareTheApp": "Share the app",
   "feedback": "Feedback",
   "support": "Support me",
-  "summaryPrompt": "Summary prompt"
+  "summaryPrompt": "Summary prompt",
+  "numberOfReturnsAfterPonctuation": "Number of returns after ponctuation"
 }

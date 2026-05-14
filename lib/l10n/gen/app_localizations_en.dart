@@ -346,4 +346,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get summaryPrompt => 'Summary prompt';
+
+  @override
+  String get numberOfReturnsAfterPonctuation =>
+      'Number of returns after ponctuation';
 }
