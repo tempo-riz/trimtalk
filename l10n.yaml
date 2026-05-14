@@ -4,7 +4,6 @@ output-localization-file: app_localizations.dart
 nullable-getter: false
 untranslated-messages-file: untranslated-messages-file.txt
 # explicitely generate the file to avoid: couldn't resolve the package 'flutter_gen'
-synthetic-package: false
 output-dir: lib/l10n/gen/
 
 # Plugin specific configuration
