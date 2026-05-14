@@ -165,8 +165,10 @@ extension Str on String {
   }
 
   String addReturnsAfterPonctuation() {
-    final nbReturns = DB.getPref(Prefs.numberOfReturns);
-    return replaceAllMapped(RegExp(r'([.?!])\s+'), (match) => match[1]!.padRight(nbReturns, "\n")).trim();
+    final nbReturns = DB.getPref<int>(Prefs.numberOfReturns);
+    return replaceAllMapped(RegExp(r'([.?!])\s+'), (match) {
+      return '${match[1]}${List.filled(nbReturns, '\n').join()}';
+    }).trim();
   }
 }
 
