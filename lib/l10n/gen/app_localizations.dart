@@ -740,6 +740,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Support me'**
   String get support;
+
+  /// No description provided for @summaryPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary prompt'**
+  String get summaryPrompt;
 }
 
 class _AppLocalizationsDelegate

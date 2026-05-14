@@ -57,7 +57,7 @@ class Summarizer {
 Summarize the following audio transcript. The output should be in JSON format with a single key:
 
 {
-  "summary": "A concise summary that captures the key information and main points from the provided text."
+  "summary": "${DB.getPref(Prefs.summaryPrompt)}"
 }
 The value of the "summary" key should be in the source language $langStr. Here is the text to process:
 
@@ -97,6 +97,6 @@ $transcript
     if (summary == null) {
       return null;
     }
-    return summary.trim();
+    return summary.replaceAllMapped(RegExp(r'([.?!])\s+'), (match) => '${match[1]}\n').trim();
   }
 }

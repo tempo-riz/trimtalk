@@ -498,3 +498,5 @@ void openFeedbackPanel(BuildContext context) {
     onCancel: () => showSnackBar(context.t.pleaseTryAgainWithText),
   );
 }
+
+const defaultSummaryPrompt = "A concise summary that captures the key information and main points from the provided text.";

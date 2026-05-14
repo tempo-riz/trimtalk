@@ -25,6 +25,8 @@ enum Prefs {
   isDarkMode,
   isCheckingForFiles,
   isTranslated,
+  summaryPrompt,
+  numberOfReturns,
 }
 
 class DB {
@@ -165,6 +167,8 @@ extension BoxPref on Box {
       Prefs.isCheckingForFiles => false,
       Prefs.isWatchingNotification => false,
       Prefs.isTranslated => false,
+      Prefs.summaryPrompt => defaultSummaryPrompt,
+      Prefs.numberOfReturns => 1,
     };
     return DB.prefsBox.get(pref.name, defaultValue: def);
   }

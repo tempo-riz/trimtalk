@@ -349,4 +349,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get support => 'Me soutenir';
+
+  @override
+  String get summaryPrompt => 'Prompt de résumé';
 }

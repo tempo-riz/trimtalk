@@ -343,4 +343,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get support => 'Support me';
+
+  @override
+  String get summaryPrompt => 'Summary prompt';
 }

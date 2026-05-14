@@ -78,7 +78,7 @@ class Transcriber {
 
       // French, ...
 
-      String transcript = transcriptionResult.text.trim();
+      String transcript = transcriptionResult.text.replaceAllMapped(RegExp(r'([.?!])\s+'), (match) => '${match[1]}\n\n').trim();
 
       if (DB.getPref(Prefs.isTranslated)) {
         final detectedLang = transcriptionResult.json['language'] as String?;

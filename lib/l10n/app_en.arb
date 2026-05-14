@@ -106,5 +106,6 @@
   "rateTrimtalk": "Rate TrimTalk",
   "shareTheApp": "Share the app",
   "feedback": "Feedback",
-  "support": "Support me"
+  "support": "Support me",
+  "summaryPrompt": "Summary prompt"
 }

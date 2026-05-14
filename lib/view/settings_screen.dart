@@ -69,6 +69,37 @@ class SettingsScreen extends StatelessWidget {
               if (Platform.isAndroid) ...[
                 const EnableNotificationWatchToogle(),
               ],
+              Padding(
+                padding: EdgeInsetsGeometry.only(left: 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.t.summaryPrompt,
+                    textAlign: TextAlign.left,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+              ),
+              PrefBuilder<String>(
+                  pref: Prefs.summaryPrompt,
+                  builder: (context, value) {
+                    return TextFormField(
+                      controller: TextEditingController(text: value),
+                      onEditingComplete: () => FocusScope.of(context).unfocus(),
+                      onChanged: (value) => DB.setPref(Prefs.summaryPrompt, value),
+                      maxLines: 2,
+                      textInputAction: TextInputAction.done,
+                      onFieldSubmitted: (_) => FocusScope.of(context).unfocus(),
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.refresh),
+                          onPressed: () => DB.setPref(Prefs.summaryPrompt, defaultSummaryPrompt),
+                        ),
+                      ),
+                    );
+                  }),
+
               // if (Platform.isAndroid) ...[
               //   gap16,
               //   const EnableAutoCheckToggle(),
