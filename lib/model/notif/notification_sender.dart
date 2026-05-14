@@ -47,7 +47,7 @@ class NotificationSender {
   static Future<bool> init({bool force = false}) async {
     if (!DB.getPref(Prefs.isNotificationEnabled) && !force) return false;
     return await FlutterLocalNotificationsPlugin().initialize(
-          InitializationSettings(
+          settings: InitializationSettings(
               android: const AndroidInitializationSettings('mipmap/ic_launcher'),
               iOS: DarwinInitializationSettings(
                 notificationCategories: [
@@ -73,7 +73,7 @@ class NotificationSender {
   }
 
   static Future<void> clear(int id) async {
-    await FlutterLocalNotificationsPlugin().cancel(id);
+    await FlutterLocalNotificationsPlugin().cancel(id: id);
   }
 
   /// show only if app is not in foreground
@@ -95,7 +95,7 @@ class NotificationSender {
       android: android,
       iOS: ios,
     );
-    await FlutterLocalNotificationsPlugin().show(id, 'Transcribing $dur ...', null, details);
+    await FlutterLocalNotificationsPlugin().show(id: id, title: 'Transcribing $dur ...', body: null, notificationDetails: details);
   }
 
   static Future<void> showError(int id, String? error) async {
@@ -115,7 +115,7 @@ class NotificationSender {
       android: android,
       iOS: ios,
     );
-    await FlutterLocalNotificationsPlugin().show(id, error ?? 'Failed to transcribe :(', null, details);
+    await FlutterLocalNotificationsPlugin().show(id: id, title: error ?? 'Failed to transcribe :(', body: null, notificationDetails: details);
   }
 
   static Future<void> _showNotification({
@@ -153,7 +153,7 @@ class NotificationSender {
     );
     // for length limitation/croping : https://reteno.com/blog/push-notification-character-limits-tips-to-be-visible
     final details = NotificationDetails(android: android, iOS: ios);
-    await FlutterLocalNotificationsPlugin().show(notifId, title, body, details, payload: payload);
+    await FlutterLocalNotificationsPlugin().show(id: notifId, title: title, body: body, notificationDetails: details, payload: payload);
   }
 
   /// ask user if they want to transcribe the audio

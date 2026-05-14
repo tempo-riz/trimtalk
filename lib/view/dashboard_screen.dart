@@ -359,7 +359,7 @@ class PickFileButton extends StatelessWidget {
     return IconButton(
       onPressed: () async {
         print("picking file");
-        FilePickerResult? picked = await FilePicker.platform.pickFiles(
+        FilePickerResult? picked = await FilePicker.pickFiles(
           allowMultiple: true,
           // type: FileType.audio, doesn't seem to work properly
           type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'aac', 'flac', 'ogg', 'm4a', 'opus'],
