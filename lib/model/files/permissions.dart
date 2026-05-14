@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:disable_battery_optimization/disable_battery_optimization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:notification_listener_service/notification_listener_service.dart';
-import 'package:optimization_battery/optimization_battery.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:trim_talk/model/notif/notification_sender.dart';
@@ -83,7 +81,7 @@ class Permissions {
 
   // using 2 packages for battery optimization because DisableBatteryOptimization result is wrong (returns true when the popup is closed whatever the user choice is)
   static Future<bool> askDisableBatteryOptimization() async {
-    await DisableBatteryOptimization.showDisableBatteryOptimizationSettings(); // this returns instantly so we check periodicly
+    // await DisableBatteryOptimization.showDisableBatteryOptimizationSettings(); // this returns instantly so we check periodicly
 
     const timeout = Duration(seconds: 20);
     final endTime = DateTime.now().add(timeout);
@@ -100,12 +98,12 @@ class Permissions {
 
   /// used for debuging
   static void openBatterySettings() async {
-    OptimizationBattery.openBatteryOptimizationSettings(); // not very user friendly (practical)
+    // OptimizationBattery.openBatteryOptimizationSettings(); // not very user friendly (practical)
   }
 
   static Future<bool> isBatteryOptimizationDisabled() async {
-    if (Platform.isIOS) return true;
-    return OptimizationBattery.isIgnoringBatteryOptimizations();
+    return true;
+    // return OptimizationBattery.isIgnoringBatteryOptimizations();
   }
 
   static Future<bool> isNotifWatchingAllowed() async {

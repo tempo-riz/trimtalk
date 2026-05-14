@@ -25,15 +25,15 @@ dependencies:
   #     ref: b783000
   go_router: ^17.2.3
   awesome_extensions: ^2.0.16
-  disable_battery_optimization:
-    git:
-      url: https://github.com/pvsvamsi/Disable-Battery-Optimizations
-      ref: 3bd744d03c416859bbaedecd61c1c11fc022ed75
+  # disable_battery_optimization:
+  #   git:
+  #     url: https://github.com/pvsvamsi/Disable-Battery-Optimizations
+  #     ref: 3bd744d03c416859bbaedecd61c1c11fc022ed75
 
-  optimization_battery:
-    git:
-      url: https://github.com/tempo-riz/optimization_battery.git
-      ref: 5921eceba2b32d7117c21bbcafc6ed264e0efb6b
+  # optimization_battery:
+  #   git:
+  #     url: https://github.com/tempo-riz/optimization_battery.git
+  #     ref: 5921eceba2b32d7117c21bbcafc6ed264e0efb6b
   country_flags: ^4.0.0
   audio_waveforms: ^2.0.2
   flutter_native_splash: ^2.4.0
@@ -79,7 +79,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   flutter_localizations:
     sdk: flutter
-  notification_listener_service: ^0.3.4
+  notification_listener_service: ^0.3.5
   collection: ^1.18.0
   deepl_dart: ^2.0.0
   in_app_purchase: ^3.2.3

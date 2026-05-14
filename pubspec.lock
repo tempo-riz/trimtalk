@@ -329,15 +329,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.3"
-  disable_battery_optimization:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "3bd744d03c416859bbaedecd61c1c11fc022ed75"
-      resolved-ref: "3bd744d03c416859bbaedecd61c1c11fc022ed75"
-      url: "https://github.com/pvsvamsi/Disable-Battery-Optimizations"
-    source: git
-    version: "1.1.1"
   fake_async:
     dependency: transitive
     description:
@@ -1017,15 +1008,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.3.0"
-  optimization_battery:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "5921eceba2b32d7117c21bbcafc6ed264e0efb6b"
-      resolved-ref: "5921eceba2b32d7117c21bbcafc6ed264e0efb6b"
-      url: "https://github.com/tempo-riz/optimization_battery.git"
-    source: git
-    version: "0.0.6"
   os_detect:
     dependency: transitive
     description:
