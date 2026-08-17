@@ -1,0 +1,28 @@
+PODS:
+  - audio_waveforms (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - receive_sharing_intent (1.8.1):
+    - Flutter
+
+DEPENDENCIES:
+  - audio_waveforms (from `.symlinks/plugins/audio_waveforms/ios`)
+  - Flutter (from `Flutter`)
+  - receive_sharing_intent (from `.symlinks/plugins/receive_sharing_intent/ios`)
+
+EXTERNAL SOURCES:
+  audio_waveforms:
+    :path: ".symlinks/plugins/audio_waveforms/ios"
+  Flutter:
+    :path: Flutter
+  receive_sharing_intent:
+    :path: ".symlinks/plugins/receive_sharing_intent/ios"
+
+SPEC CHECKSUMS:
+  audio_waveforms: cd736909ebc6b6a164eb74701d8c705ce3241e1c
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  receive_sharing_intent: 79c848f5b045674ad60b9fea3bafea59962ad2c1
+
+PODFILE CHECKSUM: 1f8b135f9bd7885bcc8a619cc4938d11f7ba5905
+
+COCOAPODS: 1.16.2
