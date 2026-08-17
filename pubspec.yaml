@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_local_notifications: ^21.0.0
-  permission_handler: ^12.0.1
+  flutter_local_notifications: ^22.3.0
+  permission_handler: ^13.0.1
   flutter_dotenv: ^6.0.0
   http: ^1.2.0
   intl: any
@@ -46,7 +46,7 @@ dependencies:
     git:
       url: https://github.com/KasemJaffer/receive_sharing_intent.git
       ref: 2cea396
-  device_info_plus: ^11.2.1
+  device_info_plus: ^13.2.0
   flutter_slidable: ^4.0.0
   flutter_scrolling_fab_animated: ^0.1.5
   flutter_hooks: ^0.21.2
@@ -71,20 +71,20 @@ dependencies:
   #     path: packages/ogg_opus_player
   #     ref: 3a6e62178864a5c0028d85c3fef52505d6839b90
   in_app_review: ^2.0.9
-  share_plus: ^12.0.0
-  package_info_plus: ^8.0.2
+  share_plus: ^13.3.0
+  package_info_plus: ^10.2.1
   flutter_reaction_button:
     git:
       url: https://github.com/tempo-riz/flutter-reaction-button.git
   flutter_svg: ^2.0.10+1
   flutter_localizations:
     sdk: flutter
-  notification_listener_service: ^0.3.5
+  notification_listener_service: ^1.0.0
   collection: ^1.18.0
   deepl_dart: ^2.0.0
   in_app_purchase: ^3.2.3
   in_app_purchase_storekit: ^0.4.8+1
-  file_picker: ^11.0.2
+  file_picker: ^12.0.0
   uuid: ^4.5.1
   firebase_core: ^4.9.0
 

@@ -30,15 +30,15 @@ class NotificationWatcher {
     stream = NotificationListenerService.notificationsStream.listen((ServiceNotificationEvent event) async {
       if (event.packageName != 'com.whatsapp') return;
       if (event.hasRemoved == true) return; // (if user dismissed the notification)
-      if (event.content?.startsWith('🎤') == false) return;
+      if (event.content.startsWith('🎤') == false) return;
       // here we know it's a whatsapp voice note (not dismissed)
 
       // event.id; // 1
       // remove ( and ) from the title
 
       // 🎤 Message vocal (0:24) -> (0:24) -> 0:24
-      final String? duration = event.content?.split(' ').last.replaceAll(RegExp(r'[()]'), '');
-      final String? author = event.title; // Fafa 🐣🦕🦆
+      final String duration = event.content.split(' ').last.replaceAll(RegExp(r'[()]'), '');
+      final String author = event.title; // Fafa 🐣🦕🦆
       final meta = ResultExtraMetadata(author, duration);
 
       print(event);

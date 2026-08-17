@@ -359,16 +359,14 @@ class PickFileButton extends StatelessWidget {
     return IconButton(
       onPressed: () async {
         print("picking file");
-        FilePickerResult? picked = await FilePicker.pickFiles(
-          allowMultiple: true,
+        final picked = await FilePicker.pickFiles(
           // type: FileType.audio, doesn't seem to work properly
           type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'aac', 'flac', 'ogg', 'm4a', 'opus'],
         );
         print("result: $picked");
-        if (picked == null) return;
-        final groupId = picked.files.length > 1 ? Uuid().v4() : null;
+        final groupId = picked.length > 1 ? Uuid().v4() : null;
         print("groupId: $groupId");
-        List<File> files = picked.files.map((file) => File(file.path!)).toList();
+        List<File> files = picked.map((file) => File(file.path!)).toList();
 
         for (File file in files) {
           if (!isAudioFile(file.path)) {
