@@ -87,7 +87,7 @@ class SettingsScreen extends StatelessWidget {
                       controller: TextEditingController(text: value),
                       onEditingComplete: () => FocusScope.of(context).unfocus(),
                       onChanged: (value) => DB.setPref(Prefs.summaryPrompt, value),
-                      maxLines: 2,
+                      maxLines: 4,
                       textInputAction: TextInputAction.done,
                       onFieldSubmitted: (_) => FocusScope.of(context).unfocus(),
                       decoration: InputDecoration(
