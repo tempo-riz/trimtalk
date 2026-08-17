@@ -5,6 +5,8 @@ import 'package:groq_sdk/models/groq_chat.dart';
 import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/utils.dart';
 
+import 'package:http/http.dart' as http;
+
 class Summarizer {
   static Future<String?> summarize(String? transcript) async {
     if (transcript == null) {
@@ -21,20 +23,53 @@ class Summarizer {
     const model2 = "llama-3.3-70b-versatile";
 
     try {
-      // First try with deepseek
-      // https://console.groq.com/settings/limits
-      // https://console.groq.com/settings/billing
-      // TODO : https://arc.net/l/quote/jdzwgwwj
-      String? result = await _tryWithModel(model1, prompt);
+      String? result;
+      result ??= await _summarizeWithCohere(prompt);
+
+      result ??= await _tryWithModel(model1, prompt);
 
       // fallback to gemma2-9b-it
       result ??= await _tryWithModel(model2, prompt);
+
+      /// fallback to cohere
 
       return await _parseJsonAnswerSummaryOnly(result!);
     } catch (e) {
       print(e);
       return null;
     }
+  }
+
+  static Future<String?> _summarizeWithCohere(String prompt) async {
+    final apiKey = dotenv.get('COHERE_API_KEY');
+    print('Using cohere api key: $apiKey');
+    final url = Uri.parse('https://api.cohere.ai/v2/chat');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'Authorization': 'bearer $apiKey',
+        },
+        body: jsonEncode({
+          'model': 'command-a-plus-05-2026',
+          'messages': [
+            {
+              'role': 'user',
+              'content': prompt,
+            }
+          ],
+        }),
+      );
+
+      final data = jsonDecode(response.body);
+      return data['message']['content'][1]['text'];
+    } catch (e) {
+      print('Error with Cohere API: $e');
+    }
+    return null;
   }
 
   static Future<String?> _tryWithModel(String modelId, String prompt) async {
