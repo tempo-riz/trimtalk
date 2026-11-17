@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:groq_sdk/models/groq.dart';
 import 'package:groq_sdk/models/groq_chat.dart';
 import 'package:trim_talk/model/files/db.dart';
+import 'package:trim_talk/model/stt/local_summarizer.dart';
 import 'package:trim_talk/model/utils.dart';
 
 import 'package:http/http.dart' as http;
@@ -24,6 +25,8 @@ class Summarizer {
 
     try {
       String? result;
+
+      result ??= await LocalSummarizer.summarize(prompt);
       result ??= await _summarizeWithCohere(prompt);
 
       result ??= await _tryWithModel(model1, prompt);

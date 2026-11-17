@@ -31,3 +31,6 @@ linter:
 analyzer:
   exclude:
     - lib/l10n/**
+    - build/**
+    - android/**
+    - ios/**

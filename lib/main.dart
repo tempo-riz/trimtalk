@@ -15,7 +15,7 @@ import 'package:trim_talk/model/notif/notification_sender.dart';
 import 'package:trim_talk/model/files/receiver.dart';
 import 'package:trim_talk/model/notif/notification_watcher.dart';
 import 'package:trim_talk/model/check_new.dart';
-
+import 'package:trim_talk/model/stt/local_summarizer.dart';
 import 'package:trim_talk/router.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'firebase_options.dart';
@@ -74,6 +74,14 @@ Future<void> initApp() async {
   await NotificationSender.init();
 
   NotificationWatcher.init();
+
+  LocalSummarizer.initialize().then((ready) {
+    if (!ready) {
+      print('Built-in AI is not supported on this device.');
+    } else {
+      print('Built-in AI is ready to use.');
+    }
+  });
 
   firstRoute = await getFirstRoute();
   print("First route: $firstRoute");
