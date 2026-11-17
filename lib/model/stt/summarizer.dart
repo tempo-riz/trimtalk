@@ -6,7 +6,7 @@ import 'package:trim_talk/model/files/db.dart';
 import 'package:trim_talk/model/stt/local_summarizer.dart';
 import 'package:trim_talk/model/utils.dart';
 
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 class Summarizer {
   static Future<String?> summarize(String? transcript) async {
@@ -14,65 +14,32 @@ class Summarizer {
       print('Transcript is null in summarizer');
       return null;
     }
-    final code = DB.getPref(Prefs.transcriptLanguageCode);
+    // final code = DB.getPref(Prefs.transcriptLanguageCode);
 
-    final maybeLanguage = supportedTranscritionLanguages.where((L) => (L.code == code && code != "auto")).firstOrNull;
+    // final maybeLanguage = supportedTranscritionLanguages.where((L) => (L.code == code && code != "auto")).firstOrNull;
 
-    final prompt = _buildPromptSummaryOnly(transcript, language: maybeLanguage?.name);
+    // final prompt = _buildPromptSummaryOnly(transcript, language: maybeLanguage?.name);
 
-    const model1 = "openai/gpt-oss-120b";
-    const model2 = "llama-3.3-70b-versatile";
+    // const model1 = "openai/gpt-oss-120b";
+    // const model2 = "llama-3.3-70b-versatile";
 
     try {
-      String? result;
+      // String? result;
 
-      result ??= await LocalSummarizer.summarize(prompt);
-      result ??= await _summarizeWithCohere(prompt);
+      return await LocalSummarizer.summarize(transcript);
 
-      result ??= await _tryWithModel(model1, prompt);
+      // result ??= await _tryWithModel(model1, prompt);
 
-      // fallback to gemma2-9b-it
-      result ??= await _tryWithModel(model2, prompt);
+      // // fallback to gemma2-9b-it
+      // result ??= await _tryWithModel(model2, prompt);
 
       /// fallback to cohere
 
-      return await _parseJsonAnswerSummaryOnly(result!);
+      // return await _parseJsonAnswerSummaryOnly(result);
     } catch (e) {
       print(e);
       return null;
     }
-  }
-
-  static Future<String?> _summarizeWithCohere(String prompt) async {
-    final apiKey = dotenv.get('COHERE_API_KEY');
-    print('Using cohere api key: $apiKey');
-    final url = Uri.parse('https://api.cohere.ai/v2/chat');
-
-    try {
-      final response = await http.post(
-        url,
-        headers: {
-          'accept': 'application/json',
-          'content-type': 'application/json',
-          'Authorization': 'bearer $apiKey',
-        },
-        body: jsonEncode({
-          'model': 'command-a-plus-05-2026',
-          'messages': [
-            {
-              'role': 'user',
-              'content': prompt,
-            }
-          ],
-        }),
-      );
-
-      final data = jsonDecode(response.body);
-      return data['message']['content'][1]['text'];
-    } catch (e) {
-      print('Error with Cohere API: $e');
-    }
-    return null;
   }
 
   static Future<String?> _tryWithModel(String modelId, String prompt) async {

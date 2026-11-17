@@ -60,7 +60,7 @@ class NativePlatform {
     // using isolate to avoid "Skipped 194 frames!  The application may be doing too much work on its main thread."
     // SEEMS NOT TO WORK IN ISOLATE (token is not null) -> use thread kotlin side
     try {
-      return listAfterCallRaw(folderId, time);
+      return await listAfterCallRaw(folderId, time);
     } catch (e) {
       print(e);
       return [];

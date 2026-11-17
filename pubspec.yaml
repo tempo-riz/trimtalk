@@ -88,8 +88,7 @@ dependencies:
   firebase_core: ^4.13.0
   firebase_crashlytics: ^5.2.7
   firebase_analytics: ^12.4.6
-  flutter_edge_ai: ^2.6.0
-  flutter_edge_ai_builtin_ai: ^0.4.2
+  edge_gen_ai: ^0.4.0
 
 dev_dependencies:
   flutter_test:
